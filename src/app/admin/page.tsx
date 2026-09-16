@@ -137,7 +137,7 @@ export default async function AdminDashboardPage() {
         <div className="flex items-center gap-3">
           <Link
             href="/admin/imoveis/novo"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#D4AF37] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-md shadow-[#D4AF37]/20 transition-all hover:bg-[#F4C430] active:scale-95"
+            className="inline-flex items-center gap-2 rounded-xl gold-gradient-btn px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-md shadow-[#D4AF37]/20 active:scale-95"
           >
             <PlusCircle className="h-4 w-4" />
             <span>Novo Imóvel</span>
@@ -297,7 +297,7 @@ export default async function AdminDashboardPage() {
             <div className="space-y-2.5">
               <Link
                 href="/admin/imoveis/novo"
-                className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] p-3.5 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] hover:text-[#F4C430] transition-all group"
+                className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] p-3.5 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-all group"
               >
                 <span className="flex items-center gap-2.5">
                   <PlusCircle className="h-4 w-4 text-[#D4AF37]" />
@@ -308,7 +308,7 @@ export default async function AdminDashboardPage() {
 
               <Link
                 href="/admin/imoveis"
-                className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] p-3.5 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] hover:text-[#F4C430] transition-all group"
+                className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] p-3.5 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-all group"
               >
                 <span className="flex items-center gap-2.5">
                   <Building2 className="h-4 w-4 text-[#D4AF37]" />
@@ -321,7 +321,7 @@ export default async function AdminDashboardPage() {
                 href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] p-3.5 text-xs font-semibold text-[#A3A3A3] hover:border-[#D4AF37] hover:text-[#F4C430] transition-all group"
+                className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] p-3.5 text-xs font-semibold text-[#A3A3A3] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-all group"
               >
                 <span className="flex items-center gap-2.5">
                   <ExternalLink className="h-4 w-4 text-[#D4AF37]" />

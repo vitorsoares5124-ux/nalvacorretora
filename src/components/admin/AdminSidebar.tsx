@@ -95,7 +95,7 @@ export function AdminSidebar() {
           href="/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#161616] px-3.5 py-2.5 text-xs text-[#A3A3A3] hover:border-[#D4AF37] hover:text-[#F4C430] transition-colors"
+          className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#161616] px-3.5 py-2.5 text-xs text-[#A3A3A3] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-colors"
         >
           <span className="flex items-center gap-2">
             <ExternalLink className="h-3.5 w-3.5 text-[#D4AF37]" />

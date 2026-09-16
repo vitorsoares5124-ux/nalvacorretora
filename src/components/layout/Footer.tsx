@@ -36,17 +36,17 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#destaques" className="hover:text-[#F4C430] transition-colors">
+                <Link href="#destaques" className="hover:text-[#EAD2A8] transition-colors">
                   Imóveis em Destaque
                 </Link>
               </li>
               <li>
-                <Link href="#sobre" className="hover:text-[#F4C430] transition-colors">
+                <Link href="#sobre" className="hover:text-[#EAD2A8] transition-colors">
                   Sobre Roberto Andrade
                 </Link>
               </li>
               <li>
-                <Link href="#contato" className="hover:text-[#F4C430] transition-colors">
+                <Link href="#contato" className="hover:text-[#EAD2A8] transition-colors">
                   Atendimento Exclusivo
                 </Link>
               </li>

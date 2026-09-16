@@ -41,7 +41,7 @@ export function Sobre() {
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F5F0] leading-tight">
               Assessoria personalizada na busca do seu imóvel{" "}
-              <span className="text-[#D4AF37]">ideal</span>
+              <span className="gold-gradient-text">ideal</span>
             </h2>
 
             <p className="text-base text-[#A3A3A3] leading-relaxed">

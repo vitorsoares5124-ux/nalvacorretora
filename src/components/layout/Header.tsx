@@ -27,7 +27,7 @@ export function Header() {
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[#A3A3A3]">
           <Link
             href="/imoveis"
-            className="hover:text-[#F4C430] transition-colors py-1 relative group flex items-center gap-1.5"
+            className="hover:text-[#EAD2A8] transition-colors py-1 relative group flex items-center gap-1.5"
           >
             <Search className="h-3.5 w-3.5 text-[#D4AF37]" />
             <span>Buscar Imóveis</span>
@@ -35,14 +35,14 @@ export function Header() {
           </Link>
           <Link
             href="/#destaques"
-            className="hover:text-[#F4C430] transition-colors py-1 relative group"
+            className="hover:text-[#EAD2A8] transition-colors py-1 relative group"
           >
             Destaques
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
           </Link>
           <Link
             href="/#sobre"
-            className="hover:text-[#F4C430] transition-colors py-1 relative group"
+            className="hover:text-[#EAD2A8] transition-colors py-1 relative group"
           >
             Sobre
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />

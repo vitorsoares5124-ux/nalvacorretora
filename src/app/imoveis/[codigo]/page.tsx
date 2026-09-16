@@ -191,7 +191,7 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
             <span className="text-xs uppercase tracking-wider text-[#A3A3A3]">
               Valor de {imovel.finalidade === "venda" ? "Venda" : "Locação"}
             </span>
-            <div className="text-3xl sm:text-4xl font-bold text-[#D4AF37]">
+            <div className="text-3xl sm:text-4xl font-bold gold-gradient-text">
               {precoFormatado}
               {imovel.finalidade === "aluguel" && (
                 <span className="text-sm font-normal text-[#A3A3A3] ml-1">/mês</span>

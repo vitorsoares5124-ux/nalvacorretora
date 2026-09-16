@@ -1,16 +1,30 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: var(--font-heading), "Playfair Display", Georgia, serif;
+  --font-heading: var(--font-heading), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-body), Inter, system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-body), Inter, system-ui, -apple-system, sans-serif;
+
+  --color-gold-primary: #d4af37;
+  --color-gold-light: #ead2a8;
+  --color-gold-champagne: #f5e6c8;
+  --color-gold-dark: #9e7b34;
+}
+
 :root {
   --bg-main: #0a0a0a;
   --bg-surface: #141414;
   --bg-card: #1a1a1a;
   --bg-card-hover: #222222;
   --border-subtle: #2a2a2a;
-  --border-gold: #d4af37;
+  --border-gold: #c5a059;
   
   --gold-primary: #d4af37;
-  --gold-light: #f4c430;
-  --gold-gradient: linear-gradient(135deg, #f4c430 0%, #d4af37 50%, #aa820a 100%);
+  --gold-light: #ead2a8;
+  --gold-champagne: #f5e6c8;
+  --gold-dark: #9e7b34;
+  --gold-gradient: linear-gradient(135deg, #f5e6c8 0%, #d4af37 45%, #9e7b34 100%);
   
   --text-primary: #f5f5f0;
   --text-secondary: #a3a3a3;
@@ -22,10 +36,21 @@
 body {
   background-color: var(--bg-main);
   color: var(--text-primary);
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-body), Inter, system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   selection-background-color: #d4af37;
   selection-color: #0a0a0a;
+}
+
+/* Headings com tipografia serifada de alta classe */
+h1, h2, h3, .font-serif, .font-heading {
+  font-family: var(--font-heading), "Playfair Display", Georgia, serif;
+  letter-spacing: -0.015em;
+}
+
+/* Subtítulos e textos de corpo com Inter */
+body, p, span, a, button, input, select, textarea, label {
+  font-family: var(--font-body), Inter, system-ui, -apple-system, sans-serif;
 }
 
 ::selection {
@@ -45,12 +70,12 @@ body {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #d4af37;
+  background: #c5a059;
 }
 
 /* Efeito sutil de brilho dourado */
 .gold-glow {
-  box-shadow: 0 0 25px -5px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 0 25px -5px rgba(212, 175, 55, 0.25);
 }
 
 .gold-border-glow:hover {
@@ -58,8 +83,24 @@ body {
   box-shadow: 0 0 20px -3px rgba(212, 175, 55, 0.25);
 }
 
+/* Gradiente autêntico de ouro nobre metálico (sem tom canário amarelado) */
 .gold-gradient-text {
-  background: linear-gradient(135deg, #fceda2 0%, #d4af37 50%, #b89028 100%);
+  background: linear-gradient(135deg, #faebd7 0%, #dfba73 30%, #c5a059 65%, #9e7b34 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #f5e6c8 0%, #dfba73 35%, #c5a059 70%, #9e7b34 100%);
+}
+
+.gold-gradient-btn {
+  background: linear-gradient(135deg, #f5e6c8 0%, #dfba73 30%, #c5a059 70%, #9e7b34 100%);
+  color: #0a0a0a;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gold-gradient-btn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.35);
 }

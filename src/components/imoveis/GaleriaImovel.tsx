@@ -72,7 +72,7 @@ export function GaleriaImovel({ imagens, titulo }: GaleriaImovelProps) {
         <button
           type="button"
           onClick={() => setLightboxAberto(true)}
-          className="absolute bottom-4 right-4 flex items-center gap-2 rounded-xl bg-[#0A0A0A]/80 px-3.5 py-2 text-xs font-semibold text-[#F5F5F0] backdrop-blur-md border border-[#2A2A2A] transition-all duration-200 hover:border-[#D4AF37] hover:text-[#F4C430]"
+          className="absolute bottom-4 right-4 flex items-center gap-2 rounded-xl bg-[#0A0A0A]/80 px-3.5 py-2 text-xs font-semibold text-[#F5F5F0] backdrop-blur-md border border-[#2A2A2A] transition-all duration-200 hover:border-[#D4AF37] hover:text-[#EAD2A8]"
           aria-label="Abrir galeria em tela cheia"
         >
           <Maximize2 className="h-3.5 w-3.5 text-[#D4AF37]" />
@@ -124,7 +124,7 @@ export function GaleriaImovel({ imagens, titulo }: GaleriaImovelProps) {
           <button
             type="button"
             onClick={() => setLightboxAberto(false)}
-            className="absolute top-5 right-5 z-50 flex items-center gap-1 rounded-full bg-[#1A1A1A] p-3 text-[#F5F5F0] border border-[#2A2A2A] hover:border-[#D4AF37] hover:text-[#F4C430] transition-colors"
+            className="absolute top-5 right-5 z-50 flex items-center gap-1 rounded-full bg-[#1A1A1A] p-3 text-[#F5F5F0] border border-[#2A2A2A] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-colors"
             aria-label="Fechar galeria"
           >
             <X className="h-5 w-5" />

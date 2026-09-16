@@ -19,7 +19,7 @@ export function ImoveisDestaque({ imoveis, isDemo }: ImoveisDestaqueProps) {
               <span>Coleção Exclusiva</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F5F0]">
-              Imóveis em <span className="text-[#D4AF37]">Destaque</span>
+              Imóveis em <span className="gold-gradient-text">Destaque</span>
             </h2>
             <p className="mt-3 text-sm sm:text-base text-[#A3A3A3] max-w-xl">
               Propriedades selecionadas por sua localização privilegiada, acabamentos de altíssimo nível e arquitetura singular.

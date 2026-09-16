@@ -1,15 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { PublicLayoutWrapper } from "@/components/layout/PublicLayoutWrapper";
 
-const outfit = Outfit({
+const playfair = Playfair_Display({
   variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
 });
 
-const plusJakartaSans = Plus_Jakarta_Sans({
+const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${outfit.variable} ${plusJakartaSans.variable} dark antialiased scroll-smooth`}
+      className={`${playfair.variable} ${inter.variable} dark antialiased scroll-smooth`}
     >
       <body className="min-h-screen bg-[#0A0A0A] text-[#F5F5F0] flex flex-col font-sans">
         <PublicLayoutWrapper>{children}</PublicLayoutWrapper>

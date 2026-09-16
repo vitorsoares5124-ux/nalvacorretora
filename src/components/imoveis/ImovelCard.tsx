@@ -81,7 +81,7 @@ export function ImovelCard({ imovel }: ImovelCardProps) {
 
           {/* Título do Imóvel com Link */}
           <Link href={urlDetalhes} className="block">
-            <h3 className="line-clamp-2 text-lg sm:text-xl font-semibold tracking-tight text-[#F5F5F0] group-hover:text-[#F4C430] transition-colors">
+            <h3 className="line-clamp-2 text-lg sm:text-xl font-semibold tracking-tight text-[#F5F5F0] group-hover:text-[#EAD2A8] transition-colors">
               {imovel.titulo}
             </h3>
           </Link>
@@ -149,7 +149,7 @@ export function ImovelCard({ imovel }: ImovelCardProps) {
         <div className="mt-5 pt-2">
           <Link
             href={urlDetalhes}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#222222] border border-[#333333] py-2.5 text-xs font-semibold text-[#F5F5F0] transition-all duration-200 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 hover:text-[#F4C430] active:scale-[0.98]"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#222222] border border-[#333333] py-2.5 text-xs font-semibold text-[#F5F5F0] transition-all duration-200 hover:border-[#D4AF37] hover:bg-[#D4AF37]/10 hover:text-[#EAD2A8] active:scale-[0.98]"
           >
             <span>Ver Detalhes do Imóvel</span>
             <ArrowRight className="h-3.5 w-3.5 text-[#D4AF37]" />

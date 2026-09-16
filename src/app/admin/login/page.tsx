@@ -122,7 +122,7 @@ export default function AdminLoginPage() {
               <button
                 type="submit"
                 disabled={carregando}
-                className="w-full flex items-center justify-center gap-2 rounded-xl bg-[#D4AF37] py-3.5 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-lg shadow-[#D4AF37]/20 transition-all hover:bg-[#F4C430] active:scale-95 disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 rounded-xl gold-gradient-btn py-3.5 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-lg shadow-[#D4AF37]/20 active:scale-95 disabled:opacity-50"
               >
                 {carregando ? (
                   <span>Acessando...</span>

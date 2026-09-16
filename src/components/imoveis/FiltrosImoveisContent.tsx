@@ -143,7 +143,7 @@ export function FiltrosImoveisContent({
           <button
             type="button"
             onClick={limparFiltros}
-            className="flex items-center gap-1.5 text-xs text-[#D4AF37] hover:text-[#F4C430] transition-colors"
+            className="flex items-center gap-1.5 text-xs text-[#D4AF37] hover:text-[#EAD2A8] transition-colors"
           >
             <RotateCcw className="h-3 w-3" />
             <span>Limpar todos</span>
@@ -250,7 +250,7 @@ export function FiltrosImoveisContent({
                 onClick={() => toggleArrayItem("tipo", tiposAtuais, tipo)}
                 className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium border transition-all ${
                   isAtivo
-                    ? "bg-[#D4AF37]/20 border-[#D4AF37] text-[#F4C430]"
+                    ? "bg-[#D4AF37]/20 border-[#D4AF37] text-[#EAD2A8]"
                     : "border-[#2A2A2A] bg-[#141414] text-[#A3A3A3] hover:border-[#444] hover:text-[#F5F5F0]"
                 }`}
               >
@@ -429,7 +429,7 @@ export function FiltrosImoveisContent({
                   }
                   className={`flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs border transition-all ${
                     isAtivo
-                      ? "bg-[#D4AF37]/20 border-[#D4AF37] text-[#F4C430]"
+                      ? "bg-[#D4AF37]/20 border-[#D4AF37] text-[#EAD2A8]"
                       : "border-[#2A2A2A] bg-[#141414] text-[#A3A3A3] hover:border-[#444] hover:text-[#F5F5F0]"
                   }`}
                 >
@@ -448,7 +448,7 @@ export function FiltrosImoveisContent({
           <button
             type="button"
             onClick={onApplyFilters}
-            className="w-full rounded-xl bg-[#D4AF37] py-3.5 text-sm font-bold uppercase tracking-wider text-[#0A0A0A] shadow-lg hover:bg-[#F4C430] active:scale-95 transition-all"
+            className="w-full rounded-xl gold-gradient-btn py-3.5 text-sm font-bold uppercase tracking-wider text-[#0A0A0A] shadow-lg active:scale-95 transition-all"
           >
             Ver {totalResultados ?? "os"} Imóveis
           </button>

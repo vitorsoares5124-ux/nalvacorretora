@@ -287,7 +287,7 @@ export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
               <span>Portfólio Exclusivo</span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#F5F5F0]">
-              Imóveis Selecionados
+              Imóveis <span className="gold-gradient-text">Selecionados</span>
             </h1>
             <p className="mt-1 text-sm text-[#A3A3A3]">
               Curadoria de coberturas, casas em condomínios e apartamentos de alto padrão.
@@ -354,7 +354,7 @@ export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
                 <div className="pt-2">
                   <Link
                     href="/imoveis"
-                    className="inline-flex items-center gap-2 rounded-xl bg-[#222222] border border-[#333333] px-5 py-2.5 text-xs font-semibold text-[#D4AF37] hover:border-[#D4AF37] hover:text-[#F4C430] transition-colors"
+                    className="inline-flex items-center gap-2 rounded-xl bg-[#222222] border border-[#333333] px-5 py-2.5 text-xs font-semibold text-[#D4AF37] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-colors"
                   >
                     <RotateCcw className="h-3.5 w-3.5" />
                     <span>Limpar todos os filtros</span>

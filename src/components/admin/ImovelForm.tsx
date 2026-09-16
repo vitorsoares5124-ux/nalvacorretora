@@ -379,7 +379,7 @@ export function ImovelForm({ imovelInicial }: ImovelFormProps) {
             type="button"
             onClick={handleSalvarImovel}
             disabled={salvando}
-            className="flex items-center gap-2 rounded-xl bg-[#D4AF37] px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-md shadow-[#D4AF37]/20 hover:bg-[#F4C430] active:scale-95 disabled:opacity-50 transition-all"
+            className="flex items-center gap-2 rounded-xl gold-gradient-btn px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-md shadow-[#D4AF37]/20 active:scale-95 disabled:opacity-50 transition-all"
           >
             <Save className="h-4 w-4" />
             <span>{salvando ? "Salvando..." : "Salvar Imóvel"}</span>
@@ -780,7 +780,7 @@ export function ImovelForm({ imovelInicial }: ImovelFormProps) {
             {caracteristicas.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-3 py-1.5 text-xs font-medium text-[#F4C430]"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-3 py-1.5 text-xs font-medium text-[#EAD2A8]"
               >
                 <span>{tag}</span>
                 <button
@@ -813,7 +813,7 @@ export function ImovelForm({ imovelInicial }: ImovelFormProps) {
             <button
               type="button"
               onClick={() => handleAdicionarTag(novaTag)}
-              className="rounded-xl bg-[#222222] border border-[#333333] px-4 py-2 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] hover:text-[#F4C430]"
+              className="rounded-xl bg-[#222222] border border-[#333333] px-4 py-2 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] hover:text-[#EAD2A8]"
             >
               Adicionar
             </button>
@@ -885,7 +885,7 @@ export function ImovelForm({ imovelInicial }: ImovelFormProps) {
           <button
             type="submit"
             disabled={salvando}
-            className="flex items-center gap-2 rounded-xl bg-[#D4AF37] px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-lg shadow-[#D4AF37]/20 hover:bg-[#F4C430] active:scale-95 disabled:opacity-50 transition-all"
+            className="flex items-center gap-2 rounded-xl gold-gradient-btn px-6 py-3 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-lg shadow-[#D4AF37]/20 active:scale-95 disabled:opacity-50 transition-all"
           >
             <Save className="h-4 w-4" />
             <span>{salvando ? "Salvando Dados..." : "Salvar Dados Cadastrais"}</span>
@@ -907,7 +907,7 @@ export function ImovelForm({ imovelInicial }: ImovelFormProps) {
           </div>
 
           {imovelId && (
-            <label className="inline-flex items-center gap-2 rounded-xl bg-[#222222] border border-[#333333] px-4 py-2.5 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] hover:text-[#F4C430] cursor-pointer active:scale-95 transition-all">
+            <label className="inline-flex items-center gap-2 rounded-xl bg-[#222222] border border-[#333333] px-4 py-2.5 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] hover:text-[#EAD2A8] cursor-pointer active:scale-95 transition-all">
               <Upload className="h-4 w-4 text-[#D4AF37]" />
               <span>{fazendoUpload ? "Enviando..." : "Adicionar Fotos"}</span>
               <input

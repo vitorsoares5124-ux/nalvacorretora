@@ -131,7 +131,7 @@ export function TabelaImoveisAdmin({ imoveisIniciais }: TabelaImoveisAdminProps)
             onClick={() => setSomenteDemo(!somenteDemo)}
             className={`flex items-center gap-1.5 rounded-xl border px-3 py-2 text-xs font-semibold transition-all ${
               somenteDemo
-                ? "bg-[#D4AF37]/20 border-[#D4AF37] text-[#F4C430]"
+                ? "bg-[#D4AF37]/20 border-[#D4AF37] text-[#EAD2A8]"
                 : "border-[#2A2A2A] bg-[#141414] text-[#A3A3A3] hover:text-white"
             }`}
           >
@@ -141,7 +141,7 @@ export function TabelaImoveisAdmin({ imoveisIniciais }: TabelaImoveisAdminProps)
 
         <Link
           href="/admin/imoveis/novo"
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#D4AF37] px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-md shadow-[#D4AF37]/20 transition-all hover:bg-[#F4C430] active:scale-95 shrink-0"
+          className="inline-flex items-center justify-center gap-2 rounded-xl gold-gradient-btn px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-md shadow-[#D4AF37]/20 active:scale-95 shrink-0"
         >
           <PlusCircle className="h-4 w-4" />
           <span>Cadastrar Imóvel</span>
@@ -196,7 +196,7 @@ export function TabelaImoveisAdmin({ imoveisIniciais }: TabelaImoveisAdminProps)
                             {imovel.codigo}
                           </span>
                           {imovel.is_demo && (
-                            <span className="inline-flex w-fit items-center gap-1 rounded bg-[#D4AF37]/15 border border-[#D4AF37]/30 px-1.5 py-0.5 text-[9px] font-bold text-[#F4C430]">
+                            <span className="inline-flex w-fit items-center gap-1 rounded bg-[#D4AF37]/15 border border-[#D4AF37]/30 px-1.5 py-0.5 text-[9px] font-bold text-[#EAD2A8]">
                               DEMO
                             </span>
                           )}
