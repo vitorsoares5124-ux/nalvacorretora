@@ -624,7 +624,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000020', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 21: Mansão Suspensa com Espaço Gourmet e Vista Livre
+    -- Imóvel 21: Cobertura Duplex com Terraço Gourmet no Jardim Paulistano
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -633,13 +633,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000021',
-        'Mansão Suspensa com Espaço Gourmet e Vista Livre',
-        'Imóvel exclusivo de altíssimo padrão localizado em Itaim Bibi, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Terreno em Condomínio', 'disponivel',
-        12100000, 3200, 1600, true,
-        3, 2, 4, 3, 480, 648,
-        'São Paulo', 'Itaim Bibi', 'SP', '01000-000', 'Avenida das Américas', '240', -23.5785, -46.6782,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        'Cobertura Duplex com Terraço Gourmet no Jardim Paulistano',
+        'Cobertura duplex em rua arborizada do Jardim Paulistano, com terraço gourmet integrado, churrasqueira a carvão, ofurô aquecido e vista aberta para o skyline. Living com pé-direito duplo, marcenaria sob medida e automação de cortinas e iluminação.',
+        'venda', 'Cobertura', 'disponivel',
+        5400000, 2900, 1600, true,
+        4, 4, 5, 4, 320, 420,
+        'São Paulo', 'Jardim Paulistano', 'SP', '01455-000', 'Rua Doutor Melo Alves', '640', -23.576, -46.678,
+        '["Terraço Gourmet","Ofurô Aquecido","Pé-direito Duplo","Automação","Vista Skyline"]'::jsonb,
         true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -655,7 +655,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000021', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 22: Casa Térrea Contemporânea com Piscina Aquecida
+    -- Imóvel 22: Casa Térrea Contemporânea no Granja Viana
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -664,13 +664,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000022',
-        'Casa Térrea Contemporânea com Piscina Aquecida',
-        'Imóvel exclusivo de altíssimo padrão localizado em Vila Nova Conceição, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'aluguel', 'Apartamento', 'disponivel',
-        30000, 3300, 1650, true,
-        4, 3, 5, 4, 495, 668,
-        'São Paulo', 'Vila Nova Conceição', 'SP', '01000-000', 'Avenida das Américas', '247', -23.5899, -46.6783,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        'Casa Térrea Contemporânea no Granja Viana',
+        'Residência térrea de linhas retas em condomínio consolidado, com jardim paisagístico, piscina aquecida com deck e espaço gourmet coberto. Suíte master com closet e banheiro com banheira de imersão.',
+        'venda', 'Casa em Condomínio', 'disponivel',
+        4300000, 1900, 980, true,
+        4, 3, 5, 4, 360, 600,
+        'Cotia', 'Granja Viana', 'SP', '06709-015', 'Rua das Acácias', '210', -23.596, -46.842,
+        '["Piscina Aquecida","Jardim Paisagístico","Espaço Gourmet","Segurança 24h","Suíte Master com Closet"]'::jsonb,
         false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -686,7 +686,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000022', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 23: Cobertura Duplex com Solarium e Spa Privativo
+    -- Imóvel 23: Apartamento Alto Padrão na Vila Olímpia
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -695,13 +695,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000023',
-        'Cobertura Duplex com Solarium e Spa Privativo',
-        'Imóvel exclusivo de altíssimo padrão localizado em Moema, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'temporada', 'Casa em Condomínio', 'disponivel',
-        7900, 0, 0, true,
-        5, 4, 6, 5, 510, 689,
-        'São Paulo', 'Moema', 'SP', '01000-000', 'Avenida das Américas', '254', -23.6078, -46.6731,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        'Apartamento Alto Padrão na Vila Olímpia',
+        'Unidade de esquina com planta flexível, living ampliado em porcelanato e varanda gourmet com churrasqueira. Prédio com rooftop, piscina aquecida, academia e coworking, a passos do Parque do Povo.',
+        'venda', 'Apartamento', 'disponivel',
+        2750000, 1750, 780, true,
+        3, 3, 4, 3, 180, 240,
+        'São Paulo', 'Vila Olímpia', 'SP', '04551-000', 'Rua Fiandeiras', '420', -23.595, -46.687,
+        '["Varanda Gourmet","Rooftop com Piscina","Academia","Coworking","3 Vagas"]'::jsonb,
         false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -717,7 +717,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000023', 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 24: Apartamento de Luxo com Vista Eterna para o Verde
+    -- Imóvel 24: Casa de Campo com Lago Particular no Vale Verde
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -726,14 +726,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000024',
-        'Apartamento de Luxo com Vista Eterna para o Verde',
-        'Imóvel exclusivo de altíssimo padrão localizado em Pinheiros, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Cobertura', 'disponivel',
-        13550000, 3450, 1750, true,
-        6, 5, 7, 6, 525, 709,
-        'São Paulo', 'Pinheiros', 'SP', '01000-000', 'Avenida das Américas', '261', -23.571, -46.6873,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Casa de Campo com Lago Particular no Vale Verde',
+        'Terreno com paisagismo maduro e lago com carpas, pomar e quadra de beach tennis. Casa com varandas em todas as suítes, lareira e cozinha gourmet integrada ao salão de vidro.',
+        'venda', 'Casa em Condomínio', 'disponivel',
+        6800000, 2200, 1250, true,
+        5, 5, 6, 6, 540, 1800,
+        'Valinhos', 'Vale Verde', 'SP', '13278-000', 'Alameda dos Ipês', '77', -22.97, -46.995,
+        '["Lago Particular","Lareira","Quadra Beach Tennis","Pomar","Piscina Aquecida"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -748,7 +748,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000024', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 25: Residência Minimalista com Acabamentos em Concreto e Madeira
+    -- Imóvel 25: Cobertura Frente Mar no Jardim Acapulco
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -757,14 +757,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000025',
-        'Residência Minimalista com Acabamentos em Concreto e Madeira',
-        'Imóvel exclusivo de altíssimo padrão localizado em Higienópolis, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Mansão', 'disponivel',
-        14000000, 3550, 1800, true,
-        3, 2, 4, 7, 540, 729,
-        'São Paulo', 'Higienópolis', 'SP', '01000-000', 'Avenida das Américas', '268', -23.5558, -46.6551,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Cobertura Frente Mar no Jardim Acapulco',
+        'Última unidade com vista frontal para o oceano, em condomínio pé na areia com acesso privativo à praia. Living com esquadrias panorâmicas, terraço com piscina privativa e serviço de praia.',
+        'venda', 'Cobertura', 'disponivel',
+        9800000, 3400, 2100, true,
+        4, 4, 6, 4, 410, 530,
+        'Guarujá', 'Jardim Acapulco', 'SP', '11442-000', 'Avenida Miguel Estefno', '1390', -23.97, -46.22,
+        '["Frente Mar","Piscina Privativa","Vista Oceano","Serviço de Praia","Pé na Areia"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -779,7 +779,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000025', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 26: Penthouse Linear com Piscina de Vidro e Sauna
+    -- Imóvel 26: Apartamento Amplo no Coração do Cambuí
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -788,14 +788,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000026',
-        'Penthouse Linear com Piscina de Vidro e Sauna',
-        'Imóvel exclusivo de altíssimo padrão localizado em Morumbi, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Casa', 'disponivel',
-        14500000, 3650, 1850, true,
-        4, 3, 5, 3, 555, 749,
-        'São Paulo', 'Morumbi', 'SP', '01000-000', 'Avenida das Américas', '275', -23.5996, -46.7202,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        true, true
+        'Apartamento Amplo no Coração do Cambuí',
+        'Planta de 210m² com quatro dormitórios, dois deles suítes, e três vagas cobertas. Condomínio com piscina, salão de festas e quadra, em rua tranquila do Cambuí, próximo a restaurantes e academias.',
+        'aluguel', 'Apartamento', 'disponivel',
+        14500, 2100, 890, true,
+        4, 2, 4, 3, 210, 285,
+        'Campinas', 'Cambuí', 'SP', '13025-050', 'Rua Doutor Sampaio Ferraz', '530', -22.899, -47.052,
+        '["Piscina","Quadra","Salão de Festas","3 Vagas Cobertas","Próximo ao Comércio"]'::jsonb,
+        false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -810,7 +810,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000026', 'https://images.unsplash.com/photo-1600607687979-247fb4591ff1?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 27: Mansão com Quadra Poliesportiva e Adega Climatizada
+    -- Imóvel 27: Residência Moderna no Ecoville
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -819,14 +819,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000027',
-        'Mansão com Quadra Poliesportiva e Adega Climatizada',
-        'Imóvel exclusivo de altíssimo padrão localizado em Alto de Pinheiros, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Apartamento Garden', 'disponivel',
-        15000000, 3750, 1900, true,
-        5, 4, 6, 4, 570, 770,
-        'São Paulo', 'Alto de Pinheiros', 'SP', '01000-000', 'Avenida das Américas', '282', -23.5553, -46.7154,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Residência Moderna no Ecoville',
+        'Projeto de linhas contemporâneas com fachada ventilada e amplos panos de vidro, em região nobre de Curitiba. Espaço gourmet com forno a lenha, adega climatizada e jardim de inverno.',
+        'venda', 'Casa em Condomínio', 'disponivel',
+        6900000, 1600, 1400, true,
+        5, 5, 7, 5, 520, 780,
+        'Curitiba', 'Ecoville', 'PR', '82305-000', 'Rua Doutor Ovande do Amaral', '300', -25.43, -49.31,
+        '["Fachada Ventilada","Forno a Lenha","Adega Climatizada","Jardim de Inverno","Segurança 24h"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -841,7 +841,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000027', 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 28: Apartamento Boutique com Automação Residencial
+    -- Imóvel 28: Apartamento Vista Mar na Barra Sul
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -850,14 +850,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000028',
-        'Apartamento Boutique com Automação Residencial',
-        'Imóvel exclusivo de altíssimo padrão localizado em Alphaville, Barueri. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Terreno em Condomínio', 'disponivel',
-        15450000, 3850, 1950, true,
-        6, 5, 7, 5, 585, 790,
-        'Barueri', 'Alphaville', 'SP', '01000-000', 'Avenida das Américas', '289', -23.4886, -46.8475,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Apartamento Vista Mar na Barra Sul',
+        'Andar alto com vista permanente para o mar de Balneário Camboriú, acabamento em porcelanato e marcenaria planejada. Edifício com piscina aquecida, academia e concierge, a poucos metros da orla.',
+        'aluguel', 'Apartamento', 'disponivel',
+        25000, 2800, 1100, true,
+        3, 3, 4, 3, 235, 310,
+        'Balneário Camboriú', 'Barra Sul', 'SC', '88330-694', 'Avenida Atlântica', '3450', -27, -48.63,
+        '["Vista Mar","Piscina Aquecida","Academia","Concierge","Próximo à Orla"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -872,7 +872,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000028', 'https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 29: Villa Mediterrânea com Paisagismo e Pomar
+    -- Imóvel 29: Cobertura Panorâmica no Leblon
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -881,14 +881,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000029',
-        'Villa Mediterrânea com Paisagismo e Pomar',
-        'Imóvel exclusivo de altíssimo padrão localizado em Tamboré, Santana de Parnaíba. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'aluguel', 'Apartamento', 'disponivel',
-        36000, 3900, 2000, true,
-        3, 2, 4, 6, 600, 810,
-        'Santana de Parnaíba', 'Tamboré', 'SP', '01000-000', 'Avenida das Américas', '296', -23.4801, -46.8318,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Cobertura Panorâmica no Leblon',
+        'Cobertura duplex com vista para o Morro Dois Irmãos e o mar do Leblon, terraço com piscina de borda infinita e espaço gourmet. Living com pé-direito duplo e esquadrias acústicas de alto desempenho.',
+        'venda', 'Cobertura', 'disponivel',
+        21500000, 6800, 4200, true,
+        4, 4, 7, 5, 480, 640,
+        'Rio de Janeiro', 'Leblon', 'RJ', '22440-032', 'Rua Dias Ferreira', '560', -22.985, -43.223,
+        '["Vista Mar","Borda Infinita","Pé-direito Duplo","Vista Morro Dois Irmãos","5 Vagas"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -903,7 +903,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000029', 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 30: Casa de Campo com Haras Privativo e Casa de Hóspedes
+    -- Imóvel 30: Casa de Praia em Geribá
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -912,14 +912,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000030',
-        'Casa de Campo com Haras Privativo e Casa de Hóspedes',
-        'Imóvel exclusivo de altíssimo padrão localizado em Gramado, Campinas. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Casa em Condomínio', 'disponivel',
-        16400000, 4000, 2050, true,
-        4, 3, 5, 7, 615, 830,
-        'Campinas', 'Gramado', 'SP', '01000-000', 'Avenida das Américas', '303', -22.9029, -47.0252,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Casa de Praia em Geribá',
+        'Casa de temporada em condomínio fechado a 400m da Praia de Geribá, com piscina com raia, espaço gourmet e cinco suítes. Estrutura completa para locação por temporada, com lavanderia e área de serviço independente.',
+        'temporada', 'Casa', 'disponivel',
+        9500, 0, 0, true,
+        5, 5, 6, 4, 380, 620,
+        'Armação dos Búzios', 'Geribá', 'RJ', '28950-000', 'Rua das Gaivotas', '88', -22.77, -41.9,
+        '["Piscina com Raia","Espaço Gourmet","Condomínio Fechado","400m da Praia","5 Suítes"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -934,7 +934,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000030', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 31: Cobertura Triplex com Lareira e Terraço Panorâmico
+    -- Imóvel 31: Apartamento de Frente para a Praia de Ipanema
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -943,13 +943,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000031',
-        'Cobertura Triplex com Lareira e Terraço Panorâmico',
-        'Imóvel exclusivo de altíssimo padrão localizado em Cambuí, Campinas. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Cobertura', 'disponivel',
-        16900000, 4100, 2100, true,
-        5, 4, 6, 3, 630, 851,
-        'Campinas', 'Cambuí', 'SP', '01000-000', 'Avenida das Américas', '310', -22.9058, -47.0613,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        'Apartamento de Frente para a Praia de Ipanema',
+        'Imóvel de frente para a orla de Ipanema, com varanda contínua e vista desobstruída para o mar e o Arpoador. Reforma recente com marcenaria planejada, piso em madeira e ar-condicionado em todos os ambientes.',
+        'venda', 'Apartamento', 'disponivel',
+        12800000, 4300, 3200, true,
+        4, 4, 5, 2, 290, 360,
+        'Rio de Janeiro', 'Ipanema', 'RJ', '22010-000', 'Avenida Vieira Souto', '480', -22.984, -43.204,
+        '["Frente Mar","Vista Arpoador","Reforma Recente","Varanda Contínua","Ar-condicionado Central"]'::jsonb,
         true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -965,7 +965,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000031', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 32: Apartamento Garden com Piscina Privativa e Lounge
+    -- Imóvel 32: Casa em Condomínio Helvetia
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -974,13 +974,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000032',
-        'Apartamento Garden com Piscina Privativa e Lounge',
-        'Imóvel exclusivo de altíssimo padrão localizado em Fazenda Boa Vista, Porto Feliz. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Mansão', 'disponivel',
-        17400000, 4200, 2150, true,
-        6, 5, 7, 4, 645, 871,
-        'Porto Feliz', 'Fazenda Boa Vista', 'SP', '01000-000', 'Avenida das Américas', '317', -23.2191, -47.5294,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        'Casa em Condomínio Helvetia',
+        'Residência no Condomínio Helvetia, o mais tradicional de Indaiatuba, com bosque nativo preservado e infraestrutura de clube. Casa com living de dois ambientes, varanda gourmet e piscina aquecida.',
+        'venda', 'Casa em Condomínio', 'disponivel',
+        4600000, 1700, 1050, true,
+        4, 4, 6, 5, 420, 850,
+        'Indaiatuba', 'Helvetia', 'SP', '13330-000', 'Alameda das Hortênsias', '360', -23.07, -47.2,
+        '["Piscina Aquecida","Bosque Nativo","Clube Completo","Varanda Gourmet","Segurança 24h"]'::jsonb,
         false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -996,7 +996,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000032', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 33: Mansão Clássica com Mármore Travertino e Cinema
+    -- Imóvel 33: Cobertura Duplex em Lourdes
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1005,14 +1005,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000033',
-        'Mansão Clássica com Mármore Travertino e Cinema',
-        'Imóvel exclusivo de altíssimo padrão localizado em Terras de São José, Itu. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Casa', 'disponivel',
-        17850000, 4300, 2200, true,
-        3, 2, 4, 5, 660, 891,
-        'Itu', 'Terras de São José', 'SP', '01000-000', 'Avenida das Américas', '324', -23.257, -47.3035,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Cobertura Duplex em Lourdes',
+        'Cobertura duplex em bairro nobre de Belo Horizonte, com terraço panorâmico e vista para a Serra do Curral. Living integrado, adega climatizada e três vagas cobertas, a poucos minutos da Savassi.',
+        'venda', 'Cobertura', 'disponivel',
+        4900000, 2400, 1500, true,
+        4, 4, 6, 3, 340, 450,
+        'Belo Horizonte', 'Lourdes', 'MG', '30180-050', 'Rua da Bahia', '2100', -19.93, -43.945,
+        '["Vista Serra do Curral","Terraço Panorâmico","Adega Climatizada","3 Vagas","Próximo à Savassi"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1027,7 +1027,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000033', 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 34: Residência com Energia Fotovoltaica e Automação Crestron
+    -- Imóvel 34: Apartamento de Luxo no Bela Vista
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1036,13 +1036,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000034',
-        'Residência com Energia Fotovoltaica e Automação Crestron',
-        'Imóvel exclusivo de altíssimo padrão localizado em Quinta da Baroneza, Bragança Paulista. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'temporada', 'Apartamento Garden', 'disponivel',
-        10100, 0, 0, true,
-        4, 3, 5, 6, 675, 911,
-        'Bragança Paulista', 'Quinta da Baroneza', 'SP', '01000-000', 'Avenida das Américas', '331', -22.9463, -47.5377,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        'Apartamento de Luxo no Bela Vista',
+        'Unidade de altíssimo padrão em região valorizada de Porto Alegre, com living com lareira a gás, cozinha gourmet com ilha e varanda com churrasqueira. Entrega com acabamentos premium.',
+        'venda', 'Apartamento', 'disponivel',
+        3900000, 1900, 920, true,
+        3, 3, 4, 3, 215, 280,
+        'Porto Alegre', 'Bela Vista', 'RS', '90450-190', 'Rua Ramiro Barcelos', '1500', -30.04, -51.19,
+        '["Lareira a Gás","Cozinha com Ilha","Varanda com Churrasqueira","Acabamentos Premium","3 Vagas"]'::jsonb,
         false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -1058,7 +1058,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000034', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 35: Casa de Vidro com Vista para o Vale das Palmeiras
+    -- Imóvel 35: Casa em Jurerê Internacional
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1067,14 +1067,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000035',
-        'Casa de Vidro com Vista para o Vale das Palmeiras',
-        'Imóvel exclusivo de altíssimo padrão localizado em Jardim Acapulco, Guarujá. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Terreno em Condomínio', 'disponivel',
-        18800000, 4450, 2300, true,
-        5, 4, 6, 7, 690, 932,
-        'Guarujá', 'Jardim Acapulco', 'SP', '01000-000', 'Avenida das Américas', '338', -23.9629, -46.2184,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Casa em Jurerê Internacional',
+        'Residência a 250m da praia de Jurerê Internacional, em bairro com segurança própria e infraestrutura completa. Piscina com deck em madeira, espaço gourmet e suíte master com varanda e vista.',
+        'venda', 'Casa em Condomínio', 'disponivel',
+        11500000, 2600, 2400, true,
+        5, 5, 7, 5, 560, 900,
+        'Florianópolis', 'Jurerê Internacional', 'SC', '88053-510', 'Rua Jurerê', '540', -27.44, -48.5,
+        '["250m da Praia","Piscina com Deck","Segurança Própria","Suíte Master com Varanda","Espaço Gourmet"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1089,7 +1089,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000035', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 36: Apartamento Alto Padrão Reformado por Arquiteto Renomado
+    -- Imóvel 36: Cobertura Frente Mar no Gonzaga
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1098,14 +1098,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000036',
-        'Apartamento Alto Padrão Reformado por Arquiteto Renomado',
-        'Imóvel exclusivo de altíssimo padrão localizado em Juquehy, São Sebastião. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'aluguel', 'Apartamento', 'disponivel',
-        42000, 4550, 2350, true,
-        6, 5, 7, 3, 705, 952,
-        'São Sebastião', 'Juquehy', 'SP', '01000-000', 'Avenida das Américas', '345', -23.7627, -45.7291,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        true, true
+        'Cobertura Frente Mar no Gonzaga',
+        'Cobertura em edifício clássico de frente para a orla do Gonzaga, com living de três ambientes e vista para o canal do porto. Terraço com churrasqueira e quatro vagas cobertas.',
+        'venda', 'Cobertura', 'disponivel',
+        3600000, 2700, 1500, true,
+        4, 3, 5, 4, 360, 470,
+        'Santos', 'Gonzaga', 'SP', '11065-010', 'Avenida Presidente Wilson', '900', -23.97, -46.332,
+        '["Frente Mar","Terraço com Churrasqueira","Living 3 Ambientes","Vista do Canal","4 Vagas"]'::jsonb,
+        false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1120,7 +1120,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000036', 'https://images.unsplash.com/photo-1600607687979-247fb4591ff1?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 37: Residência com Spa de Hidromassagem e Espaço Gourmet
+    -- Imóvel 37: Apartamento no Jardim Canadá
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1129,13 +1129,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000037',
-        'Residência com Spa de Hidromassagem e Espaço Gourmet',
-        'Imóvel exclusivo de altíssimo padrão localizado em Riviera de São Lourenço, Bertioga. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Casa em Condomínio', 'disponivel',
-        19800000, 4650, 2400, true,
-        3, 2, 4, 4, 720, 972,
-        'Bertioga', 'Riviera de São Lourenço', 'SP', '01000-000', 'Avenida das Américas', '352', -23.7831, -46.0144,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        'Apartamento no Jardim Canadá',
+        'Apartamento novo em um dos melhores bairros de Ribeirão Preto, com varanda gourmet, cozinha integrada e depósito privativo. Condomínio com piscina aquecida, academia e brinquedoteca.',
+        'venda', 'Apartamento', 'disponivel',
+        1850000, 950, 520, true,
+        3, 3, 4, 3, 145, 200,
+        'Ribeirão Preto', 'Jardim Canadá', 'SP', '14024-350', 'Avenida Wladimir Meirelles Ferreira', '1850', -21.22, -47.83,
+        '["Varanda Gourmet","Piscina Aquecida","Academia","Brinquedoteca","Depósito Privativo"]'::jsonb,
         false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -1151,7 +1151,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000037', 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 38: Cobertura Penthouse com Lounge Bar e Forno de Pizza
+    -- Imóvel 38: Casa em Condomínio Reserva da Serra
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1160,13 +1160,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000038',
-        'Cobertura Penthouse com Lounge Bar e Forno de Pizza',
-        'Imóvel exclusivo de altíssimo padrão localizado em Trancoso, Porto Seguro. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Cobertura', 'disponivel',
-        20250000, 4750, 2450, true,
-        4, 3, 5, 5, 735, 992,
-        'Porto Seguro', 'Trancoso', 'BA', '01000-000', 'Avenida das Américas', '359', -16.5832, -39.0955,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        'Casa em Condomínio Reserva da Serra',
+        'Casa nova em condomínio de Vinhedo com clube, trilhas e lago. Integração total entre living, cozinha e área externa, com piscina aquecida, spa e espaço pet.',
+        'venda', 'Casa em Condomínio', 'disponivel',
+        5200000, 1500, 900, true,
+        4, 4, 6, 5, 395, 620,
+        'Vinhedo', 'Reserva da Serra', 'SP', '13280-000', 'Rua das Hortênsias', '150', -23.03, -46.97,
+        '["Piscina Aquecida","Spa","Clube com Lago","Espaço Pet","Trilhas"]'::jsonb,
         false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -1182,7 +1182,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000038', 'https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 39: Mansão em Condomínio Fechado com Segurança Armada 24h
+    -- Imóvel 39: Mansão em Terras de São José II
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1191,14 +1191,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000039',
-        'Mansão em Condomínio Fechado com Segurança Armada 24h',
-        'Imóvel exclusivo de altíssimo padrão localizado em Jardins, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Mansão', 'disponivel',
-        20750000, 4800, 2500, true,
-        5, 4, 6, 6, 750, 1013,
-        'São Paulo', 'Jardins', 'SP', '01000-000', 'Avenida das Américas', '366', -23.5627, -46.6553,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Mansão em Terras de São José II',
+        'Mansão de arquitetura clássica atualizada em um dos condomínios mais exclusivos do interior paulista, com terreno amplo e paisagismo assinado. Adega subterrânea, home theater e casa de hóspedes.',
+        'venda', 'Casa em Condomínio', 'disponivel',
+        18900000, 4800, 2900, true,
+        6, 6, 9, 8, 980, 2600,
+        'Itu', 'Terras de São José II', 'SP', '13309-000', 'Alameda das Figueiras', '23', -23.29, -47.32,
+        '["Adega Subterrânea","Home Theater","Casa de Hóspedes","Paisagismo Assinado","8 Vagas"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1213,7 +1213,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000039', 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 40: Apartamento de Altíssimo Padrão com Elevador Panorâmico
+    -- Imóvel 40: Cobertura no Brooklin
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1222,14 +1222,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000040',
-        'Apartamento de Altíssimo Padrão com Elevador Panorâmico',
-        'Imóvel exclusivo de altíssimo padrão localizado em Itaim Bibi, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Casa', 'disponivel',
-        21200000, 4900, 2550, true,
-        6, 5, 7, 7, 765, 1033,
-        'São Paulo', 'Itaim Bibi', 'SP', '01000-000', 'Avenida das Américas', '373', -23.5914, -46.6684,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Cobertura no Brooklin',
+        'Cobertura duplex com terraço de 120m², piscina privativa e vista para o parque. Living com pé-direito duplo, automação completa e cozinha gourmet integrada à varanda.',
+        'venda', 'Cobertura', 'disponivel',
+        7300000, 3300, 1900, true,
+        4, 4, 6, 5, 430, 560,
+        'São Paulo', 'Brooklin', 'SP', '04578-000', 'Rua Flórida', '1180', -23.61, -46.7,
+        '["Piscina Privativa","Terraço 120m²","Pé-direito Duplo","Automação Completa","Vista Parque"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1244,7 +1244,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000040', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 41: Casa Contemporânea com Pé-direito Duplo e Lareira Ecológica
+    -- Imóvel 41: Apartamento nos Pioneiros
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1253,14 +1253,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000041',
-        'Casa Contemporânea com Pé-direito Duplo e Lareira Ecológica',
-        'Imóvel exclusivo de altíssimo padrão localizado em Vila Nova Conceição, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Apartamento Garden', 'disponivel',
-        21700000, 5000, 2600, true,
-        3, 2, 4, 3, 780, 1053,
-        'São Paulo', 'Vila Nova Conceição', 'SP', '01000-000', 'Avenida das Américas', '380', -23.5965, -46.6727,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        true, true
+        'Apartamento nos Pioneiros',
+        'Apartamento em Balneário Camboriú com vista para o mar entre os edifícios, a duas quadras da praia central. Varanda gourmet integrada, planta com três suítes e duas vagas cobertas.',
+        'venda', 'Apartamento', 'disponivel',
+        2650000, 1500, 780, true,
+        3, 3, 4, 2, 160, 210,
+        'Balneário Camboriú', 'Pioneiros', 'SC', '88331-090', 'Terceira Avenida', '780', -26.99, -48.635,
+        '["Vista Mar","Varanda Gourmet","3 Suítes","2 Vagas Cobertas","Duas Quadras da Praia"]'::jsonb,
+        false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1275,7 +1275,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000041', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 42: Residência com Quadra de Tênis Oficial e Piscina Semi-Olímpica
+    -- Imóvel 42: Casa de Montanha em Capivari
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1284,14 +1284,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000042',
-        'Residência com Quadra de Tênis Oficial e Piscina Semi-Olímpica',
-        'Imóvel exclusivo de altíssimo padrão localizado em Moema, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Terreno em Condomínio', 'disponivel',
-        22200000, 5100, 2650, true,
-        4, 3, 5, 4, 795, 1073,
-        'São Paulo', 'Moema', 'SP', '01000-000', 'Avenida das Américas', '387', -23.5999, -46.6686,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Casa de Montanha em Capivari',
+        'Casa de montanha em Campos do Jordão com lareira de pedra, mezanino e vista para o vale. Ampla área de convivência, spa com ofurô e aquecimento central, a poucos minutos do centro de Capivari.',
+        'venda', 'Casa', 'disponivel',
+        5900000, 0, 1600, true,
+        5, 4, 6, 4, 420, 1200,
+        'Campos do Jordão', 'Capivari', 'SP', '12460-000', 'Rua Doutor Adhemar de Barros', '280', -22.74, -45.59,
+        '["Lareira de Pedra","Ofurô","Aquecimento Central","Vista Vale","Mezanino"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1306,7 +1306,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000042', 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 43: Cobertura Duplex com Terraço Gourmet e Vista 360 Graus
+    -- Imóvel 43: Apartamento Mobiliado no Centro de Florianópolis
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1315,13 +1315,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000043',
-        'Cobertura Duplex com Terraço Gourmet e Vista 360 Graus',
-        'Imóvel exclusivo de altíssimo padrão localizado em Pinheiros, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
+        'Apartamento Mobiliado no Centro de Florianópolis',
+        'Apartamento totalmente mobiliado e decorado, pronto para morar, a poucos minutos da Avenida Beira-Mar Norte. Prédio com academia, piscina e portaria 24h, ideal para executivos.',
         'aluguel', 'Apartamento', 'disponivel',
-        47500, 5200, 2700, true,
-        5, 4, 6, 5, 810, 1094,
-        'São Paulo', 'Pinheiros', 'SP', '01000-000', 'Avenida das Américas', '394', -23.5707, -46.6973,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        12000, 1400, 600, true,
+        3, 2, 3, 2, 130, 175,
+        'Florianópolis', 'Centro', 'SC', '88015-200', 'Rua Felipe Schmidt', '600', -27.595, -48.552,
+        '["Mobiliado e Decorado","Academia","Piscina","Portaria 24h","Próximo à Beira-Mar"]'::jsonb,
         false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -1337,7 +1337,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000043', 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 44: Mansão com Borda Infinita e Vista para o Lago
+    -- Imóvel 44: Cobertura no Setor Bueno
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1346,14 +1346,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000044',
-        'Mansão com Borda Infinita e Vista para o Lago',
-        'Imóvel exclusivo de altíssimo padrão localizado em Higienópolis, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Casa em Condomínio', 'disponivel',
-        23150000, 5250, 2750, true,
-        6, 5, 7, 6, 825, 1114,
-        'São Paulo', 'Higienópolis', 'SP', '01000-000', 'Avenida das Américas', '401', -23.5472, -46.648,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Cobertura no Setor Bueno',
+        'Cobertura duplex no Setor Bueno, em Goiânia, com terraço gourmet, piscina com prainha e vista para o parque. Living com pé-direito duplo, quatro suítes e automação de iluminação.',
+        'venda', 'Cobertura', 'disponivel',
+        4100000, 2200, 1150, true,
+        4, 4, 6, 4, 380, 500,
+        'Goiânia', 'Setor Bueno', 'GO', '74230-030', 'Avenida T-9', '2200', -16.7, -49.28,
+        '["Terraço Gourmet","Piscina com Prainha","Pé-direito Duplo","4 Suítes","Vista Parque"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1368,7 +1368,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000044', 'https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 45: Apartamento Design Mobiliado com Marcenaria de Alfaiataria
+    -- Imóvel 45: Casa em Condomínio no Lago Sul
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1377,14 +1377,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000045',
-        'Apartamento Design Mobiliado com Marcenaria de Alfaiataria',
-        'Imóvel exclusivo de altíssimo padrão localizado em Morumbi, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'temporada', 'Cobertura', 'disponivel',
-        12300, 0, 0, true,
-        3, 2, 4, 7, 840, 1134,
-        'São Paulo', 'Morumbi', 'SP', '01000-000', 'Avenida das Américas', '408', -23.5975, -46.7133,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Casa em Condomínio no Lago Sul',
+        'Casa em condomínio fechado do Lago Sul, com terreno amplo e projeto voltado para o convívio. Piscina aquecida, quadra de esportes e suíte master com closet e banheiro duplo, a minutos do Lago Paranoá.',
+        'venda', 'Casa em Condomínio', 'disponivel',
+        8900000, 2800, 2200, true,
+        5, 5, 7, 6, 560, 1100,
+        'Brasília', 'Lago Sul', 'DF', '71635-000', 'SHIS QI 11', '12', -15.83, -47.88,
+        '["Piscina Aquecida","Quadra de Esportes","Suíte Master com Closet","Condomínio Fechado","Próximo ao Lago"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1399,7 +1399,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000045', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 46: Casa de Alto Luxo com Heliponto Privativo e Adega Subterrânea
+    -- Imóvel 46: Apartamento Reformado na Asa Sul
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1408,14 +1408,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000046',
-        'Casa de Alto Luxo com Heliponto Privativo e Adega Subterrânea',
-        'Imóvel exclusivo de altíssimo padrão localizado em Alto de Pinheiros, São Paulo. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Mansão', 'disponivel',
-        24100000, 5450, 2850, true,
-        4, 3, 5, 3, 855, 1154,
-        'São Paulo', 'Alto de Pinheiros', 'SP', '01000-000', 'Avenida das Américas', '415', -23.5568, -46.7043,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        true, true
+        'Apartamento Reformado na Asa Sul',
+        'Apartamento reformado na Asa Sul, em quadra residencial tranquila, com varanda e ampla área social. Localização privilegiada, próxima ao Eixo Monumental, shoppings e restaurantes.',
+        'venda', 'Apartamento', 'disponivel',
+        1950000, 900, 550, true,
+        3, 2, 3, 2, 135, 180,
+        'Brasília', 'Asa Sul', 'DF', '70390-000', 'SQS 308', 'B', -15.81, -47.9,
+        '["Reformado","Varanda","Quadra Residencial","Próximo ao Eixo","2 Vagas"]'::jsonb,
+        false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1430,7 +1430,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000046', 'https://images.unsplash.com/photo-1600607687979-247fb4591ff1?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 47: Cobertura Linear com Piscina Aquecida e Solarium
+    -- Imóvel 47: Casa em Condomínio em Alphaville Campinas
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1439,13 +1439,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000047',
-        'Cobertura Linear com Piscina Aquecida e Solarium',
-        'Imóvel exclusivo de altíssimo padrão localizado em Alphaville, Barueri. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Casa', 'disponivel',
-        24600000, 5550, 2900, true,
-        5, 4, 6, 4, 870, 1175,
-        'Barueri', 'Alphaville', 'SP', '01000-000', 'Avenida das Américas', '422', -23.4943, -46.8506,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        'Casa em Condomínio em Alphaville Campinas',
+        'Residência em condomínio fechado de Alphaville Campinas, com projeto contemporâneo, piscina aquecida e espaço gourmet. Segurança 24h e infraestrutura completa de esportes e lazer.',
+        'venda', 'Casa em Condomínio', 'disponivel',
+        5500000, 1900, 1300, true,
+        4, 4, 6, 5, 430, 680,
+        'Campinas', 'Alphaville', 'SP', '13098-325', 'Avenida Alphaville', '620', -22.95, -47.1,
+        '["Piscina Aquecida","Espaço Gourmet","Segurança 24h","Projeto Contemporâneo","5 Vagas"]'::jsonb,
         false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -1461,7 +1461,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000047', 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 48: Residência Sustentável com Sistema de Reuso de Água e Solar
+    -- Imóvel 48: Cobertura no Batel
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1470,14 +1470,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000048',
-        'Residência Sustentável com Sistema de Reuso de Água e Solar',
-        'Imóvel exclusivo de altíssimo padrão localizado em Tamboré, Santana de Parnaíba. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Apartamento Garden', 'disponivel',
-        25050000, 5650, 2950, true,
-        6, 5, 7, 5, 885, 1195,
-        'Santana de Parnaíba', 'Tamboré', 'SP', '01000-000', 'Avenida das Américas', '429', -23.4769, -46.8414,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Cobertura no Batel',
+        'Cobertura no Batel, em Curitiba, com terraço panorâmico, spa com hidromassagem e vista para o parque Barigui. Ambientes integrados, adega climatizada e quatro vagas cobertas.',
+        'venda', 'Cobertura', 'disponivel',
+        4600000, 2500, 1350, true,
+        4, 4, 5, 4, 330, 440,
+        'Curitiba', 'Batel', 'PR', '80420-000', 'Avenida do Batel', '1350', -25.44, -49.29,
+        '["Terraço Panorâmico","Spa com Hidromassagem","Adega Climatizada","Vista Barigui","4 Vagas Cobertas"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,
@@ -1492,7 +1492,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000048', 'https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 49: Apartamento Garden com Quintal Privativo e Varanda Gourmet
+    -- Imóvel 49: Apartamento em Icaraí com Vista para a Baía
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1501,13 +1501,13 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000049',
-        'Apartamento Garden com Quintal Privativo e Varanda Gourmet',
-        'Imóvel exclusivo de altíssimo padrão localizado em Gramado, Campinas. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'venda', 'Terreno em Condomínio', 'disponivel',
-        25550000, 5700, 3000, true,
-        3, 2, 4, 6, 900, 1215,
-        'Campinas', 'Gramado', 'SP', '01000-000', 'Avenida das Américas', '436', -22.898, -47.0199,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
+        'Apartamento em Icaraí com Vista para a Baía',
+        'Apartamento de frente para a Baía de Guanabara, em Icaraí, com living integrado e varanda panorâmica. Prédio reformado com salão de festas, academia e duas vagas demarcadas.',
+        'venda', 'Apartamento', 'disponivel',
+        2400000, 1300, 760, true,
+        3, 3, 4, 2, 175, 230,
+        'Niterói', 'Icaraí', 'RJ', '24220-031', 'Rua Gavião Peixoto', '310', -22.903, -43.105,
+        '["Vista Baía de Guanabara","Varanda Panorâmica","Academia","Salão de Festas","2 Vagas"]'::jsonb,
         false, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
@@ -1523,7 +1523,7 @@ BEGIN
         ('00000000-0000-0000-0000-000000000049', 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
 
-    -- Imóvel 50: Mansão Futurista com Domótica Total e Home Theater 4K
+    -- Imóvel 50: Casa de Alto Luxo em Alphaville Barueri
     INSERT INTO public.imoveis (
         id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
@@ -1532,14 +1532,14 @@ BEGIN
         caracteristicas, destaque, is_demo
     ) VALUES (
         '00000000-0000-0000-0000-000000000050',
-        'Mansão Futurista com Domótica Total e Home Theater 4K',
-        'Imóvel exclusivo de altíssimo padrão localizado em Cambuí, Campinas. Projeto com acabamentos refinados, integração completa de ambientes sociais, tecnologia residencial de ponta e infraestrutura exemplar de segurança e lazer.',
-        'aluguel', 'Apartamento', 'disponivel',
-        53500, 5800, 3050, true,
-        4, 3, 5, 7, 915, 1235,
-        'Campinas', 'Cambuí', 'SP', '01000-000', 'Avenida das Américas', '443', -22.8959, -47.0495,
-        '["Varanda Gourmet","Piscina Privativa","Automação","Segurança 24h","Pé-direito Duplo"]'::jsonb,
-        false, true
+        'Casa de Alto Luxo em Alphaville Barueri',
+        'Mansão contemporânea no coração de Alphaville Barueri, com 1.200m² de área construída, piscina aquecida com borda infinita, spa, home theater e espaço gourmet com forno a lenha. Acabamentos importados.',
+        'venda', 'Casa em Condomínio', 'disponivel',
+        24500000, 5200, 3800, true,
+        6, 6, 10, 8, 1200, 2000,
+        'Barueri', 'Alphaville', 'SP', '06454-000', 'Alameda Rio Negro', '1500', -23.5, -46.85,
+        '["Borda Infinita","Spa","Home Theater","Forno a Lenha","Acabamentos Importados"]'::jsonb,
+        true, true
     ) ON CONFLICT (id) DO UPDATE SET
         titulo = EXCLUDED.titulo,
         descricao = EXCLUDED.descricao,

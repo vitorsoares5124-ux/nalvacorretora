@@ -3,8 +3,7 @@ import { connection } from "next/server";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import { PublicLayoutWrapper } from "@/components/layout/PublicLayoutWrapper";
-import { createClient } from "@/lib/supabase/server";
-import type { TemaSite } from "@/lib/supabase/types";
+import { getTema } from "@/lib/tema";
 
 const playfair = Playfair_Display({
   variable: "--font-heading",
@@ -18,11 +17,15 @@ const inter = Inter({
   display: "swap",
 });
 
-export const viewport: Viewport = {
-  themeColor: "#0A0A0A",
-  width: "device-width",
-  initialScale: 1,
-};
+export async function generateViewport(): Promise<Viewport> {
+  const tema = await getTema();
+
+  return {
+    themeColor: tema === "light" ? "#FFFFFF" : "#0A0A0A",
+    width: "device-width",
+    initialScale: 1,
+  };
+}
 
 export const metadata: Metadata = {
   title: "RA Imóveis | Imóveis de Alto Padrão e Consultoria Exclusiva",
@@ -45,36 +48,13 @@ export const metadata: Metadata = {
   },
 };
 
-// Busca o tema global definido pela corretora no painel admin.
-// É lido a cada request: todo visitante vê o mesmo tema, forçado pelo servidor.
-async function getTemaPadrao(): Promise<TemaSite> {
-  const hasSupabaseConfig =
-    Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
-    Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
-
-  if (!hasSupabaseConfig) return "dark";
-
-  try {
-    const supabase = await createClient();
-    const { data } = await supabase
-      .from("site_settings")
-      .select("tema_padrao")
-      .eq("id", 1)
-      .single();
-
-    return data?.tema_padrao === "light" ? "light" : "dark";
-  } catch {
-    return "dark";
-  }
-}
-
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   await connection();
-  const tema = await getTemaPadrao();
+  const tema = await getTema();
 
   return (
     <html

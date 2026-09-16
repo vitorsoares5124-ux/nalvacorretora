@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { Award, Building2, CheckCircle2, Compass, Shield } from "lucide-react";
+import { getTema } from "@/lib/tema";
 
-export function Sobre() {
+export async function Sobre() {
+  const temaClaro = (await getTema()) === "light";
+
   return (
     <section id="sobre" className="py-20 sm:py-28 bg-canvas border-t border-line">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -10,7 +13,7 @@ export function Sobre() {
           <div className="lg:col-span-5 relative">
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-line bg-surface">
               <Image
-                src="/images/essafoto.png"
+                src={temaClaro ? "/images/perfil-light.png" : "/images/essafoto.png"}
                 alt="Roberto Andrade - Consultoria Imobiliária"
                 fill
                 className="object-cover"

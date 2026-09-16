@@ -2,14 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { SearchBar } from "@/components/imoveis/SearchBar";
+import { getTema } from "@/lib/tema";
 
-export function Hero() {
+export async function Hero() {
+  const temaClaro = (await getTema()) === "light";
+
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden border-b border-line">
-      {/* Imagem de Fundo de Alta Resolução com Filtro Escuro Arquitetônico */}
+      {/* Imagem de Fundo de Alta Resolução com Filtro Arquitetônico */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-mobile.png"
+          src={temaClaro ? "/images/hero-mobile-light.png" : "/images/hero-mobile.png"}
           alt="Propriedade de Luxo RA Imóveis"
           fill
           priority
@@ -18,14 +21,18 @@ export function Hero() {
           sizes="100vw"
         />
         <Image
-          src="/images/bg.png"
+          src={temaClaro ? "/images/bg-light.png" : "/images/bg.png"}
           alt="Propriedade de Luxo RA Imóveis"
           fill
           priority
-          className="hidden sm:block object-cover object-center brightness-[0.59] contrast-[1.05]"
+          className={
+            temaClaro
+              ? "hidden sm:block object-cover object-center brightness-[1] contrast-[1.02]"
+              : "hidden sm:block object-cover object-center brightness-[0.59] contrast-[1.05]"
+          }
           sizes="100vw"
         />
-        {/* Camada de gradiente para contraste profundo */}
+        {/* Camada de gradiente para contraste do texto */}
         <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/70 to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold-primary/10 via-transparent to-transparent" />
       </div>
