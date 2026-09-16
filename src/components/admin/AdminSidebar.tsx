@@ -46,7 +46,7 @@ export function AdminSidebar() {
   ];
 
   return (
-    <aside className="w-64 shrink-0 border-r border-[#2A2A2A] bg-[#111111] flex flex-col justify-between h-screen sticky top-0 hidden lg:flex">
+    <aside className="w-64 shrink-0 border-r border-line bg-surface flex flex-col justify-between h-screen sticky top-0 hidden lg:flex">
       <div className="p-6 space-y-8">
         {/* Logo Oficial */}
         <Link href="/admin" className="block">
@@ -59,14 +59,14 @@ export function AdminSidebar() {
               sizes="128px"
             />
           </div>
-          <span className="mt-1 block text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]">
+          <span className="mt-1 block text-[10px] font-mono uppercase tracking-widest text-gold-primary">
             Painel de Gestão
           </span>
         </Link>
 
         {/* Navegação Principal */}
         <nav className="space-y-1.5">
-          <div className="text-[10px] font-semibold uppercase tracking-wider text-[#737373] px-3 pb-2">
+          <div className="text-[10px] font-semibold uppercase tracking-wider text-ink-muted px-3 pb-2">
             Menu Administrativo
           </div>
           {navItems.map((item) => {
@@ -77,8 +77,8 @@ export function AdminSidebar() {
                 href={item.href}
                 className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-xs font-semibold transition-all ${
                   item.ativo
-                    ? "bg-[#D4AF37] text-[#0A0A0A] shadow-md shadow-[#D4AF37]/20"
-                    : "text-[#A3A3A3] hover:bg-[#1A1A1A] hover:text-[#F5F5F0]"
+                    ? "bg-gold-primary text-on-gold shadow-md shadow-gold-primary/20"
+                    : "text-ink-soft hover:bg-card hover:text-ink"
                 }`}
               >
                 <Icon className="h-4 w-4 shrink-0" />
@@ -90,18 +90,18 @@ export function AdminSidebar() {
       </div>
 
       {/* Seção Inferior: Link Vitrine e Logout */}
-      <div className="p-6 border-t border-[#222222] space-y-3">
+      <div className="p-6 border-t border-line-faint space-y-3">
         <a
           href="/"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#161616] px-3.5 py-2.5 text-xs text-[#A3A3A3] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-colors"
+          className="flex items-center justify-between rounded-xl border border-line bg-surface px-3.5 py-2.5 text-xs text-ink-soft hover:border-gold-primary hover:text-gold-light transition-colors"
         >
           <span className="flex items-center gap-2">
-            <ExternalLink className="h-3.5 w-3.5 text-[#D4AF37]" />
+            <ExternalLink className="h-3.5 w-3.5 text-gold-primary" />
             <span>Ver Vitrine Pública</span>
           </span>
-          <span className="text-[10px] text-[#737373]">↗</span>
+          <span className="text-[10px] text-ink-muted">↗</span>
         </a>
 
         <button

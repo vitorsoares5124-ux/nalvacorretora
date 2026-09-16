@@ -24,7 +24,7 @@ export function AdminHeader() {
   };
 
   return (
-    <header className="lg:hidden sticky top-0 z-40 border-b border-[#2A2A2A] bg-[#111111]/95 backdrop-blur-md px-4 py-3 flex items-center justify-between">
+    <header className="lg:hidden sticky top-0 z-40 border-b border-line bg-surface/95 backdrop-blur-md px-4 py-3 flex items-center justify-between">
       <Link href="/admin" className="flex items-center gap-2">
         <div className="relative h-9 w-24">
           <Image
@@ -42,8 +42,8 @@ export function AdminHeader() {
           href="/admin/imoveis"
           className={`p-2 rounded-lg ${
             pathname.startsWith("/admin/imoveis")
-              ? "bg-[#D4AF37] text-black"
-              : "text-[#A3A3A3] hover:text-white"
+              ? "bg-gold-primary text-black"
+              : "text-ink-soft hover:text-white"
           }`}
           title="Imóveis"
         >
@@ -51,7 +51,7 @@ export function AdminHeader() {
         </Link>
         <Link
           href="/admin/imoveis/novo"
-          className="p-2 rounded-lg bg-[#1F1F1F] text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-colors"
+          className="p-2 rounded-lg bg-elevated text-gold-primary hover:bg-gold-primary hover:text-black transition-colors"
           title="Novo Imóvel"
         >
           <PlusCircle className="h-4 w-4" />

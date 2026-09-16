@@ -4,7 +4,6 @@ import { createClient } from "@/lib/supabase/server";
 
 export interface RegistrarLeadParams {
   imovel_id?: string | null;
-  codigo_imovel?: string;
   titulo_imovel?: string;
   origem: string;
 }
@@ -27,7 +26,7 @@ export async function registrarLeadWhatsApp(params: RegistrarLeadParams) {
       imovel_id: params.imovel_id || null,
       nome: "Interessado via WhatsApp",
       telefone: "Pendente via WhatsApp",
-      mensagem: `Interesse demonstrado no imóvel ${params.codigo_imovel || ""} - ${params.titulo_imovel || ""}`,
+      mensagem: `Interesse demonstrado no imóvel ${params.titulo_imovel || ""}`,
       origem: params.origem || "whatsapp_detalhe",
     };
 

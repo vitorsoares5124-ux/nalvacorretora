@@ -50,7 +50,7 @@ export function Paginacao({ paginaAtual, totalPaginas }: PaginacaoProps) {
         type="button"
         disabled={paginaAtual <= 1}
         onClick={() => mudarPagina(paginaAtual - 1)}
-        className="flex items-center gap-1 rounded-xl border border-[#2A2A2A] bg-[#141414] px-3.5 py-2 text-xs font-semibold text-[#A3A3A3] transition-all hover:border-[#D4AF37] hover:text-[#F5F5F0] disabled:opacity-30 disabled:pointer-events-none"
+        className="flex items-center gap-1 rounded-xl border border-line bg-surface px-3.5 py-2 text-xs font-semibold text-ink-soft transition-all hover:border-gold-primary hover:text-ink disabled:opacity-30 disabled:pointer-events-none"
         aria-label="Página anterior"
       >
         <ChevronLeft className="h-4 w-4" />
@@ -62,7 +62,7 @@ export function Paginacao({ paginaAtual, totalPaginas }: PaginacaoProps) {
         {paginas.map((p, idx) => {
           if (p === "...") {
             return (
-              <span key={`dots-${idx}`} className="px-2 text-xs text-[#555]">
+              <span key={`dots-${idx}`} className="px-2 text-xs text-ink-muted">
                 ...
               </span>
             );
@@ -76,8 +76,8 @@ export function Paginacao({ paginaAtual, totalPaginas }: PaginacaoProps) {
               onClick={() => mudarPagina(Number(p))}
               className={`h-9 w-9 rounded-xl text-xs font-bold transition-all ${
                 isAtiva
-                  ? "bg-[#D4AF37] text-[#0A0A0A] shadow-md shadow-[#D4AF37]/20"
-                  : "border border-[#2A2A2A] bg-[#141414] text-[#A3A3A3] hover:border-[#444] hover:text-white"
+                  ? "bg-gold-primary text-on-gold shadow-md shadow-gold-primary/20"
+                  : "border border-line bg-surface text-ink-soft hover:border-line-hover hover:text-white"
               }`}
               aria-current={isAtiva ? "page" : undefined}
             >
@@ -92,7 +92,7 @@ export function Paginacao({ paginaAtual, totalPaginas }: PaginacaoProps) {
         type="button"
         disabled={paginaAtual >= totalPaginas}
         onClick={() => mudarPagina(paginaAtual + 1)}
-        className="flex items-center gap-1 rounded-xl border border-[#2A2A2A] bg-[#141414] px-3.5 py-2 text-xs font-semibold text-[#A3A3A3] transition-all hover:border-[#D4AF37] hover:text-[#F5F5F0] disabled:opacity-30 disabled:pointer-events-none"
+        className="flex items-center gap-1 rounded-xl border border-line bg-surface px-3.5 py-2 text-xs font-semibold text-ink-soft transition-all hover:border-gold-primary hover:text-ink disabled:opacity-30 disabled:pointer-events-none"
         aria-label="Próxima página"
       >
         <span className="hidden sm:inline">Próxima</span>

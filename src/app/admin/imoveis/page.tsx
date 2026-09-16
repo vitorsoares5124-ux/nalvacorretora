@@ -40,15 +40,15 @@ export default async function AdminImoveisPage() {
   return (
     <div className="space-y-8">
       {/* Cabeçalho da Seção */}
-      <div className="border-b border-[#2A2A2A] pb-6">
-        <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#D4AF37] mb-1">
+      <div className="border-b border-line pb-6">
+        <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-primary mb-1">
           <Sparkles className="h-3.5 w-3.5" />
           <span>Gestão do Catálogo</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F5F5F0]">
+        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-ink">
           Imóveis Cadastrados
         </h1>
-        <p className="text-xs text-[#A3A3A3] mt-0.5">
+        <p className="text-xs text-ink-soft mt-0.5">
           Visualize, edite status, gerencie fotos e adicione novas propriedades ao portfólio.
         </p>
       </div>

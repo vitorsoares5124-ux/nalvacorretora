@@ -1,6 +1,6 @@
 import { ImovelCard } from "@/components/imoveis/ImovelCard";
 import type { Imovel } from "@/lib/supabase/types";
-import { Sparkles, Info } from "lucide-react";
+import { Info } from "lucide-react";
 
 interface ImoveisDestaqueProps {
   imoveis: Imovel[];
@@ -9,25 +9,24 @@ interface ImoveisDestaqueProps {
 
 export function ImoveisDestaque({ imoveis, isDemo }: ImoveisDestaqueProps) {
   return (
-    <section id="destaques" className="py-20 sm:py-28 bg-[#0D0D0D] relative">
+    <section id="destaques" className="py-20 sm:py-28 bg-canvas-alt relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Cabeçalho da Seção */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#D4AF37] mb-3">
-              <Sparkles className="h-3.5 w-3.5" />
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-primary mb-3">
               <span>Coleção Exclusiva</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F5F5F0]">
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink">
               Imóveis em <span className="gold-gradient-text">Destaque</span>
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-[#A3A3A3] max-w-xl">
+            <p className="mt-3 text-sm sm:text-base text-ink-soft max-w-xl">
               Propriedades selecionadas por sua localização privilegiada, acabamentos de altíssimo nível e arquitetura singular.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs text-[#737373] uppercase tracking-widest font-mono">
+            <span className="text-xs text-ink-muted uppercase tracking-widest font-mono">
               {imoveis.length} {imoveis.length === 1 ? "propriedade" : "propriedades"}
             </span>
           </div>
@@ -35,10 +34,10 @@ export function ImoveisDestaque({ imoveis, isDemo }: ImoveisDestaqueProps) {
 
         {/* Aviso discreto em modo DEMO */}
         {isDemo && (
-          <div className="mb-8 flex items-center gap-2.5 rounded-xl border border-[#D4AF37]/30 bg-[#1A1A1A] p-3 text-xs text-[#D4AF37]">
+          <div className="mb-8 flex items-center gap-2.5 rounded-xl border border-gold-primary/30 bg-card p-3 text-xs text-gold-primary">
             <Info className="h-4 w-4 shrink-0" />
             <span>
-              Exibindo imóveis de demonstração com o prefixo <strong>[DEMO]</strong>. Ao rodar o arquivo <code>supabase/schema.sql</code> no seu Supabase e preencher o <code>.env.local</code>, os dados serão sincronizados em tempo real.
+              Exibindo imóveis de demonstração. Ao rodar o arquivo <code>supabase/schema.sql</code> no seu Supabase e preencher o <code>.env.local</code>, os dados serão sincronizados em tempo real.
             </span>
           </div>
         )}
@@ -51,8 +50,8 @@ export function ImoveisDestaque({ imoveis, isDemo }: ImoveisDestaqueProps) {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-[#2A2A2A] bg-[#141414] p-12 text-center">
-            <p className="text-sm text-[#A3A3A3]">Nenhum imóvel em destaque no momento.</p>
+          <div className="rounded-2xl border border-line bg-surface p-12 text-center">
+            <p className="text-sm text-ink-soft">Nenhum imóvel em destaque no momento.</p>
           </div>
         )}
       </div>

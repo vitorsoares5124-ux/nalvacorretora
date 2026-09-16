@@ -24,7 +24,6 @@ END $$;
 -- 3. Tabela 'imoveis'
 CREATE TABLE IF NOT EXISTS public.imoveis (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    codigo VARCHAR(50) UNIQUE NOT NULL,
     titulo VARCHAR(255) NOT NULL,
     descricao TEXT,
     finalidade imovel_finalidade NOT NULL DEFAULT 'venda',
@@ -98,6 +97,26 @@ CREATE TABLE IF NOT EXISTS public.leads (
 ALTER TABLE public.leads ALTER COLUMN nome DROP NOT NULL;
 ALTER TABLE public.leads ALTER COLUMN telefone DROP NOT NULL;
 
+-- 6.1 Tabela 'site_settings' (linha única de configurações globais do site)
+CREATE TABLE IF NOT EXISTS public.site_settings (
+    id INTEGER PRIMARY KEY DEFAULT 1,
+    tema_padrao TEXT NOT NULL DEFAULT 'dark' CHECK (tema_padrao IN ('dark', 'light')),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
+    CONSTRAINT site_settings_single_row CHECK (id = 1)
+);
+
+-- Garante que a linha única sempre exista
+INSERT INTO public.site_settings (id, tema_padrao)
+VALUES (1, 'dark')
+ON CONFLICT (id) DO NOTHING;
+
+-- Trigger para atualizar 'updated_at' automaticamente
+DROP TRIGGER IF EXISTS tr_site_settings_updated_at ON public.site_settings;
+CREATE TRIGGER tr_site_settings_updated_at
+    BEFORE UPDATE ON public.site_settings
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
 -- 7. Índices para performance em buscas e vitrine
 CREATE INDEX IF NOT EXISTS idx_imoveis_status ON public.imoveis(status);
 CREATE INDEX IF NOT EXISTS idx_imoveis_destaque ON public.imoveis(destaque);
@@ -114,6 +133,7 @@ CREATE INDEX IF NOT EXISTS idx_leads_imovel_id ON public.leads(imovel_id);
 ALTER TABLE public.imoveis ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.imoveis_imagens ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.site_settings ENABLE ROW LEVEL SECURITY;
 
 -- Limpar policies existentes para garantir idempotência
 DROP POLICY IF EXISTS "Leitura pública de imóveis disponíveis" ON public.imoveis;
@@ -122,6 +142,8 @@ DROP POLICY IF EXISTS "Leitura pública de imagens de imóveis disponíveis" ON 
 DROP POLICY IF EXISTS "Acesso total a imagens para usuários autenticados" ON public.imoveis_imagens;
 DROP POLICY IF EXISTS "Visitantes podem enviar leads" ON public.leads;
 DROP POLICY IF EXISTS "Apenas corretores autenticados visualizam leads" ON public.leads;
+DROP POLICY IF EXISTS "Leitura pública das configurações do site" ON public.site_settings;
+DROP POLICY IF EXISTS "Escrita de configurações restrita a autenticados" ON public.site_settings;
 
 -- POLICIES: imoveis
 -- Leitura pública: apenas imóveis com status 'disponivel'
@@ -174,6 +196,22 @@ CREATE POLICY "Apenas corretores autenticados visualizam leads"
     TO authenticated
     USING (true);
 
+-- POLICIES: site_settings
+-- Leitura pública: necessária para o layout raiz aplicar o tema global a todos os visitantes
+CREATE POLICY "Leitura pública das configurações do site"
+    ON public.site_settings
+    FOR SELECT
+    TO public
+    USING (true);
+
+-- Escrita (atualização do tema): apenas usuários autenticados (admin / corretora)
+CREATE POLICY "Escrita de configurações restrita a autenticados"
+    ON public.site_settings
+    FOR ALL
+    TO authenticated
+    USING (true)
+    WITH CHECK (true);
+
 -- ==============================================================================
 -- 9. SUPABASE STORAGE: BUCKET 'imoveis' & POLICIES
 -- ==============================================================================
@@ -216,7 +254,7 @@ CREATE POLICY "Delete restrito a autenticados no bucket imoveis"
     USING (bucket_id = 'imoveis');
 
 -- ==============================================================================
--- 10. SEEDS DE DEMONSTRAÇÃO (is_demo = true, códigos limpos)
+-- 10. SEEDS DE DEMONSTRAÇÃO (is_demo = true)
 -- Para exclusão futura no admin ou SQL:
 -- DELETE FROM public.imoveis WHERE is_demo = true;
 -- ==============================================================================
@@ -229,14 +267,13 @@ DECLARE
 BEGIN
     -- Imóvel 1: Cobertura Duplex de Luxo
     INSERT INTO public.imoveis (
-        id, codigo, titulo, descricao, finalidade, tipo, status,
+        id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
         quartos, suites, banheiros, vagas, area_util, area_total,
         cidade, bairro, uf, cep, rua, numero, latitude, longitude,
         caracteristicas, destaque, is_demo
     ) VALUES (
         id_imovel_1,
-        'RAI-101',
         'Cobertura Duplex Skyline com Vista Panorâmica',
         'Espetacular cobertura duplex finamente decorada, com pé-direito duplo, automação residencial completa, piscina aquecida privativa e vista 360° da cidade.',
         'venda', 'Cobertura', 'disponivel',
@@ -245,7 +282,7 @@ BEGIN
         'São Paulo', 'Jardins', 'SP', '01401-000', 'Alameda Lorena', '1500', -23.5670000, -46.6650000,
         '["Piscina Privativa", "Pé-direito Duplo", "Varanda Gourmet", "Automação", "Elevador Privativo"]'::jsonb,
         true, true
-    ) ON CONFLICT (codigo) DO UPDATE SET titulo = EXCLUDED.titulo, is_demo = true;
+    ) ON CONFLICT (id) DO UPDATE SET titulo = EXCLUDED.titulo, is_demo = true;
 
     -- Imagens Imóvel 1
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
@@ -256,14 +293,13 @@ BEGIN
 
     -- Imóvel 2: Mansão Contemporânea
     INSERT INTO public.imoveis (
-        id, codigo, titulo, descricao, finalidade, tipo, status,
+        id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
         quartos, suites, banheiros, vagas, area_util, area_total,
         cidade, bairro, uf, cep, rua, numero, latitude, longitude,
         caracteristicas, destaque, is_demo
     ) VALUES (
         id_imovel_2,
-        'RAI-102',
         'Residência Arquitetônica em Condomínio Fechado',
         'Projeto assinado com integração total de ambientes, living com lareira, espaço gourmet completo integrado à piscina com borda infinita e jardim paisagístico.',
         'venda', 'Casa em Condomínio', 'disponivel',
@@ -272,7 +308,7 @@ BEGIN
         'Campinas', 'Gramado', 'SP', '13092-000', 'Avenida das Palmeiras', '45', -22.8940000, -47.0250000,
         '["Borda Infinita", "Jardim Paisagístico", "Segurança Armada", "Espaço Gourmet", "Lareira"]'::jsonb,
         true, true
-    ) ON CONFLICT (codigo) DO UPDATE SET titulo = EXCLUDED.titulo, is_demo = true;
+    ) ON CONFLICT (id) DO UPDATE SET titulo = EXCLUDED.titulo, is_demo = true;
 
     -- Imagens Imóvel 2
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
@@ -283,14 +319,13 @@ BEGIN
 
     -- Imóvel 3: Apartamento Alto Padrão
     INSERT INTO public.imoveis (
-        id, codigo, titulo, descricao, finalidade, tipo, status,
+        id, titulo, descricao, finalidade, tipo, status,
         preco, preco_condominio, preco_iptu, aceita_financiamento,
         quartos, suites, banheiros, vagas, area_util, area_total,
         cidade, bairro, uf, cep, rua, numero, latitude, longitude,
         caracteristicas, destaque, is_demo
     ) VALUES (
         id_imovel_3,
-        'RAI-103',
         'Apartamento Contemporâneo com Living Integrado',
         'Apartamento de alto padrão com acabamentos nobres em mármore e madeira, ampla varanda gourmet com churrasqueira e condomínio com infraestrutura de resort.',
         'venda', 'Apartamento', 'disponivel',
@@ -299,7 +334,7 @@ BEGIN
         'São Paulo', 'Itaim Bibi', 'SP', '04530-000', 'Rua Tabapuã', '800', -23.5850000, -46.6780000,
         '["Varanda Gourmet", "Acabamento em Mármore", "Lazer Completo", "3 Vagas"]'::jsonb,
         true, true
-    ) ON CONFLICT (codigo) DO UPDATE SET titulo = EXCLUDED.titulo, is_demo = true;
+    ) ON CONFLICT (id) DO UPDATE SET titulo = EXCLUDED.titulo, is_demo = true;
 
     -- Imagens Imóvel 3
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)

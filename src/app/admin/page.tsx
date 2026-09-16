@@ -13,7 +13,9 @@ import {
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { DEMO_IMOVEIS } from "@/lib/demo-data";
-import type { Imovel, ImovelStatus, Lead } from "@/lib/supabase/types";
+import { SeletorTema } from "@/components/admin/SeletorTema";
+import { Palette } from "lucide-react";
+import type { ImovelStatus, Lead, TemaSite } from "@/lib/supabase/types";
 
 export const revalidate = 0; // Sempre dados frescos no admin
 
@@ -22,7 +24,8 @@ export default async function AdminDashboardPage() {
   let disponiveis = 0;
   let concluidos = 0;
   let leadsUltimos7Dias = 0;
-  let ultimosLeads: Array<Lead & { imovel?: { codigo: string; titulo: string } | null }> = [];
+  let ultimosLeads: Array<Lead & { imovel?: { titulo: string } | null }> = [];
+  let temaAtual: TemaSite = "dark";
 
   const hasSupabaseConfig =
     Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
@@ -67,16 +70,31 @@ export default async function AdminDashboardPage() {
         .from("leads")
         .select(`
           *,
-          imoveis (codigo, titulo)
+          imoveis (titulo)
         `)
         .order("created_at", { ascending: false })
         .limit(5);
 
       if (leadsData) {
-        ultimosLeads = leadsData.map((lead: any) => ({
+        const leadsTipados = leadsData as unknown as Array<
+          Lead & { imoveis?: { titulo: string } | null }
+        >;
+
+        ultimosLeads = leadsTipados.map((lead) => ({
           ...lead,
           imovel: lead.imoveis || null,
         }));
+      }
+
+      // 4. Tema global atual do site
+      const { data: settingsData } = await supabase
+        .from("site_settings")
+        .select("tema_padrao")
+        .eq("id", 1)
+        .single();
+
+      if (settingsData?.tema_padrao === "light") {
+        temaAtual = "light";
       }
     } catch (err) {
       console.warn("Erro ao buscar dados do Dashboard no Supabase:", err);
@@ -97,7 +115,6 @@ export default async function AdminDashboardPage() {
         origem: "whatsapp_detalhe",
         created_at: new Date().toISOString(),
         imovel: {
-          codigo: DEMO_IMOVEIS[0].codigo,
           titulo: DEMO_IMOVEIS[0].titulo,
         },
       },
@@ -110,7 +127,6 @@ export default async function AdminDashboardPage() {
         origem: "whatsapp_detalhe",
         created_at: new Date(Date.now() - 1000 * 60 * 60 * 12).toISOString(),
         imovel: {
-          codigo: DEMO_IMOVEIS[1].codigo,
           titulo: DEMO_IMOVEIS[1].titulo,
         },
       },
@@ -120,16 +136,16 @@ export default async function AdminDashboardPage() {
   return (
     <div className="space-y-8">
       {/* Cabeçalho do Dashboard */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#2A2A2A]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-line">
         <div>
-          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#D4AF37] mb-1">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-primary mb-1">
             <Sparkles className="h-3.5 w-3.5" />
             <span>Visão Geral</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#F5F5F0]">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-ink">
             Painel de Controle
           </h1>
-          <p className="text-xs text-[#A3A3A3] mt-0.5">
+          <p className="text-xs text-ink-soft mt-0.5">
             Acompanhe o desempenho do catálogo de imóveis e os novos contatos de clientes.
           </p>
         </div>
@@ -137,7 +153,7 @@ export default async function AdminDashboardPage() {
         <div className="flex items-center gap-3">
           <Link
             href="/admin/imoveis/novo"
-            className="inline-flex items-center gap-2 rounded-xl gold-gradient-btn px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-md shadow-[#D4AF37]/20 active:scale-95"
+            className="inline-flex items-center gap-2 rounded-xl gold-gradient-btn px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-on-gold shadow-md shadow-gold-primary/20 active:scale-95"
           >
             <PlusCircle className="h-4 w-4" />
             <span>Novo Imóvel</span>
@@ -148,80 +164,80 @@ export default async function AdminDashboardPage() {
       {/* 4 Cards de Métricas (KPIs) */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {/* Total de Imóveis */}
-        <div className="rounded-2xl border border-[#2A2A2A] bg-[#141414] p-5 space-y-3">
+        <div className="rounded-2xl border border-line bg-surface p-5 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-[#A3A3A3] font-medium">Total de Imóveis</span>
-            <div className="rounded-lg bg-[#1F1F1F] p-2 text-[#D4AF37]">
+            <span className="text-xs text-ink-soft font-medium">Total de Imóveis</span>
+            <div className="rounded-lg bg-elevated p-2 text-gold-primary">
               <Building2 className="h-4 w-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-bold text-[#F5F5F0]">
+          <div className="text-2xl sm:text-3xl font-bold text-ink">
             {totalImoveis}
           </div>
-          <p className="text-[11px] text-[#737373]">Propriedades cadastradas</p>
+          <p className="text-[11px] text-ink-muted">Propriedades cadastradas</p>
         </div>
 
         {/* Disponíveis */}
-        <div className="rounded-2xl border border-[#2A2A2A] bg-[#141414] p-5 space-y-3">
+        <div className="rounded-2xl border border-line bg-surface p-5 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-[#A3A3A3] font-medium">Disponíveis</span>
-            <div className="rounded-lg bg-[#10B981]/15 p-2 text-[#10B981]">
+            <span className="text-xs text-ink-soft font-medium">Disponíveis</span>
+            <div className="rounded-lg bg-emerald/15 p-2 text-emerald">
               <CheckCircle2 className="h-4 w-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-bold text-[#10B981]">
+          <div className="text-2xl sm:text-3xl font-bold text-emerald">
             {disponiveis}
           </div>
-          <p className="text-[11px] text-[#737373]">Visíveis na vitrine pública</p>
+          <p className="text-[11px] text-ink-muted">Visíveis na vitrine pública</p>
         </div>
 
         {/* Vendidos / Alugados */}
-        <div className="rounded-2xl border border-[#2A2A2A] bg-[#141414] p-5 space-y-3">
+        <div className="rounded-2xl border border-line bg-surface p-5 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-[#A3A3A3] font-medium">Vendidos / Alugados</span>
-            <div className="rounded-lg bg-[#1F1F1F] p-2 text-[#D4AF37]">
+            <span className="text-xs text-ink-soft font-medium">Vendidos / Alugados</span>
+            <div className="rounded-lg bg-elevated p-2 text-gold-primary">
               <BadgePercent className="h-4 w-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-bold text-[#F5F5F0]">
+          <div className="text-2xl sm:text-3xl font-bold text-ink">
             {concluidos}
           </div>
-          <p className="text-[11px] text-[#737373]">Negociações concretizadas</p>
+          <p className="text-[11px] text-ink-muted">Negociações concretizadas</p>
         </div>
 
         {/* Leads (Últimos 7 dias) */}
-        <div className="rounded-2xl border border-[#2A2A2A] bg-[#141414] p-5 space-y-3">
+        <div className="rounded-2xl border border-line bg-surface p-5 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-[#A3A3A3] font-medium">Leads (7 dias)</span>
-            <div className="rounded-lg bg-[#D4AF37]/15 p-2 text-[#D4AF37]">
+            <span className="text-xs text-ink-soft font-medium">Leads (7 dias)</span>
+            <div className="rounded-lg bg-gold-primary/15 p-2 text-gold-primary">
               <MessageSquare className="h-4 w-4" />
             </div>
           </div>
-          <div className="text-2xl sm:text-3xl font-bold text-[#D4AF37]">
+          <div className="text-2xl sm:text-3xl font-bold text-gold-primary">
             {leadsUltimos7Dias}
           </div>
-          <p className="text-[11px] text-[#737373]">Cliques diretos para WhatsApp</p>
+          <p className="text-[11px] text-ink-muted">Cliques diretos para WhatsApp</p>
         </div>
       </div>
 
       {/* Seção dos Últimos Leads e Ações Rápidas */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Tabela dos Últimos Leads (8 cols) */}
-        <div className="lg:col-span-8 rounded-2xl border border-[#2A2A2A] bg-[#141414] p-6 space-y-5">
+        <div className="lg:col-span-8 rounded-2xl border border-line bg-surface p-6 space-y-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <MessageSquare className="h-4 w-4 text-[#D4AF37]" />
-              <h2 className="text-base font-bold text-[#F5F5F0]">
+              <MessageSquare className="h-4 w-4 text-gold-primary" />
+              <h2 className="text-base font-bold text-ink">
                 Últimos Contatos Recebidos (Leads)
               </h2>
             </div>
-            <span className="text-xs text-[#737373] font-mono">
+            <span className="text-xs text-ink-muted font-mono">
               {ultimosLeads.length} mais recentes
             </span>
           </div>
 
           {ultimosLeads.length > 0 ? (
-            <div className="divide-y divide-[#222222]">
+            <div className="divide-y divide-line-faint">
               {ultimosLeads.map((lead) => {
                 const dataFormatada = lead.created_at
                   ? new Intl.DateTimeFormat("pt-BR", {
@@ -237,31 +253,30 @@ export default async function AdminDashboardPage() {
                   >
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-semibold text-[#F5F5F0]">
+                        <span className="text-sm font-semibold text-ink">
                           {lead.nome || "Interessado via WhatsApp"}
                         </span>
-                        <span className="rounded bg-[#1A1A1A] border border-[#2A2A2A] px-2 py-0.5 text-[10px] text-[#A3A3A3]">
+                        <span className="rounded bg-card border border-line px-2 py-0.5 text-[10px] text-ink-soft">
                           {lead.origem || "WhatsApp"}
                         </span>
                       </div>
 
                       {lead.imovel ? (
-                        <p className="text-xs text-[#A3A3A3]">
+                        <p className="text-xs text-ink-soft">
                           Imóvel:{" "}
-                          <strong className="text-[#D4AF37]">
-                            {lead.imovel.codigo}
-                          </strong>{" "}
-                          — {lead.imovel.titulo}
+                          <strong className="text-gold-primary">
+                            {lead.imovel.titulo}
+                          </strong>
                         </p>
                       ) : (
-                        <p className="text-xs text-[#737373]">
+                        <p className="text-xs text-ink-muted">
                           Contato geral da vitrine
                         </p>
                       )}
                     </div>
 
                     <div className="flex items-center gap-3 sm:text-right shrink-0">
-                      <div className="flex items-center gap-1.5 text-xs text-[#737373]">
+                      <div className="flex items-center gap-1.5 text-xs text-ink-muted">
                         <Clock className="h-3.5 w-3.5" />
                         <span>{dataFormatada}</span>
                       </div>
@@ -271,7 +286,7 @@ export default async function AdminDashboardPage() {
                           href={`https://wa.me/${lead.telefone.replace(/\D/g, "")}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1 rounded-lg bg-[#10B981]/15 px-2.5 py-1 text-xs font-semibold text-[#10B981] hover:bg-[#10B981]/25 transition-colors"
+                          className="flex items-center gap-1 rounded-lg bg-emerald/15 px-2.5 py-1 text-xs font-semibold text-emerald hover:bg-emerald/25 transition-colors"
                         >
                           <Phone className="h-3 w-3" />
                           <span>WhatsApp</span>
@@ -283,7 +298,7 @@ export default async function AdminDashboardPage() {
               })}
             </div>
           ) : (
-            <div className="py-8 text-center text-xs text-[#737373]">
+            <div className="py-8 text-center text-xs text-ink-muted">
               Nenhum lead registrado recentemente.
             </div>
           )}
@@ -291,45 +306,58 @@ export default async function AdminDashboardPage() {
 
         {/* Ações Rápidas e Acessos (4 cols) */}
         <div className="lg:col-span-4 space-y-6">
-          <div className="rounded-2xl border border-[#2A2A2A] bg-[#141414] p-6 space-y-4">
-            <h2 className="text-base font-bold text-[#F5F5F0]">Ações Rápidas</h2>
+          <div className="rounded-2xl border border-line bg-surface p-6 space-y-4">
+            <h2 className="text-base font-bold text-ink">Ações Rápidas</h2>
 
             <div className="space-y-2.5">
               <Link
                 href="/admin/imoveis/novo"
-                className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] p-3.5 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-all group"
+                className="flex items-center justify-between rounded-xl border border-line bg-card p-3.5 text-xs font-semibold text-ink hover:border-gold-primary hover:text-gold-light transition-all group"
               >
                 <span className="flex items-center gap-2.5">
-                  <PlusCircle className="h-4 w-4 text-[#D4AF37]" />
+                  <PlusCircle className="h-4 w-4 text-gold-primary" />
                   <span>Cadastrar Novo Imóvel</span>
                 </span>
-                <ArrowRight className="h-4 w-4 text-[#737373] group-hover:text-[#D4AF37] group-hover:translate-x-0.5 transition-all" />
+                <ArrowRight className="h-4 w-4 text-ink-muted group-hover:text-gold-primary group-hover:translate-x-0.5 transition-all" />
               </Link>
 
               <Link
                 href="/admin/imoveis"
-                className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] p-3.5 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-all group"
+                className="flex items-center justify-between rounded-xl border border-line bg-card p-3.5 text-xs font-semibold text-ink hover:border-gold-primary hover:text-gold-light transition-all group"
               >
                 <span className="flex items-center gap-2.5">
-                  <Building2 className="h-4 w-4 text-[#D4AF37]" />
+                  <Building2 className="h-4 w-4 text-gold-primary" />
                   <span>Gerenciar Imóveis Cadastrados</span>
                 </span>
-                <ArrowRight className="h-4 w-4 text-[#737373] group-hover:text-[#D4AF37] group-hover:translate-x-0.5 transition-all" />
+                <ArrowRight className="h-4 w-4 text-ink-muted group-hover:text-gold-primary group-hover:translate-x-0.5 transition-all" />
               </Link>
 
               <a
                 href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] p-3.5 text-xs font-semibold text-[#A3A3A3] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-all group"
+                className="flex items-center justify-between rounded-xl border border-line bg-card p-3.5 text-xs font-semibold text-ink-soft hover:border-gold-primary hover:text-gold-light transition-all group"
               >
                 <span className="flex items-center gap-2.5">
-                  <ExternalLink className="h-4 w-4 text-[#D4AF37]" />
+                  <ExternalLink className="h-4 w-4 text-gold-primary" />
                   <span>Visualizar Vitrine Pública</span>
                 </span>
-                <span className="text-xs text-[#737373]">↗</span>
+                <span className="text-xs text-ink-muted">↗</span>
               </a>
             </div>
+          </div>
+
+          {/* Configurações do Site: Tema Global */}
+          <div className="rounded-2xl border border-line bg-surface p-6 space-y-4">
+            <div className="flex items-center gap-2">
+              <Palette className="h-4 w-4 text-gold-primary" />
+              <h2 className="text-base font-bold text-ink">Tema do Site</h2>
+            </div>
+            <p className="text-xs text-ink-soft leading-relaxed">
+              Escolha o tema que <strong className="text-ink">todos os visitantes</strong> verão na
+              vitrine. A alteração vale para o site inteiro até ser trocada novamente.
+            </p>
+            <SeletorTema temaAtual={temaAtual} />
           </div>
         </div>
       </div>

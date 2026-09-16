@@ -5,7 +5,6 @@ import { registrarLeadWhatsApp } from "@/app/actions/lead-action";
 
 interface WhatsAppLeadButtonProps {
   imovelId: string;
-  codigo: string;
   titulo: string;
   preco?: number;
   className?: string;
@@ -14,16 +13,15 @@ interface WhatsAppLeadButtonProps {
 
 export function WhatsAppLeadButton({
   imovelId,
-  codigo,
   titulo,
   preco,
   className = "",
   isStickyMobile = false,
 }: WhatsAppLeadButtonProps) {
   const whatsappNumber =
-    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5511999999999";
+    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5511966747811";
 
-  const mensagemTexto = `Quero saber mais sobre o imóvel ${codigo} - ${titulo}`;
+  const mensagemTexto = `Quero saber mais sobre o imóvel ${titulo}`;
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     mensagemTexto
   )}`;
@@ -35,7 +33,6 @@ export function WhatsAppLeadButton({
     // 2. Dispara a gravação de lead em background (fire-and-forget paralelo)
     registrarLeadWhatsApp({
       imovel_id: imovelId,
-      codigo_imovel: codigo,
       titulo_imovel: titulo,
       origem: "whatsapp_detalhe",
     }).catch((err) => {
@@ -45,14 +42,14 @@ export function WhatsAppLeadButton({
 
   if (isStickyMobile) {
     return (
-      <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden border-t border-[#2A2A2A] bg-[#0A0A0A]/95 p-3.5 backdrop-blur-lg shadow-2xl">
+      <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden border-t border-line bg-canvas/95 p-3.5 backdrop-blur-lg shadow-2xl">
         <div className="mx-auto flex max-w-md items-center justify-between gap-3">
           {preco && (
             <div className="flex flex-col">
-              <span className="text-[11px] text-[#A3A3A3] uppercase tracking-wider">
+              <span className="text-[11px] text-ink-soft uppercase tracking-wider">
                 Valor
               </span>
-              <span className="text-base font-bold text-[#D4AF37]">
+              <span className="text-base font-bold text-gold-primary">
                 {new Intl.NumberFormat("pt-BR", {
                   style: "currency",
                   currency: "BRL",
@@ -65,7 +62,7 @@ export function WhatsAppLeadButton({
           <button
             onClick={handleClick}
             type="button"
-            className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-[#10B981] px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#10B981]/25 transition-all duration-200 hover:bg-[#059669] active:scale-95"
+            className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-emerald px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-emerald/25 transition-all duration-200 hover:bg-emerald-dark active:scale-95"
             aria-label="Falar com corretor no WhatsApp"
           >
             <MessageCircle className="h-5 w-5" />
@@ -80,7 +77,7 @@ export function WhatsAppLeadButton({
     <button
       onClick={handleClick}
       type="button"
-      className={`flex items-center justify-center gap-2 rounded-xl bg-[#10B981] px-6 py-4 text-sm font-bold text-white shadow-lg shadow-[#10B981]/20 transition-all duration-300 hover:bg-[#059669] hover:shadow-[#10B981]/40 active:scale-95 ${className}`}
+      className={`flex items-center justify-center gap-2 rounded-xl bg-emerald px-6 py-4 text-sm font-bold text-white shadow-lg shadow-emerald/20 transition-all duration-300 hover:bg-emerald-dark hover:shadow-emerald/40 active:scale-95 ${className}`}
       aria-label="Falar com corretor no WhatsApp"
     >
       <MessageCircle className="h-5 w-5" />

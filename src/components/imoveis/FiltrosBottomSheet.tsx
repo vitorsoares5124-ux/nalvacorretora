@@ -62,13 +62,13 @@ export function FiltrosBottomSheet({
       <button
         type="button"
         onClick={() => setAberto(true)}
-        className="flex items-center gap-2 rounded-xl border border-[#333333] bg-[#1A1A1A] px-4 py-2.5 text-xs font-semibold text-[#F5F5F0] hover:border-[#D4AF37] active:scale-95 transition-all shadow-md"
+        className="flex items-center gap-2 rounded-xl border border-line-strong bg-card px-4 py-2.5 text-xs font-semibold text-ink hover:border-gold-primary active:scale-95 transition-all shadow-md"
         aria-label="Abrir filtros de busca"
       >
-        <SlidersHorizontal className="h-4 w-4 text-[#D4AF37]" />
+        <SlidersHorizontal className="h-4 w-4 text-gold-primary" />
         <span>Filtros</span>
         {filtrosAtivosContagem > 0 && (
-          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#D4AF37] text-[10px] font-bold text-[#0A0A0A]">
+          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold-primary text-[10px] font-bold text-on-gold">
             {filtrosAtivosContagem}
           </span>
         )}
@@ -85,24 +85,24 @@ export function FiltrosBottomSheet({
           />
 
           {/* Gaveta Inferior (Bottom Sheet) */}
-          <div className="relative max-h-[85vh] w-full overflow-hidden rounded-t-3xl border-t border-[#333333] bg-[#141414] shadow-2xl animate-in slide-in-from-bottom duration-300 flex flex-col">
+          <div className="relative max-h-[85vh] w-full overflow-hidden rounded-t-3xl border-t border-line-strong bg-surface shadow-2xl animate-in slide-in-from-bottom duration-300 flex flex-col">
             {/* Barra de Arraste (Pill) */}
             <div className="flex justify-center pt-3 pb-1">
-              <div className="h-1.5 w-12 rounded-full bg-[#333333]" />
+              <div className="h-1.5 w-12 rounded-full bg-elevated" />
             </div>
 
             {/* Cabeçalho do Bottom Sheet */}
-            <div className="flex items-center justify-between px-6 py-3 border-b border-[#2A2A2A]">
+            <div className="flex items-center justify-between px-6 py-3 border-b border-line">
               <div className="flex items-center gap-2">
-                <SlidersHorizontal className="h-4 w-4 text-[#D4AF37]" />
-                <h3 className="text-base font-bold text-[#F5F5F0]">
+                <SlidersHorizontal className="h-4 w-4 text-gold-primary" />
+                <h3 className="text-base font-bold text-ink">
                   Filtrar Imóveis
                 </h3>
               </div>
               <button
                 type="button"
                 onClick={() => setAberto(false)}
-                className="rounded-full bg-[#1F1F1F] p-2 text-[#A3A3A3] hover:text-white"
+                className="rounded-full bg-elevated p-2 text-ink-soft hover:text-white"
                 aria-label="Fechar filtros"
               >
                 <X className="h-4 w-4" />

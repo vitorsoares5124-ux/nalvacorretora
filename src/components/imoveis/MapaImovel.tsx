@@ -28,29 +28,30 @@ export function MapaImovel({
   const iframeSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lng}`;
 
   return (
-    <div className="space-y-3 rounded-2xl border border-[#2A2A2A] bg-[#1A1A1A] p-5 sm:p-6">
+    <div className="space-y-3 rounded-2xl border border-line bg-card p-5 sm:p-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <MapPin className="h-5 w-5 text-[#D4AF37]" />
-          <h3 className="text-base font-semibold text-[#F5F5F0]">
+          <MapPin className="h-5 w-5 text-gold-primary" />
+          <h3 className="text-base font-semibold text-ink">
             Localização Aproximada
           </h3>
         </div>
-        <span className="text-xs text-[#A3A3A3]">
+        <span className="text-xs text-ink-soft">
           {bairro}, {cidade} - {uf}
         </span>
       </div>
 
-      <p className="text-xs text-[#737373]">
+      <p className="text-xs text-ink-muted">
         Por razões de segurança e privacidade dos proprietários, exibimos a região aproximada do imóvel. O endereço exato é fornecido mediante agendamento prévio com Roberto Andrade.
       </p>
 
       {/* Iframe estático do OpenStreetMap com zero bibliotecas JS adicionais */}
-      <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden rounded-xl border border-[#2A2A2A] bg-[#141414]">
+      <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden rounded-xl border border-line bg-surface">
         <iframe
           title={`Mapa de localização em ${bairro}, ${cidade}`}
           src={iframeSrc}
-          className="h-full w-full border-0 filter invert-[0.88] hue-rotate-180 contrast-[1.1] opacity-90"
+          className="h-[calc(100%+3.5rem)] w-full border-0 opacity-90"
+          style={{ filter: "var(--map-filter)" }}
           loading="lazy"
         />
       </div>

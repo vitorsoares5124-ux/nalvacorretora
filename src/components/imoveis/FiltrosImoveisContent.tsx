@@ -11,6 +11,7 @@ import {
   Bath,
   Car,
   Check,
+  Search,
   SlidersHorizontal,
 } from "lucide-react";
 
@@ -48,6 +49,16 @@ export function FiltrosImoveisContent({
   const vagasAtual = searchParams.get("vagas") || "";
   const caracteristicasAtuais = searchParams.getAll("caracteristica");
 
+  // 1b. Estados do combobox de Cidade/Bairro (texto digitado + abertura)
+  const [cidadeTexto, setCidadeTexto] = useState(
+    searchParams.get("cidade") || ""
+  );
+  const [bairroTexto, setBairroTexto] = useState(
+    searchParams.get("bairro") || ""
+  );
+  const [cidadeAberta, setCidadeAberta] = useState(false);
+  const [bairroAberta, setBairroAberta] = useState(false);
+
   // 2. Estados numéricos locais com debounce (Correction 5)
   const [precoMin, setPrecoMin] = useState(searchParams.get("preco_min") || "");
   const [precoMax, setPrecoMax] = useState(searchParams.get("preco_max") || "");
@@ -60,6 +71,8 @@ export function FiltrosImoveisContent({
     setPrecoMax(searchParams.get("preco_max") || "");
     setAreaMin(searchParams.get("area_min") || "");
     setAreaMax(searchParams.get("area_max") || "");
+    setCidadeTexto(searchParams.get("cidade") || "");
+    setBairroTexto(searchParams.get("bairro") || "");
   }, [searchParams]);
 
   // Função central para atualizar os searchParams mantendo os demais
@@ -134,16 +147,33 @@ export function FiltrosImoveisContent({
 
   const temFiltrosAtivos = Array.from(searchParams.keys()).some((k) => k !== "page" && k !== "ordem");
 
+  // Normaliza texto (ignora acentos e caixa) para busca nos filtros
+  const normalizarTexto = (s: string) =>
+    s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+  // Sugestões filtradas conforme o texto digitado
+  const cidadesSugeridas = cidadeTexto
+    ? options.cidades.filter((c) =>
+        normalizarTexto(c).includes(normalizarTexto(cidadeTexto))
+      )
+    : options.cidades;
+
+  const bairrosSugeridos = bairroTexto
+    ? options.bairros.filter((b) =>
+        normalizarTexto(b).includes(normalizarTexto(bairroTexto))
+      )
+    : options.bairros;
+
   return (
-    <div className="space-y-6 text-[#F5F5F0]">
+    <div className="space-y-6 text-ink">
       {/* Botão de Limpeza Rápida */}
       {temFiltrosAtivos && (
-        <div className="flex items-center justify-between pb-3 border-b border-[#2A2A2A]">
-          <span className="text-xs text-[#A3A3A3]">Filtros aplicados</span>
+        <div className="flex items-center justify-between pb-3 border-b border-line">
+          <span className="text-xs text-ink-soft">Filtros aplicados</span>
           <button
             type="button"
             onClick={limparFiltros}
-            className="flex items-center gap-1.5 text-xs text-[#D4AF37] hover:text-[#EAD2A8] transition-colors"
+            className="flex items-center gap-1.5 text-xs text-gold-primary hover:text-gold-light transition-colors"
           >
             <RotateCcw className="h-3 w-3" />
             <span>Limpar todos</span>
@@ -153,10 +183,10 @@ export function FiltrosImoveisContent({
 
       {/* 1. Finalidade (Tabs/Botões, não dropdown) */}
       <div className="space-y-2">
-        <label className="text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
+        <label className="text-xs font-semibold uppercase tracking-wider text-gold-primary">
           Finalidade
         </label>
-        <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-[#141414] p-1 border border-[#2A2A2A]">
+        <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-surface p-1 border border-line">
           {[
             { label: "Venda", value: "venda" },
             { label: "Aluguel", value: "aluguel" },
@@ -174,8 +204,8 @@ export function FiltrosImoveisContent({
                 }
                 className={`rounded-lg py-2 text-xs font-semibold transition-all ${
                   isAtivo
-                    ? "bg-[#D4AF37] text-[#0A0A0A] shadow-md"
-                    : "text-[#A3A3A3] hover:text-white hover:bg-[#1E1E1E]"
+                    ? "bg-gold-primary text-on-gold shadow-md"
+                    : "text-ink-soft hover:text-white hover:bg-elevated"
                 }`}
               >
                 {item.label}
@@ -188,56 +218,131 @@ export function FiltrosImoveisContent({
       {/* 2. Cidade & Bairro */}
       <div className="space-y-3">
         <div className="space-y-1.5">
-          <label className="text-xs font-semibold uppercase tracking-wider text-[#A3A3A3]">
+          <label className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
             Cidade
           </label>
-          <select
-            value={cidadeAtual}
-            onChange={(e) =>
-              atualizarUrl({
-                cidade: e.target.value || null,
-                bairro: null, // Limpa bairro ao trocar cidade
-              })
-            }
-            className="w-full rounded-xl border border-[#2A2A2A] bg-[#141414] px-3.5 py-2.5 text-xs text-[#F5F5F0] focus:border-[#D4AF37] focus:outline-none"
-          >
-            <option value="">Todas as cidades</option>
-            {options.cidades.map((c) => (
-              <option key={c} value={c} className="bg-[#1A1A1A]">
-                {c}
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center">
+              <Search className="h-3.5 w-3.5 text-ink-muted" />
+            </div>
+            <input
+              type="text"
+              value={cidadeTexto}
+              onChange={(e) => {
+                setCidadeTexto(e.target.value);
+                setCidadeAberta(true);
+              }}
+              onFocus={() => setCidadeAberta(true)}
+              onBlur={() => {
+                setTimeout(() => setCidadeAberta(false), 150);
+              }}
+              placeholder="Pesquisar cidade..."
+              className="w-full rounded-xl border border-line bg-surface pl-9 pr-3.5 py-2.5 text-xs text-ink placeholder-ink-muted focus:border-gold-primary focus:outline-none"
+            />
+            {cidadeAberta && cidadesSugeridas.length > 0 && (
+              <ul className="absolute z-30 mt-1.5 max-h-56 w-full overflow-y-auto rounded-xl border border-line bg-card shadow-2xl scrollbar-thin">
+                {cidadesSugeridas.map((c) => {
+                  const isAtivo = cidadeAtual === c;
+                  return (
+                    <li key={c}>
+                      <button
+                        type="button"
+                        onMouseDown={(e) => e.preventDefault()} // mantém o foco para o click funcionar
+                        onClick={() => {
+                          atualizarUrl({
+                            cidade: c,
+                            bairro: null, // Limpa bairro ao trocar cidade
+                          });
+                          setCidadeAberta(false);
+                        }}
+                        className={`flex w-full items-center justify-between px-3.5 py-2.5 text-left text-xs transition-colors ${
+                          isAtivo
+                            ? "bg-gold-primary/15 text-gold-light"
+                            : "text-ink hover:bg-elevated"
+                        }`}
+                      >
+                        <span>{c}</span>
+                        {isAtivo && <Check className="h-3.5 w-3.5 text-gold-primary" />}
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            {/* Reajuste visual quando há digitação sem correspondência */}
+            {cidadeAberta && cidadesSugeridas.length === 0 && (
+              <div className="absolute z-30 mt-1.5 w-full rounded-xl border border-line bg-card px-3.5 py-2.5 text-xs text-ink-muted shadow-2xl">
+                Nenhuma cidade cadastrada com esse nome.
+              </div>
+            )}
+          </div>
         </div>
 
         {options.bairros.length > 0 && (
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold uppercase tracking-wider text-[#A3A3A3]">
+            <label className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
               Bairro
             </label>
-            <select
-              value={bairroAtual}
-              onChange={(e) =>
-                atualizarUrl({
-                  bairro: e.target.value || null,
-                })
-              }
-              className="w-full rounded-xl border border-[#2A2A2A] bg-[#141414] px-3.5 py-2.5 text-xs text-[#F5F5F0] focus:border-[#D4AF37] focus:outline-none"
-            >
-              <option value="">Todos os bairros</option>
-              {options.bairros.map((b) => (
-                <option key={b} value={b} className="bg-[#1A1A1A]">
-                  {b}
-                </option>
-              ))}
-            </select>
+            <div className="relative">
+              <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center">
+                <Search className="h-3.5 w-3.5 text-ink-muted" />
+              </div>
+              <input
+                type="text"
+                value={bairroTexto}
+                onChange={(e) => {
+                  setBairroTexto(e.target.value);
+                  setBairroAberta(true);
+                }}
+                onFocus={() => setBairroAberta(true)}
+                onBlur={() => {
+                  setTimeout(() => setBairroAberta(false), 150);
+                }}
+                placeholder="Pesquisar bairro..."
+                className="w-full rounded-xl border border-line bg-surface pl-9 pr-3.5 py-2.5 text-xs text-ink placeholder-ink-muted focus:border-gold-primary focus:outline-none"
+              />
+              {bairroAberta && bairrosSugeridos.length > 0 && (
+                <ul className="absolute z-30 mt-1.5 max-h-56 w-full overflow-y-auto rounded-xl border border-line bg-card shadow-2xl scrollbar-thin">
+                  {bairrosSugeridos.map((b) => {
+                    const isAtivo = bairroAtual === b;
+                    return (
+                      <li key={b}>
+                        <button
+                          type="button"
+                          onMouseDown={(e) => e.preventDefault()} // mantém o foco para o click funcionar
+                          onClick={() => {
+                            atualizarUrl({
+                              bairro: b,
+                            });
+                            setBairroAberta(false);
+                          }}
+                          className={`flex w-full items-center justify-between px-3.5 py-2.5 text-left text-xs transition-colors ${
+                            isAtivo
+                              ? "bg-gold-primary/15 text-gold-light"
+                              : "text-ink hover:bg-elevated"
+                          }`}
+                        >
+                          <span>{b}</span>
+                          {isAtivo && <Check className="h-3.5 w-3.5 text-gold-primary" />}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+              {bairroAberta && bairrosSugeridos.length === 0 && (
+                <div className="absolute z-30 mt-1.5 w-full rounded-xl border border-line bg-card px-3.5 py-2.5 text-xs text-ink-muted shadow-2xl">
+                  Nenhum bairro cadastrado com esse nome.
+                </div>
+              )}
+            </div>
           </div>
         )}
       </div>
 
       {/* 3. Tipo de Imóvel (Multi-select) */}
       <div className="space-y-2">
-        <label className="text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
+        <label className="text-xs font-semibold uppercase tracking-wider text-gold-primary">
           Tipo de Imóvel
         </label>
         <div className="flex flex-wrap gap-1.5">
@@ -250,8 +355,8 @@ export function FiltrosImoveisContent({
                 onClick={() => toggleArrayItem("tipo", tiposAtuais, tipo)}
                 className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium border transition-all ${
                   isAtivo
-                    ? "bg-[#D4AF37]/20 border-[#D4AF37] text-[#EAD2A8]"
-                    : "border-[#2A2A2A] bg-[#141414] text-[#A3A3A3] hover:border-[#444] hover:text-[#F5F5F0]"
+                    ? "bg-gold-primary/20 border-gold-primary text-gold-light"
+                    : "border-line bg-surface text-ink-soft hover:border-line-hover hover:text-ink"
                 }`}
               >
                 {isAtivo && <Check className="h-3 w-3" />}
@@ -264,7 +369,7 @@ export function FiltrosImoveisContent({
 
       {/* 4. Faixa de Preço (Inputs numéricos com debounce) */}
       <div className="space-y-2">
-        <label className="text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
+        <label className="text-xs font-semibold uppercase tracking-wider text-gold-primary">
           Preço (R$)
         </label>
         <div className="grid grid-cols-2 gap-2">
@@ -273,21 +378,21 @@ export function FiltrosImoveisContent({
             placeholder="Mínimo"
             value={precoMin}
             onChange={(e) => setPrecoMin(e.target.value)}
-            className="w-full rounded-xl border border-[#2A2A2A] bg-[#141414] px-3 py-2 text-xs text-[#F5F5F0] placeholder-[#555] focus:border-[#D4AF37] focus:outline-none"
+            className="w-full rounded-xl border border-line bg-surface px-3 py-2 text-xs text-ink placeholder-ink-muted focus:border-gold-primary focus:outline-none"
           />
           <input
             type="number"
             placeholder="Máximo"
             value={precoMax}
             onChange={(e) => setPrecoMax(e.target.value)}
-            className="w-full rounded-xl border border-[#2A2A2A] bg-[#141414] px-3 py-2 text-xs text-[#F5F5F0] placeholder-[#555] focus:border-[#D4AF37] focus:outline-none"
+            className="w-full rounded-xl border border-line bg-surface px-3 py-2 text-xs text-ink placeholder-ink-muted focus:border-gold-primary focus:outline-none"
           />
         </div>
       </div>
 
       {/* 5. Área Útil (m² com debounce) */}
       <div className="space-y-2">
-        <label className="text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
+        <label className="text-xs font-semibold uppercase tracking-wider text-gold-primary">
           Área Útil (m²)
         </label>
         <div className="grid grid-cols-2 gap-2">
@@ -296,14 +401,14 @@ export function FiltrosImoveisContent({
             placeholder="Mín m²"
             value={areaMin}
             onChange={(e) => setAreaMin(e.target.value)}
-            className="w-full rounded-xl border border-[#2A2A2A] bg-[#141414] px-3 py-2 text-xs text-[#F5F5F0] placeholder-[#555] focus:border-[#D4AF37] focus:outline-none"
+            className="w-full rounded-xl border border-line bg-surface px-3 py-2 text-xs text-ink placeholder-ink-muted focus:border-gold-primary focus:outline-none"
           />
           <input
             type="number"
             placeholder="Máx m²"
             value={areaMax}
             onChange={(e) => setAreaMax(e.target.value)}
-            className="w-full rounded-xl border border-[#2A2A2A] bg-[#141414] px-3 py-2 text-xs text-[#F5F5F0] placeholder-[#555] focus:border-[#D4AF37] focus:outline-none"
+            className="w-full rounded-xl border border-line bg-surface px-3 py-2 text-xs text-ink placeholder-ink-muted focus:border-gold-primary focus:outline-none"
           />
         </div>
       </div>
@@ -313,8 +418,8 @@ export function FiltrosImoveisContent({
         {/* Quartos */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-[#A3A3A3]">Quartos (mínimo)</span>
-            <span className="text-[#D4AF37] font-semibold">{quartosAtual ? `${quartosAtual}+` : "Qualquer"}</span>
+            <span className="text-ink-soft">Quartos (mínimo)</span>
+            <span className="text-gold-primary font-semibold">{quartosAtual ? `${quartosAtual}+` : "Qualquer"}</span>
           </div>
           <div className="grid grid-cols-5 gap-1">
             {["", "1", "2", "3", "4"].map((q) => (
@@ -324,8 +429,8 @@ export function FiltrosImoveisContent({
                 onClick={() => atualizarUrl({ quartos: q || null })}
                 className={`rounded-lg py-1.5 text-xs font-semibold border transition-all ${
                   quartosAtual === q
-                    ? "bg-[#D4AF37] text-[#0A0A0A] border-[#D4AF37]"
-                    : "border-[#2A2A2A] bg-[#141414] text-[#A3A3A3] hover:text-white"
+                    ? "bg-gold-primary text-on-gold border-gold-primary"
+                    : "border-line bg-surface text-ink-soft hover:text-white"
                 }`}
               >
                 {q ? `${q}+` : "Todos"}
@@ -337,8 +442,8 @@ export function FiltrosImoveisContent({
         {/* Suítes */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-[#A3A3A3]">Suítes (mínimo)</span>
-            <span className="text-[#D4AF37] font-semibold">{suitesAtual ? `${suitesAtual}+` : "Qualquer"}</span>
+            <span className="text-ink-soft">Suítes (mínimo)</span>
+            <span className="text-gold-primary font-semibold">{suitesAtual ? `${suitesAtual}+` : "Qualquer"}</span>
           </div>
           <div className="grid grid-cols-5 gap-1">
             {["", "1", "2", "3", "4"].map((s) => (
@@ -348,8 +453,8 @@ export function FiltrosImoveisContent({
                 onClick={() => atualizarUrl({ suites: s || null })}
                 className={`rounded-lg py-1.5 text-xs font-semibold border transition-all ${
                   suitesAtual === s
-                    ? "bg-[#D4AF37] text-[#0A0A0A] border-[#D4AF37]"
-                    : "border-[#2A2A2A] bg-[#141414] text-[#A3A3A3] hover:text-white"
+                    ? "bg-gold-primary text-on-gold border-gold-primary"
+                    : "border-line bg-surface text-ink-soft hover:text-white"
                 }`}
               >
                 {s ? `${s}+` : "Todas"}
@@ -361,8 +466,8 @@ export function FiltrosImoveisContent({
         {/* Banheiros */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-[#A3A3A3]">Banheiros (mínimo)</span>
-            <span className="text-[#D4AF37] font-semibold">{banheirosAtual ? `${banheirosAtual}+` : "Qualquer"}</span>
+            <span className="text-ink-soft">Banheiros (mínimo)</span>
+            <span className="text-gold-primary font-semibold">{banheirosAtual ? `${banheirosAtual}+` : "Qualquer"}</span>
           </div>
           <div className="grid grid-cols-5 gap-1">
             {["", "1", "2", "3", "4"].map((b) => (
@@ -372,8 +477,8 @@ export function FiltrosImoveisContent({
                 onClick={() => atualizarUrl({ banheiros: b || null })}
                 className={`rounded-lg py-1.5 text-xs font-semibold border transition-all ${
                   banheirosAtual === b
-                    ? "bg-[#D4AF37] text-[#0A0A0A] border-[#D4AF37]"
-                    : "border-[#2A2A2A] bg-[#141414] text-[#A3A3A3] hover:text-white"
+                    ? "bg-gold-primary text-on-gold border-gold-primary"
+                    : "border-line bg-surface text-ink-soft hover:text-white"
                 }`}
               >
                 {b ? `${b}+` : "Todos"}
@@ -385,8 +490,8 @@ export function FiltrosImoveisContent({
         {/* Vagas */}
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-[#A3A3A3]">Vagas (mínimo)</span>
-            <span className="text-[#D4AF37] font-semibold">{vagasAtual ? `${vagasAtual}+` : "Qualquer"}</span>
+            <span className="text-ink-soft">Vagas (mínimo)</span>
+            <span className="text-gold-primary font-semibold">{vagasAtual ? `${vagasAtual}+` : "Qualquer"}</span>
           </div>
           <div className="grid grid-cols-5 gap-1">
             {["", "1", "2", "3", "4"].map((v) => (
@@ -396,8 +501,8 @@ export function FiltrosImoveisContent({
                 onClick={() => atualizarUrl({ vagas: v || null })}
                 className={`rounded-lg py-1.5 text-xs font-semibold border transition-all ${
                   vagasAtual === v
-                    ? "bg-[#D4AF37] text-[#0A0A0A] border-[#D4AF37]"
-                    : "border-[#2A2A2A] bg-[#141414] text-[#A3A3A3] hover:text-white"
+                    ? "bg-gold-primary text-on-gold border-gold-primary"
+                    : "border-line bg-surface text-ink-soft hover:text-white"
                 }`}
               >
                 {v ? `${v}+` : "Todas"}
@@ -410,7 +515,7 @@ export function FiltrosImoveisContent({
       {/* 7. Características (Chips multi-select) */}
       {options.caracteristicas.length > 0 && (
         <div className="space-y-2">
-          <label className="text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
+          <label className="text-xs font-semibold uppercase tracking-wider text-gold-primary">
             Diferenciais & Características
           </label>
           <div className="flex flex-wrap gap-1.5">
@@ -429,8 +534,8 @@ export function FiltrosImoveisContent({
                   }
                   className={`flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs border transition-all ${
                     isAtivo
-                      ? "bg-[#D4AF37]/20 border-[#D4AF37] text-[#EAD2A8]"
-                      : "border-[#2A2A2A] bg-[#141414] text-[#A3A3A3] hover:border-[#444] hover:text-[#F5F5F0]"
+                      ? "bg-gold-primary/20 border-gold-primary text-gold-light"
+                      : "border-line bg-surface text-ink-soft hover:border-line-hover hover:text-ink"
                   }`}
                 >
                   {isAtivo && <Check className="h-3 w-3" />}
@@ -444,11 +549,11 @@ export function FiltrosImoveisContent({
 
       {/* Botão de Fechar / Aplicar no Mobile */}
       {onApplyFilters && (
-        <div className="pt-4 border-t border-[#2A2A2A]">
+        <div className="pt-4 border-t border-line">
           <button
             type="button"
             onClick={onApplyFilters}
-            className="w-full rounded-xl gold-gradient-btn py-3.5 text-sm font-bold uppercase tracking-wider text-[#0A0A0A] shadow-lg active:scale-95 transition-all"
+            className="w-full rounded-xl gold-gradient-btn py-3.5 text-sm font-bold uppercase tracking-wider text-on-gold shadow-lg active:scale-95 transition-all"
           >
             Ver {totalResultados ?? "os"} Imóveis
           </button>

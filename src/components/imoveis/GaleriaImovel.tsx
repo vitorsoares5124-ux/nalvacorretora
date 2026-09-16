@@ -57,7 +57,7 @@ export function GaleriaImovel({ imagens, titulo }: GaleriaImovelProps) {
   return (
     <div className="space-y-3">
       {/* Imagem Principal */}
-      <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden rounded-2xl border border-[#2A2A2A] bg-[#141414] group">
+      <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden rounded-2xl border border-line bg-surface group">
         <NextImage
           src={listaImagens[indiceAtual]?.url}
           alt={`${titulo} - Imagem ${indiceAtual + 1}`}
@@ -72,16 +72,16 @@ export function GaleriaImovel({ imagens, titulo }: GaleriaImovelProps) {
         <button
           type="button"
           onClick={() => setLightboxAberto(true)}
-          className="absolute bottom-4 right-4 flex items-center gap-2 rounded-xl bg-[#0A0A0A]/80 px-3.5 py-2 text-xs font-semibold text-[#F5F5F0] backdrop-blur-md border border-[#2A2A2A] transition-all duration-200 hover:border-[#D4AF37] hover:text-[#EAD2A8]"
+          className="absolute bottom-4 right-4 flex items-center gap-2 rounded-xl bg-canvas/80 px-3.5 py-2 text-xs font-semibold text-ink backdrop-blur-md border border-line transition-all duration-200 hover:border-gold-primary hover:text-gold-light"
           aria-label="Abrir galeria em tela cheia"
         >
-          <Maximize2 className="h-3.5 w-3.5 text-[#D4AF37]" />
+          <Maximize2 className="h-3.5 w-3.5 text-gold-primary" />
           <span>Ver Fotos ({listaImagens.length})</span>
         </button>
 
         {/* Contador no topo */}
-        <div className="absolute top-4 left-4 flex items-center gap-1.5 rounded-lg bg-black/70 px-2.5 py-1 text-xs font-mono text-[#A3A3A3] backdrop-blur-sm border border-[#2A2A2A]">
-          <Images className="h-3.5 w-3.5 text-[#D4AF37]" />
+        <div className="absolute top-4 left-4 flex items-center gap-1.5 rounded-lg bg-black/70 px-2.5 py-1 text-xs font-mono text-ink-soft backdrop-blur-sm border border-line">
+          <Images className="h-3.5 w-3.5 text-gold-primary" />
           <span>
             {indiceAtual + 1} / {listaImagens.length}
           </span>
@@ -100,8 +100,8 @@ export function GaleriaImovel({ imagens, titulo }: GaleriaImovelProps) {
                 onClick={() => setIndiceAtual(idx)}
                 className={`relative h-16 w-24 sm:h-20 sm:w-28 shrink-0 overflow-hidden rounded-xl border transition-all duration-200 ${
                   isAtiva
-                    ? "border-[#D4AF37] ring-2 ring-[#D4AF37]/30 scale-[1.02]"
-                    : "border-[#2A2A2A] opacity-60 hover:opacity-100 hover:border-[#444]"
+                    ? "border-gold-primary ring-2 ring-gold-primary/30 scale-[1.02]"
+                    : "border-line opacity-60 hover:opacity-100 hover:border-line-hover"
                 }`}
               >
                 <NextImage
@@ -119,12 +119,12 @@ export function GaleriaImovel({ imagens, titulo }: GaleriaImovelProps) {
 
       {/* Lightbox Modal Fullscreen */}
       {lightboxAberto && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A0A0A]/95 backdrop-blur-xl p-4 sm:p-8 animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-canvas/95 backdrop-blur-xl p-4 sm:p-8 animate-in fade-in duration-200">
           {/* Botão Fechar */}
           <button
             type="button"
             onClick={() => setLightboxAberto(false)}
-            className="absolute top-5 right-5 z-50 flex items-center gap-1 rounded-full bg-[#1A1A1A] p-3 text-[#F5F5F0] border border-[#2A2A2A] hover:border-[#D4AF37] hover:text-[#EAD2A8] transition-colors"
+            className="absolute top-5 right-5 z-50 flex items-center gap-1 rounded-full bg-card p-3 text-ink border border-line hover:border-gold-primary hover:text-gold-light transition-colors"
             aria-label="Fechar galeria"
           >
             <X className="h-5 w-5" />
@@ -138,7 +138,7 @@ export function GaleriaImovel({ imagens, titulo }: GaleriaImovelProps) {
                 e.stopPropagation();
                 irParaAnterior();
               }}
-              className="absolute left-4 sm:left-8 z-50 rounded-full bg-[#1A1A1A]/80 p-3 text-[#F5F5F0] border border-[#2A2A2A] hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
+              className="absolute left-4 sm:left-8 z-50 rounded-full bg-card/80 p-3 text-ink border border-line hover:border-gold-primary hover:text-gold-primary transition-colors"
               aria-label="Foto anterior"
             >
               <ChevronLeft className="h-6 w-6" />
@@ -159,7 +159,7 @@ export function GaleriaImovel({ imagens, titulo }: GaleriaImovelProps) {
             </div>
 
             {/* Contador de fotos no rodapé do lightbox */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-[#1A1A1A]/90 px-4 py-1.5 text-xs font-mono text-[#D4AF37] border border-[#2A2A2A]">
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-card/90 px-4 py-1.5 text-xs font-mono text-gold-primary border border-line">
               Foto {indiceAtual + 1} de {listaImagens.length}
             </div>
           </div>
@@ -172,7 +172,7 @@ export function GaleriaImovel({ imagens, titulo }: GaleriaImovelProps) {
                 e.stopPropagation();
                 irParaProxima();
               }}
-              className="absolute right-4 sm:right-8 z-50 rounded-full bg-[#1A1A1A]/80 p-3 text-[#F5F5F0] border border-[#2A2A2A] hover:border-[#D4AF37] hover:text-[#D4AF37] transition-colors"
+              className="absolute right-4 sm:right-8 z-50 rounded-full bg-card/80 p-3 text-ink border border-line hover:border-gold-primary hover:text-gold-primary transition-colors"
               aria-label="Próxima foto"
             >
               <ChevronRight className="h-6 w-6" />

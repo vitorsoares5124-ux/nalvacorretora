@@ -21,7 +21,6 @@ async function requireAuth() {
 
 // 1. Criar Imóvel (Etapa 1: Salva o registro para obter o ID gerado - Correction 4)
 export async function criarImovel(dados: {
-  codigo: string;
   titulo: string;
   descricao?: string;
   finalidade: "venda" | "aluguel" | "temporada";
@@ -51,22 +50,6 @@ export async function criarImovel(dados: {
 }) {
   const { supabase } = await requireAuth();
 
-  const codigoLimpo = dados.codigo.trim().toUpperCase();
-
-  // Validação de unicidade do código
-  const { data: existente } = await supabase
-    .from("imoveis")
-    .select("id")
-    .eq("codigo", codigoLimpo)
-    .maybeSingle();
-
-  if (existente) {
-    return {
-      success: false,
-      error: `O código "${codigoLimpo}" já está em uso por outro imóvel. Escolha um código único.`,
-    };
-  }
-
   // Validações numéricas (não aceita negativos)
   if (dados.preco <= 0) {
     return { success: false, error: "O preço deve ser maior que zero." };
@@ -83,7 +66,6 @@ export async function criarImovel(dados: {
 
   const payload = {
     ...dados,
-    codigo: codigoLimpo,
     preco_condominio: dados.preco_condominio || 0,
     preco_iptu: dados.preco_iptu || 0,
     area_total: dados.area_total || dados.area_util,
@@ -92,7 +74,7 @@ export async function criarImovel(dados: {
   const { data: novoImovel, error: erroInsert } = await supabase
     .from("imoveis")
     .insert(payload as any)
-    .select("id, codigo")
+    .select("id")
     .single();
 
   if (erroInsert || !novoImovel) {
@@ -106,14 +88,13 @@ export async function criarImovel(dados: {
   revalidatePath("/imoveis");
   revalidatePath("/");
 
-  return { success: true, id: (novoImovel as any).id, codigo: (novoImovel as any).codigo };
+  return { success: true, id: (novoImovel as any).id };
 }
 
 // 2. Atualizar Imóvel existente
 export async function atualizarImovel(
   id: string,
   dados: {
-    codigo: string;
     titulo: string;
     descricao?: string;
     finalidade: "venda" | "aluguel" | "temporada";
@@ -144,30 +125,12 @@ export async function atualizarImovel(
 ) {
   const { supabase } = await requireAuth();
 
-  const codigoLimpo = dados.codigo.trim().toUpperCase();
-
-  // Validação de unicidade do código (excluindo este próprio id)
-  const { data: existente } = await supabase
-    .from("imoveis")
-    .select("id")
-    .eq("codigo", codigoLimpo)
-    .neq("id", id)
-    .maybeSingle();
-
-  if (existente) {
-    return {
-      success: false,
-      error: `O código "${codigoLimpo}" já está em uso por outro imóvel cadastrado.`,
-    };
-  }
-
   if (dados.preco <= 0) {
     return { success: false, error: "O preço deve ser maior que zero." };
   }
 
   const payload = {
     ...dados,
-    codigo: codigoLimpo,
     preco_condominio: dados.preco_condominio || 0,
     preco_iptu: dados.preco_iptu || 0,
     area_total: dados.area_total || dados.area_util,
@@ -184,7 +147,7 @@ export async function atualizarImovel(
 
   revalidatePath("/admin/imoveis");
   revalidatePath(`/admin/imoveis/${id}/editar`);
-  revalidatePath(`/imoveis/${codigoLimpo}`);
+  revalidatePath(`/imoveis/${id}`);
   revalidatePath("/imoveis");
   revalidatePath("/");
 

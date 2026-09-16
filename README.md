@@ -14,7 +14,7 @@ Plataforma imobiliária completa de alto padrão construída com **Next.js (App 
   - Sincronização de todos os filtros com a URL (compartilhável e compatível com histórico).
   - Responsivo mobile-first com **Bottom Sheet** ergonômico.
   - Paginação real integrada (24 imóveis por página).
-- **Página de Imóvel Individual (`/imoveis/[codigo]`)**:
+- **Página de Imóvel Individual (`/imoveis/[id]`)** :
   - Galeria de imagens em alta resolução com **Lightbox** fullscreen (teclado: Esc, Setas).
   - Ficha técnica completa com ícones arquitetônicos.
   - Mapa de localização aproximada via OpenStreetMap (rua e número ocultos por segurança).
@@ -24,11 +24,11 @@ Plataforma imobiliária completa de alto padrão construída com **Next.js (App 
 - **Autenticação Segura**: Protegido por Supabase Auth e Middleware do Next.js.
 - **Dashboard**: Contadores de imóveis (Total, Disponíveis, Vendidos/Alugados) e novos leads dos últimos 7 dias com links diretos para contato.
 - **Gestão de Imóveis (`/admin/imoveis`)**:
-  - Tabela densa com miniatura, código mono, cidade, preço e destaque visual para imóveis de demonstração (`[DEMO]`).
+  - Tabela densa com miniatura, cidade, preço e destaque visual para imóveis de demonstração.
   - Toggle rápido de status (Disponível, Indisponível, Reservado, Vendido, Alugado) direto na linha.
   - Modal customizado Dark Luxury Gold para confirmação de exclusão.
 - **Formulário de Cadastro/Edição em 2 Etapas**:
-  - Validação de código único e campos numéricos positivos.
+  - Validação de campos numéricos positivos.
   - Gestão de fotos no Supabase Storage organizado por pasta `{imovel_id}`.
   - Upload múltiplo, reordenação e definição de foto de Capa.
   - Exclusão de fotos físicas no Storage sincronizada com o banco.
@@ -47,7 +47,7 @@ Crie o arquivo `.env.local` na raiz baseado no `.env.example`:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://seu-projeto.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=sua-chave-anon-publica-aqui
-NEXT_PUBLIC_WHATSAPP_NUMBER=5511999999999
+NEXT_PUBLIC_WHATSAPP_NUMBER=5511966747811
 ```
 
 ### 3. Configurar o Banco no Supabase:

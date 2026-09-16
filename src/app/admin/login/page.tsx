@@ -46,9 +46,9 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-canvas flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Luz ambiente sutil dourada */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold-primary/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="w-full max-w-md space-y-8 relative z-10">
         {/* Logo Oficial e Cabeçalho */}
@@ -65,17 +65,17 @@ export default function AdminLoginPage() {
           </div>
 
           <div>
-            <h1 className="text-2xl font-bold tracking-tight text-[#F5F5F0]">
+            <h1 className="text-2xl font-bold tracking-tight text-ink">
               Painel Administrativo
             </h1>
-            <p className="mt-1 text-xs text-[#A3A3A3]">
+            <p className="mt-1 text-xs text-ink-soft">
               Acesso exclusivo para gestão do portfólio de imóveis e leads
             </p>
           </div>
         </div>
 
         {/* Card do Formulário */}
-        <div className="rounded-2xl border border-[#2A2A2A] bg-[#141414] p-6 sm:p-8 shadow-2xl space-y-6">
+        <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 shadow-2xl space-y-6">
           {erro && (
             <div className="flex items-start gap-2.5 rounded-xl border border-red-500/30 bg-red-500/10 p-3.5 text-xs text-red-400">
               <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
@@ -85,35 +85,35 @@ export default function AdminLoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
+              <label className="text-xs font-semibold uppercase tracking-wider text-gold-primary">
                 E-mail
               </label>
               <div className="relative flex items-center">
-                <Mail className="absolute left-3.5 h-4 w-4 text-[#737373]" />
+                <Mail className="absolute left-3.5 h-4 w-4 text-ink-muted" />
                 <input
                   type="email"
                   required
                   placeholder="admin@raimoveis.com.br"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] py-3 pl-10 pr-4 text-xs text-[#F5F5F0] placeholder-[#555] focus:border-[#D4AF37] focus:outline-none transition-colors"
+                  className="w-full rounded-xl border border-line bg-card py-3 pl-10 pr-4 text-xs text-ink placeholder-ink-muted focus:border-gold-primary focus:outline-none transition-colors"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
+              <label className="text-xs font-semibold uppercase tracking-wider text-gold-primary">
                 Senha
               </label>
               <div className="relative flex items-center">
-                <Lock className="absolute left-3.5 h-4 w-4 text-[#737373]" />
+                <Lock className="absolute left-3.5 h-4 w-4 text-ink-muted" />
                 <input
                   type="password"
                   required
                   placeholder="••••••••••••"
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
-                  className="w-full rounded-xl border border-[#2A2A2A] bg-[#1A1A1A] py-3 pl-10 pr-4 text-xs text-[#F5F5F0] placeholder-[#555] focus:border-[#D4AF37] focus:outline-none transition-colors"
+                  className="w-full rounded-xl border border-line bg-card py-3 pl-10 pr-4 text-xs text-ink placeholder-ink-muted focus:border-gold-primary focus:outline-none transition-colors"
                 />
               </div>
             </div>
@@ -122,7 +122,7 @@ export default function AdminLoginPage() {
               <button
                 type="submit"
                 disabled={carregando}
-                className="w-full flex items-center justify-center gap-2 rounded-xl gold-gradient-btn py-3.5 text-xs font-bold uppercase tracking-wider text-[#0A0A0A] shadow-lg shadow-[#D4AF37]/20 active:scale-95 disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 rounded-xl gold-gradient-btn py-3.5 text-xs font-bold uppercase tracking-wider text-on-gold shadow-lg shadow-gold-primary/20 active:scale-95 disabled:opacity-50"
               >
                 {carregando ? (
                   <span>Acessando...</span>
@@ -136,9 +136,9 @@ export default function AdminLoginPage() {
             </div>
           </form>
 
-          <div className="border-t border-[#222222] pt-4 text-center">
-            <div className="flex items-center justify-center gap-1.5 text-[11px] text-[#737373]">
-              <ShieldCheck className="h-3.5 w-3.5 text-[#D4AF37]" />
+          <div className="border-t border-line-faint pt-4 text-center">
+            <div className="flex items-center justify-center gap-1.5 text-[11px] text-ink-muted">
+              <ShieldCheck className="h-3.5 w-3.5 text-gold-primary" />
               <span>Ambiente restrito e monitorado com criptografia TLS</span>
             </div>
           </div>
@@ -148,7 +148,7 @@ export default function AdminLoginPage() {
         <div className="text-center">
           <a
             href="/"
-            className="text-xs text-[#A3A3A3] hover:text-[#D4AF37] transition-colors"
+            className="text-xs text-ink-soft hover:text-gold-primary transition-colors"
           >
             ← Voltar para a vitrine pública
           </a>

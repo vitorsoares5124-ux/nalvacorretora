@@ -9,18 +9,17 @@ export type Json =
 export type ImovelFinalidade = 'venda' | 'aluguel' | 'temporada';
 export type ImovelStatus = 'disponivel' | 'indisponivel' | 'reservado' | 'vendido' | 'alugado';
 
-export interface ImovelImagem {
+export type ImovelImagem = {
   id: string;
   imovel_id: string;
   url: string;
   ordem: number;
   capa: boolean;
   created_at?: string;
-}
+};
 
-export interface Imovel {
+export type Imovel = {
   id: string;
-  codigo: string;
   titulo: string;
   descricao: string | null;
   finalidade: ImovelFinalidade;
@@ -51,9 +50,9 @@ export interface Imovel {
   updated_at: string;
   // Joins
   imoveis_imagens?: ImovelImagem[];
-}
+};
 
-export interface Lead {
+export type Lead = {
   id: string;
   imovel_id: string | null;
   nome: string | null;
@@ -61,7 +60,15 @@ export interface Lead {
   mensagem: string | null;
   origem: string | null;
   created_at: string;
-}
+};
+
+export type TemaSite = 'dark' | 'light';
+
+export type SiteSettings = {
+  id: number;
+  tema_padrao: TemaSite;
+  updated_at: string;
+};
 
 export interface Database {
   public: {
@@ -69,7 +76,6 @@ export interface Database {
       imoveis: {
         Row: Imovel;
         Insert: Partial<Imovel> & {
-          codigo: string;
           titulo: string;
           tipo: string;
           preco: number;
@@ -77,6 +83,7 @@ export interface Database {
           bairro: string;
         };
         Update: Partial<Imovel>;
+        Relationships: [];
       };
       imoveis_imagens: {
         Row: ImovelImagem;
@@ -85,6 +92,7 @@ export interface Database {
           url: string;
         };
         Update: Partial<ImovelImagem>;
+        Relationships: [];
       };
       leads: {
         Row: Lead;
@@ -98,6 +106,25 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Lead>;
+        Relationships: [];
+      };
+      site_settings: {
+        Row: {
+          id: number;
+          tema_padrao: TemaSite;
+          updated_at: string;
+        };
+        Insert: {
+          id?: number;
+          tema_padrao?: TemaSite;
+          updated_at?: string;
+        };
+        Update: {
+          id?: number;
+          tema_padrao?: TemaSite;
+          updated_at?: string;
+        };
+        Relationships: [];
       };
     };
     Views: Record<string, never>;

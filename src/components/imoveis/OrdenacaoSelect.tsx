@@ -22,17 +22,17 @@ export function OrdenacaoSelect() {
 
   return (
     <div className="flex items-center gap-2">
-      <ArrowUpDown className="h-3.5 w-3.5 text-[#D4AF37] hidden sm:inline" />
-      <span className="text-xs text-[#A3A3A3] hidden sm:inline">Ordenar:</span>
+      <ArrowUpDown className="h-3.5 w-3.5 text-gold-primary hidden sm:inline" />
+      <span className="text-xs text-ink-soft hidden sm:inline">Ordenar:</span>
       <select
         value={ordemAtual}
         onChange={(e) => handleChange(e.target.value)}
-        className="rounded-xl border border-[#2A2A2A] bg-[#141414] px-3 py-2 text-xs font-medium text-[#F5F5F0] focus:border-[#D4AF37] focus:outline-none"
+        className="rounded-xl border border-line bg-surface px-3 py-2 text-xs font-medium text-ink focus:border-gold-primary focus:outline-none"
         aria-label="Ordenar resultados"
       >
-        <option value="recentes" className="bg-[#1A1A1A]">Mais Recentes</option>
-        <option value="menor_preco" className="bg-[#1A1A1A]">Menor Preço</option>
-        <option value="maior_preco" className="bg-[#1A1A1A]">Maior Preço</option>
+        <option value="recentes" className="bg-card">Mais Recentes</option>
+        <option value="menor_preco" className="bg-card">Menor Preço</option>
+        <option value="maior_preco" className="bg-card">Maior Preço</option>
       </select>
     </div>
   );

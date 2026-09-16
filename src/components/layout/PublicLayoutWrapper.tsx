@@ -13,7 +13,7 @@ export function PublicLayoutWrapper({
   const isAdmin = pathname.startsWith("/admin");
 
   if (isAdmin) {
-    return <div className="min-h-screen bg-[#0A0A0A]">{children}</div>;
+    return <div className="min-h-screen bg-canvas">{children}</div>;
   }
 
   return (
