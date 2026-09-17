@@ -17,7 +17,6 @@ import {
 import { createClient } from "@/lib/supabase/server";
 import { DEMO_IMOVEIS } from "@/lib/demo-data";
 import { GaleriaImovel } from "@/components/imoveis/GaleriaImovel";
-import { MapaImovel } from "@/components/imoveis/MapaImovel";
 import { WhatsAppLeadButton } from "@/components/imoveis/WhatsAppLeadButton";
 import { Reveal } from "@/components/animations/Reveal";
 import type { Imovel } from "@/lib/supabase/types";
@@ -202,7 +201,7 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
 
         {/* Layout Principal: Galeria + Ficha Técnica */}
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Coluna Esquerda (8 cols): Galeria, Descrição, Características e Mapa */}
+          {/* Coluna Esquerda (8 cols): Galeria, Descrição e Características */}
           <div className="lg:col-span-8 space-y-10">
             {/* Galeria de Fotos com Lightbox */}
             <Reveal variant="up">
@@ -319,16 +318,6 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
                 </div>
               </Reveal>
             )}
-
-            {/* Mapa de Localização (OpenStreetMap Iframe Leve) */}
-            <Reveal variant="up">
-              <MapaImovel
-                latitude={imovel.latitude}
-                longitude={imovel.longitude}
-                cidade={imovel.cidade}
-                uf={imovel.uf}
-              />
-            </Reveal>
           </div>
 
           {/* Coluna Direita (4 cols): Card de Atendimento e CTA */}
