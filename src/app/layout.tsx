@@ -27,7 +27,17 @@ export async function generateViewport(): Promise<Viewport> {
   };
 }
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
+const ogDescription =
+  "Portfólio exclusivo de imóveis de alto padrão e atendimento personalizado.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "RA Imóveis | Imóveis de Alto Padrão e Consultoria Exclusiva",
   description:
     "Portfólio selecionado de imóveis de alto padrão, coberturas, casas em condomínio e investimentos imobiliários com assessoria consultiva personalizada.",
@@ -42,9 +52,25 @@ export const metadata: Metadata = {
   authors: [{ name: "Roberto Andrade" }],
   openGraph: {
     title: "RA Imóveis | Imóveis de Alto Padrão",
-    description: "Portfólio exclusivo de imóveis de alto padrão e atendimento personalizado.",
+    description: ogDescription,
     type: "website",
     locale: "pt_BR",
+    url: "/",
+    siteName: "RA Imóveis",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "RA Imóveis - Imóveis de Alto Padrão",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RA Imóveis | Imóveis de Alto Padrão",
+    description: ogDescription,
+    images: ["/images/og-image.png"],
   },
 };
 
