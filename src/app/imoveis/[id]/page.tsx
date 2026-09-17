@@ -21,6 +21,12 @@ import { WhatsAppLeadButton } from "@/components/imoveis/WhatsAppLeadButton";
 import { Reveal } from "@/components/animations/Reveal";
 import type { Imovel } from "@/lib/supabase/types";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
 interface PageProps {
   params: Promise<{
     id: string;
@@ -29,6 +35,21 @@ interface PageProps {
 
 // Revalidação a cada 60s (ISR)
 export const revalidate = 60;
+
+function truncarTexto(texto: string, max = 155): string {
+  const limpo = texto.trim().replace(/\s+/g, " ");
+  if (limpo.length <= max) return limpo;
+  const cortado = limpo.slice(0, max);
+  const ultimoEspaco = cortado.lastIndexOf(" ");
+  return `${(ultimoEspaco > 0 ? cortado.slice(0, ultimoEspaco) : cortado).trim()}...`;
+}
+
+function capaDoImovel(imovel: Imovel): string | undefined {
+  return (
+    imovel.imoveis_imagens?.find((img) => img.capa)?.url ||
+    imovel.imoveis_imagens?.[0]?.url
+  );
+}
 
 async function getImovelPorId(idParam: string): Promise<Imovel | null> {
   const idLimpo = decodeURIComponent(idParam).trim();
@@ -80,17 +101,47 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const capaUrl =
-    imovel.imoveis_imagens?.find((img) => img.capa)?.url ||
-    imovel.imoveis_imagens?.[0]?.url;
+  const capaUrl = capaDoImovel(imovel);
+  const urlImovel = `${siteUrl}/imoveis/${encodeURIComponent(imovel.id)}`;
+  const descricao =
+    imovel.descricao?.trim() ||
+    `${imovel.tipo} em ${imovel.cidade}, ${imovel.uf} disponível na RA Imóveis.`;
+  const finalidade = imovel.finalidade === "venda" ? "venda" : imovel.finalidade === "aluguel" ? "aluguel" : "temporada";
+  const precoTexto = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    maximumFractionDigits: 0,
+  }).format(Number(imovel.preco));
 
   return {
-    title: `${imovel.titulo} | RA Imóveis`,
-    description: imovel.descricao || `Imóvel exclusivo em ${imovel.cidade}, ${imovel.uf}.`,
+    title: `${imovel.titulo} em ${imovel.cidade}, ${imovel.uf} | RA Imóveis`,
+    description: truncarTexto(`${imovel.titulo}. ${finalidade} por ${precoTexto} em ${imovel.cidade}, ${imovel.uf}. ${descricao}`),
+    alternates: {
+      canonical: urlImovel,
+    },
     openGraph: {
-      title: `${imovel.titulo} | RA Imóveis`,
-      description: imovel.descricao || undefined,
-      images: capaUrl ? [{ url: capaUrl }] : undefined,
+      title: `${imovel.titulo} em ${imovel.cidade}, ${imovel.uf} | RA Imóveis`,
+      description: truncarTexto(`${finalidade} por ${precoTexto} em ${imovel.cidade}, ${imovel.uf}. ${descricao}`),
+      type: "website",
+      url: urlImovel,
+      siteName: "RA Imóveis",
+      images: capaUrl
+        ? [
+            {
+              url: capaUrl,
+              width: 1600,
+              height: 1000,
+              alt: `${imovel.titulo} em ${imovel.cidade}, ${imovel.uf}`,
+            },
+          ]
+        : undefined,
+      locale: "pt_BR",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${imovel.titulo} em ${imovel.cidade}, ${imovel.uf} | RA Imóveis`,
+      description: truncarTexto(`${finalidade} por ${precoTexto} em ${imovel.cidade}, ${imovel.uf}.`),
+      images: capaUrl ? [capaUrl] : undefined,
     },
   };
 }
@@ -118,8 +169,34 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
         }).format(val)
       : null;
 
+  const capaJson = capaDoImovel(imovel);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateListing",
+    name: imovel.titulo,
+    description: truncarTexto(imovel.descricao || ""),
+    url: `${siteUrl}/imoveis/${encodeURIComponent(imovel.id)}`,
+    image: capaJson,
+    availabilityStarts: new Date().toISOString().split("T")[0],
+    offers: {
+      "@type": "Offer",
+      price: Number(imovel.preco),
+      priceCurrency: "BRL",
+      availability: "https://schema.org/InStock",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: imovel.bairro || imovel.cidade,
+      addressRegion: imovel.uf,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-canvas pb-24 lg:pb-16 text-ink">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb de Navegação */}
       <div className="border-b border-line bg-canvas-alt/70 py-3.5">
         <div className="mx-auto flex max-w-7xl items-center gap-2 px-4 sm:px-6 lg:px-8 text-xs text-ink-soft">

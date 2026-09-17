@@ -29,7 +29,7 @@ export function ImovelCard({ imovel }: ImovelCardProps) {
       <Link href={urlDetalhes} className="relative aspect-[16/10] w-full overflow-hidden bg-surface block">
         <NextImage
           src={capaUrl}
-          alt={imovel.titulo}
+          alt={`${imovel.titulo} em ${imovel.cidade}, ${imovel.uf}`}
           fill
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

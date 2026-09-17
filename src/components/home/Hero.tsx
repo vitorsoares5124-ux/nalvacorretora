@@ -57,7 +57,9 @@ export async function Hero() {
 
         {/* Filtros Rápidos */}
         <Reveal variant="up" delay={200} className="mt-8 sm:mt-10">
-          <FiltrosRapidos />
+          <div className="flex justify-center">
+            <FiltrosRapidos />
+          </div>
         </Reveal>
 
         {/* Barra de Pesquisa */}

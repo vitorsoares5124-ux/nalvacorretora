@@ -15,9 +15,35 @@ import { Reveal } from "@/components/animations/Reveal";
 import type { Imovel, ImovelFinalidade } from "@/lib/supabase/types";
 
 export const metadata: Metadata = {
-  title: "Portfólio de Imóveis Exclusivos | RA Imóveis",
+  title: "Imóveis Selecionados | RA Imóveis",
   description:
     "Explore nossa curadoria de coberturas, residências em condomínios fechados e apartamentos de alto padrão com assessoria consultiva personalizada.",
+  alternates: {
+    canonical: "/imoveis",
+  },
+  openGraph: {
+    title: "Imóveis Selecionados | RA Imóveis",
+    description:
+      "Curadoria de coberturas, casas em condomínios e apartamentos de alto padrão com assessoria consultiva personalizada.",
+    type: "website",
+    url: "/imoveis",
+    siteName: "RA Imóveis",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Imóveis de alto padrão selecionados",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Imóveis Selecionados | RA Imóveis",
+    description:
+      "Curadoria de coberturas, casas em condomínios e apartamentos de alto padrão com assessoria consultiva personalizada.",
+    images: ["/images/og-image.png"],
+  },
 };
 
 interface SearchParamsProps {

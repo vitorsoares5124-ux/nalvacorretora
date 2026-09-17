@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { ImoveisDestaque } from "@/components/home/ImoveisDestaque";
 import { Sobre } from "@/components/home/Sobre";
@@ -8,6 +9,15 @@ import type { Imovel } from "@/lib/supabase/types";
 
 // Revalidação a cada 60 segundos (ISR)
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "RA Imóveis | Imóveis de Alto Padrão e Consultoria Exclusiva",
+  description:
+    "Curadoria exclusiva de coberturas, casas em condomínios fechados e apartamentos de alto padrão com atendimento consultivo personalizado.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const ITENS_POR_PAGINA_DESKTOP = 12;
 const ITENS_POR_PAGINA_MOBILE = 7;
