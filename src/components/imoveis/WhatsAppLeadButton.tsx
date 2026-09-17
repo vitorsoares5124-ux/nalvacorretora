@@ -11,6 +11,8 @@ interface WhatsAppLeadButtonProps {
   isStickyMobile?: boolean;
 }
 
+const WHATSAPP_NUMBER = "5511966747811";
+
 export function WhatsAppLeadButton({
   imovelId,
   titulo,
@@ -18,9 +20,6 @@ export function WhatsAppLeadButton({
   className = "",
   isStickyMobile = false,
 }: WhatsAppLeadButtonProps) {
-  const whatsappNumber =
-    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5511966747811";
-
   const handleClick = () => {
     // Link absoluto do anúncio específico (usa o domínio atual do site)
     const link =
@@ -29,7 +28,7 @@ export function WhatsAppLeadButton({
         : `/imoveis/${imovelId}`;
 
     const mensagemTexto = `Olá! Quero saber mais sobre o imóvel "${titulo}".\n${link}`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
       mensagemTexto
     )}`;
 

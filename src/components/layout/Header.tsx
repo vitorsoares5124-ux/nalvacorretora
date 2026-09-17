@@ -2,10 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { MessageCircle, Search } from "lucide-react";
 
-export function Header() {
-  const whatsappNumber =
-    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5511966747811";
+const WHATSAPP_NUMBER = "5511966747811";
 
+export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-line bg-canvas/95 backdrop-blur-md transition-all">
       <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -61,7 +60,7 @@ export function Header() {
           </Link>
 
           <a
-            href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
               "Olá Roberto, gostaria de informações sobre os imóveis."
             )}`}
             target="_blank"
