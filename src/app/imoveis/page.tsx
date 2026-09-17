@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { DEMO_IMOVEIS } from "@/lib/demo-data";
 import { ImovelCard } from "@/components/imoveis/ImovelCard";
 import { SearchBar } from "@/components/imoveis/SearchBar";
+import { FiltrosRapidos } from "@/components/imoveis/FiltrosRapidos";
 import { FiltrosSidebar } from "@/components/imoveis/FiltrosSidebar";
 import { FiltrosBottomSheet } from "@/components/imoveis/FiltrosBottomSheet";
 import { OrdenacaoSelect } from "@/components/imoveis/OrdenacaoSelect";
@@ -359,8 +360,13 @@ export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
           </Reveal>
         </div>
 
+        {/* Filtros rápidos acima da barra de pesquisa */}
+        <Reveal variant="up" delay={60} className="pt-6">
+          <FiltrosRapidos />
+        </Reveal>
+
         {/* Barra de Pesquisa no topo da listagem */}
-        <Reveal variant="up" delay={80} className="pt-6">
+        <Reveal variant="up" delay={80} className="pt-4">
           <SearchBar />
         </Reveal>
 
