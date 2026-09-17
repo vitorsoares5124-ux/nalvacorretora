@@ -63,6 +63,10 @@ export default async function RootLayout({
       className={`${playfair.variable} ${inter.variable} antialiased scroll-smooth`}
     >
       <body className="min-h-screen bg-canvas text-ink flex flex-col font-sans">
+        <noscript>
+          {/* Sem JavaScript: exibe tudo, desativando as animações de scroll */}
+          <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
         <PublicLayoutWrapper>{children}</PublicLayoutWrapper>
       </body>
     </html>

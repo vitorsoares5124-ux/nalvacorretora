@@ -1,5 +1,6 @@
 import { ImovelCard } from "@/components/imoveis/ImovelCard";
 import { Paginacao } from "@/components/imoveis/Paginacao";
+import { Reveal } from "@/components/animations/Reveal";
 import type { Imovel } from "@/lib/supabase/types";
 import { Info } from "lucide-react";
 
@@ -21,7 +22,7 @@ export function ImoveisDestaque({
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Cabeçalho da Seção */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
-          <div>
+          <Reveal variant="up">
             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-primary mb-3">
               <span>Coleção Exclusiva</span>
             </span>
@@ -31,31 +32,40 @@ export function ImoveisDestaque({
             <p className="mt-3 text-sm sm:text-base text-ink-soft max-w-xl">
               Propriedades selecionadas por sua localização privilegiada, acabamentos de altíssimo nível e arquitetura singular.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="flex items-center gap-3">
+          <Reveal variant="left" delay={150} className="flex items-center gap-3">
             <span className="text-xs text-ink-muted uppercase tracking-widest font-mono">
               {imoveis.length} {imoveis.length === 1 ? "propriedade" : "propriedades"}
             </span>
-          </div>
+          </Reveal>
         </div>
 
         {/* Aviso discreto em modo DEMO */}
         {isDemo && (
-          <div className="mb-8 flex items-center gap-2.5 rounded-xl border border-gold-primary/30 bg-card p-3 text-xs text-gold-primary">
-            <Info className="h-4 w-4 shrink-0" />
-            <span>
-              Exibindo imóveis de demonstração. Ao rodar o arquivo <code>supabase/schema.sql</code> no seu Supabase e preencher o <code>.env.local</code>, os dados serão sincronizados em tempo real.
-            </span>
-          </div>
+          <Reveal variant="fade" className="mb-8">
+            <div className="flex items-center gap-2.5 rounded-xl border border-gold-primary/30 bg-card p-3 text-xs text-gold-primary">
+              <Info className="h-4 w-4 shrink-0" />
+              <span>
+                Exibindo imóveis de demonstração. Ao rodar o arquivo <code>supabase/schema.sql</code> no seu Supabase e preencher o <code>.env.local</code>, os dados serão sincronizados em tempo real.
+              </span>
+            </div>
+          </Reveal>
         )}
 
         {/* Grid de Imóveis (Mobile-first: 1 col mobile, 2 col tablet, 3 col desktop) */}
         {imoveis.length > 0 ? (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-              {imoveis.map((imovel) => (
-                <ImovelCard key={imovel.id} imovel={imovel} />
+              {imoveis.map((imovel, idx) => (
+                <Reveal
+                  key={imovel.id}
+                  variant="up"
+                  delay={(idx % 3) * 110}
+                  className="h-full"
+                >
+                  <ImovelCard imovel={imovel} />
+                </Reveal>
               ))}
             </div>
             <Paginacao

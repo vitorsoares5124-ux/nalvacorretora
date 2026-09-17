@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MessageCircle, Mail, MapPin, ShieldCheck, ArrowUp } from "lucide-react";
+import { MessageCircle, Mail, MapPin, ShieldCheck } from "lucide-react";
+import { Reveal } from "@/components/animations/Reveal";
 
 export function Footer() {
   return (
@@ -8,7 +9,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-line-faint">
           {/* Coluna 1: Marca e Logo */}
-          <div className="md:col-span-2 space-y-4">
+          <Reveal variant="up" className="md:col-span-2 space-y-4">
             <Link href="/" className="inline-block">
               <div className="relative h-14 w-32">
                 <Image
@@ -27,10 +28,10 @@ export function Footer() {
               <ShieldCheck className="h-4 w-4" />
               <span>CRECI 00000-J • Consultoria Imobiliária</span>
             </div>
-          </div>
+          </Reveal>
 
           {/* Coluna 2: Navegação */}
-          <div className="space-y-3">
+          <Reveal variant="up" delay={120} className="space-y-3">
             <h3 className="text-sm font-semibold text-ink tracking-wider uppercase">
               Navegação
             </h3>
@@ -51,10 +52,10 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </Reveal>
 
           {/* Coluna 3: Contato Direto */}
-          <div className="space-y-3">
+          <Reveal variant="up" delay={240} className="space-y-3">
             <h3 className="text-sm font-semibold text-ink tracking-wider uppercase">
               Contato
             </h3>
@@ -79,18 +80,22 @@ export function Footer() {
                 <span>São Paulo / SP • Atendimento com Hora Marcada</span>
               </li>
             </ul>
-          </div>
+          </Reveal>
         </div>
 
         {/* Rodapé inferior */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted">
+        <Reveal
+          variant="fade"
+          delay={200}
+          className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted"
+        >
           <p>© {new Date().getFullYear()} RA Imóveis — Roberto Andrade. Todos os direitos reservados.</p>
           <p className="flex items-center gap-4">
             <span className="hover:text-ink-soft transition-colors">Privacidade</span>
             <span>•</span>
             <span className="hover:text-ink-soft transition-colors">Termos</span>
           </p>
-        </div>
+        </Reveal>
       </div>
     </footer>
   );

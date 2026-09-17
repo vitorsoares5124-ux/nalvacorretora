@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { SearchBar } from "@/components/imoveis/SearchBar";
+import { Reveal } from "@/components/animations/Reveal";
 import { getTema } from "@/lib/tema";
 
 export async function Hero() {
@@ -39,23 +40,31 @@ export async function Hero() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8 text-center">
         {/* Título Principal de Impacto */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-ink leading-[1.1] max-w-4xl mx-auto">
-          Imóveis que traduzem seu estilo de vida com{" "}
-          <span className="gold-gradient-text block sm:inline font-bold">sofisticação</span>
-        </h1>
+        <Reveal variant="up">
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-ink leading-[1.1] max-w-4xl mx-auto">
+            Imóveis que traduzem seu estilo de vida com{" "}
+            <span className="gold-gradient-text block sm:inline font-bold">sofisticação</span>
+          </h1>
+        </Reveal>
 
         {/* Subtítulo Institucional */}
-        <p className="mt-6 text-base sm:text-lg lg:text-xl text-ink-soft max-w-2xl mx-auto leading-relaxed">
-          Curadoria criteriosa de coberturas, residências em condomínios fechados e investimentos exclusivos com atendimento consultivo por Roberto Andrade.
-        </p>
+        <Reveal variant="up" delay={120}>
+          <p className="mt-6 text-base sm:text-lg lg:text-xl text-ink-soft max-w-2xl mx-auto leading-relaxed">
+            Curadoria criteriosa de coberturas, residências em condomínios fechados e investimentos exclusivos com atendimento consultivo por Roberto Andrade.
+          </p>
+        </Reveal>
 
         {/* Barra de Pesquisa */}
-        <div className="mt-8 sm:mt-10">
+        <Reveal variant="up" delay={240} className="mt-8 sm:mt-10">
           <SearchBar large />
-        </div>
+        </Reveal>
 
         {/* CTA Principal */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Reveal
+          variant="up"
+          delay={360}
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
           <Link
             href="#destaques"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl gold-gradient-btn px-8 py-4 text-sm font-bold uppercase tracking-wider text-on-gold shadow-lg shadow-gold-primary/20 active:scale-95"
@@ -71,7 +80,7 @@ export async function Hero() {
           >
             Solicitar Consultoria
           </a>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

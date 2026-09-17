@@ -10,6 +10,7 @@ import { FiltrosSidebar } from "@/components/imoveis/FiltrosSidebar";
 import { FiltrosBottomSheet } from "@/components/imoveis/FiltrosBottomSheet";
 import { OrdenacaoSelect } from "@/components/imoveis/OrdenacaoSelect";
 import { Paginacao } from "@/components/imoveis/Paginacao";
+import { Reveal } from "@/components/animations/Reveal";
 import type { Imovel, ImovelFinalidade } from "@/lib/supabase/types";
 
 export const metadata: Metadata = {
@@ -331,7 +332,7 @@ export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
       <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
         {/* Cabeçalho da Página */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-8 border-b border-line">
-          <div>
+          <Reveal variant="up">
             <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-primary mb-2">
               <Sparkles className="h-3.5 w-3.5" />
               <span>Portfólio Exclusivo</span>
@@ -342,31 +343,38 @@ export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
             <p className="mt-1 text-sm text-ink-soft">
               Curadoria de coberturas, casas em condomínios e apartamentos de alto padrão.
             </p>
-          </div>
+          </Reveal>
 
           {/* Barra de Controles Mobile e Ordenação */}
-          <div className="flex items-center justify-between md:justify-end gap-4">
+          <Reveal
+            variant="left"
+            delay={120}
+            className="flex items-center justify-between md:justify-end gap-4"
+          >
             <FiltrosBottomSheet
               options={opcoesFiltro}
               totalResultados={totalCount}
             />
             <OrdenacaoSelect />
-          </div>
+          </Reveal>
         </div>
 
         {/* Barra de Pesquisa no topo da listagem */}
-        <div className="pt-6">
+        <Reveal variant="up" delay={80} className="pt-6">
           <SearchBar />
-        </div>
+        </Reveal>
 
         {/* Contador Geral de Resultados (Reflete o total real - Correction 4) */}
-        <div className="py-4 flex items-center justify-between text-xs text-ink-soft">
+        <Reveal
+          variant="fade"
+          className="py-4 flex items-center justify-between text-xs text-ink-soft"
+        >
           <span>
             Mostrando <strong className="text-ink">{imoveis.length}</strong> de{" "}
             <strong className="text-gold-primary">{totalCount}</strong>{" "}
             {totalCount === 1 ? "propriedade encontrada" : "propriedades encontradas"}
           </span>
-        </div>
+        </Reveal>
 
         {/* Layout de Duas Colunas: Sidebar Desktop + Grid de Resultados */}
         <div className="mt-2 flex gap-8 lg:gap-10 items-start">
@@ -381,8 +389,15 @@ export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
             {imoveis.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
-                  {imoveis.map((imovel) => (
-                    <ImovelCard key={imovel.id} imovel={imovel} />
+                  {imoveis.map((imovel, idx) => (
+                    <Reveal
+                      key={imovel.id}
+                      variant="up"
+                      delay={(idx % 3) * 100}
+                      className="h-full"
+                    >
+                      <ImovelCard imovel={imovel} />
+                    </Reveal>
                   ))}
                 </div>
 
@@ -394,7 +409,10 @@ export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
               </>
             ) : (
               /* Estado Vazio Refinado */
-              <div className="rounded-2xl border border-line bg-surface p-12 text-center space-y-4">
+              <Reveal
+                variant="zoom"
+                className="rounded-2xl border border-line bg-surface p-12 text-center space-y-4"
+              >
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-elevated border border-line text-gold-primary">
                   <SearchX className="h-8 w-8" />
                 </div>
@@ -415,7 +433,7 @@ export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
                     <span>Limpar todos os filtros</span>
                   </Link>
                 </div>
-              </div>
+              </Reveal>
             )}
           </div>
         </div>

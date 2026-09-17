@@ -21,12 +21,18 @@ export function WhatsAppLeadButton({
   const whatsappNumber =
     process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5511966747811";
 
-  const mensagemTexto = `Quero saber mais sobre o imóvel ${titulo}`;
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    mensagemTexto
-  )}`;
+  const handleClick = () => {
+    // Link absoluto do anúncio específico (usa o domínio atual do site)
+    const link =
+      typeof window !== "undefined"
+        ? `${window.location.origin}/imoveis/${imovelId}`
+        : `/imoveis/${imovelId}`;
 
-  const handleClick = (e: React.MouseEvent) => {
+    const mensagemTexto = `Olá! Quero saber mais sobre o imóvel "${titulo}".\n${link}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+      mensagemTexto
+    )}`;
+
     // 1. Abre IMEDIATAMENTE o WhatsApp sem qualquer await (Correction 2)
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 

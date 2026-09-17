@@ -19,6 +19,7 @@ import { DEMO_IMOVEIS } from "@/lib/demo-data";
 import { GaleriaImovel } from "@/components/imoveis/GaleriaImovel";
 import { MapaImovel } from "@/components/imoveis/MapaImovel";
 import { WhatsAppLeadButton } from "@/components/imoveis/WhatsAppLeadButton";
+import { Reveal } from "@/components/animations/Reveal";
 import type { Imovel } from "@/lib/supabase/types";
 
 interface PageProps {
@@ -139,7 +140,7 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
       <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
         {/* Cabeçalho do Imóvel */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-line">
-          <div className="space-y-2">
+          <Reveal variant="up" className="space-y-2">
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-md bg-gold-primary/15 border border-gold-primary/40 px-2.5 py-1 text-xs font-semibold uppercase tracking-wider text-gold-primary">
                 {imovel.finalidade === "venda"
@@ -173,10 +174,10 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
                 {imovel.bairro}, {imovel.cidade} - {imovel.uf}
               </span>
             </div>
-          </div>
+          </Reveal>
 
           {/* Preço de Aquisição */}
-          <div className="flex flex-col lg:items-end">
+          <Reveal variant="up" delay={120} className="flex flex-col lg:items-end">
             <span className="text-xs uppercase tracking-wider text-ink-soft">
               Valor de {imovel.finalidade === "venda" ? "Venda" : "Locação"}
             </span>
@@ -196,7 +197,7 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
                 )}
               </div>
             )}
-          </div>
+          </Reveal>
         </div>
 
         {/* Layout Principal: Galeria + Ficha Técnica */}
@@ -204,13 +205,18 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
           {/* Coluna Esquerda (8 cols): Galeria, Descrição, Características e Mapa */}
           <div className="lg:col-span-8 space-y-10">
             {/* Galeria de Fotos com Lightbox */}
-            <GaleriaImovel
-              imagens={imovel.imoveis_imagens || []}
-              titulo={imovel.titulo}
-            />
+            <Reveal variant="up">
+              <GaleriaImovel
+                imagens={imovel.imoveis_imagens || []}
+                titulo={imovel.titulo}
+              />
+            </Reveal>
 
             {/* Ficha Técnica Rápida (Grid de Especificações) */}
-            <div className="rounded-2xl border border-line bg-surface p-6">
+            <Reveal
+              variant="up"
+              className="rounded-2xl border border-line bg-surface p-6"
+            >
               <h2 className="text-sm font-semibold uppercase tracking-wider text-gold-primary mb-5">
                 Especificações Principais
               </h2>
@@ -276,21 +282,27 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
                   </span>
                 </div>
               )}
-            </div>
+            </Reveal>
 
             {/* Descrição Completa */}
-            <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-4">
+            <Reveal
+              variant="up"
+              className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-4"
+            >
               <h2 className="text-lg font-semibold text-ink">
                 Sobre o Imóvel
               </h2>
               <div className="prose prose-invert max-w-none text-sm leading-relaxed text-ink-soft whitespace-pre-line">
                 {imovel.descricao || "Sem descrição disponível para este imóvel."}
               </div>
-            </div>
+            </Reveal>
 
             {/* Características e Comodidades */}
             {imovel.caracteristicas && imovel.caracteristicas.length > 0 && (
-              <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-4">
+              <Reveal
+                variant="up"
+                className="rounded-2xl border border-line bg-surface p-6 sm:p-8 space-y-4"
+              >
                 <h2 className="text-lg font-semibold text-ink">
                   Características & Diferenciais
                 </h2>
@@ -305,23 +317,25 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
                     </span>
                   ))}
                 </div>
-              </div>
+              </Reveal>
             )}
 
             {/* Mapa de Localização (OpenStreetMap Iframe Leve) */}
-            <MapaImovel
-              latitude={imovel.latitude}
-              longitude={imovel.longitude}
-              bairro={imovel.bairro}
-              cidade={imovel.cidade}
-              uf={imovel.uf}
-            />
+            <Reveal variant="up">
+              <MapaImovel
+                latitude={imovel.latitude}
+                longitude={imovel.longitude}
+                bairro={imovel.bairro}
+                cidade={imovel.cidade}
+                uf={imovel.uf}
+              />
+            </Reveal>
           </div>
 
           {/* Coluna Direita (4 cols): Card de Atendimento e CTA */}
           <div className="lg:col-span-4 space-y-6">
             <div className="sticky top-28 rounded-2xl border border-line bg-card p-6 space-y-6 shadow-xl">
-              <div className="border-b border-line pb-5">
+              <Reveal variant="up" className="border-b border-line pb-5">
                 <span className="text-xs uppercase tracking-wider text-ink-soft">
                   Consultoria Exclusiva
                 </span>
@@ -332,9 +346,13 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
                   <ShieldCheck className="h-3.5 w-3.5" />
                   <span>CRECI 00000-J • RA Imóveis</span>
                 </p>
-              </div>
+              </Reveal>
 
-              <div className="space-y-3 text-xs text-ink-soft">
+              <Reveal
+                variant="up"
+                delay={120}
+                className="space-y-3 text-xs text-ink-soft"
+              >
                 <p>
                   Atendimento direto e sem intermediários. Agende uma visita privativa ao imóvel ou solicite a documentação completa.
                 </p>
@@ -344,19 +362,25 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
                     <span className="text-ink">{imovel.cidade} / {imovel.uf}</span>
                   </div>
                 </div>
-              </div>
+              </Reveal>
 
               {/* Botão de WhatsApp Desktop com Fire-and-forget Lead Logging */}
-              <WhatsAppLeadButton
-                imovelId={imovel.id}
-                titulo={imovel.titulo}
-                preco={Number(imovel.preco)}
-                className="w-full"
-              />
+              <Reveal variant="up" delay={200}>
+                <WhatsAppLeadButton
+                  imovelId={imovel.id}
+                  titulo={imovel.titulo}
+                  preco={Number(imovel.preco)}
+                  className="w-full"
+                />
+              </Reveal>
 
-              <div className="pt-2 text-center text-[11px] text-ink-muted">
+              <Reveal
+                variant="fade"
+                delay={260}
+                className="pt-2 text-center text-[11px] text-ink-muted"
+              >
                 <span>Resposta ágil em horário comercial • Atendimento confidencial</span>
-              </div>
+              </Reveal>
             </div>
           </div>
         </div>

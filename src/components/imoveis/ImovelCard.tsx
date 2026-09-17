@@ -24,7 +24,7 @@ export function ImovelCard({ imovel }: ImovelCardProps) {
   const urlDetalhes = `/imoveis/${imovel.id}`;
 
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-card transition-all duration-300 hover:border-gold-primary/60 hover:shadow-xl hover:shadow-gold-primary/10">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-card transition-all duration-300 hover:border-gold-primary/60 hover:shadow-xl hover:shadow-gold-primary/10">
       {/* Imagem de Capa com Link */}
       <Link href={urlDetalhes} className="relative aspect-[16/10] w-full overflow-hidden bg-surface block">
         <NextImage
