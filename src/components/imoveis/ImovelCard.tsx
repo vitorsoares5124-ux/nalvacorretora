@@ -65,7 +65,7 @@ export function ImovelCard({ imovel }: ImovelCardProps) {
           <div className="flex items-center gap-1.5 text-xs text-ink-soft">
             <MapPin className="h-3.5 w-3.5 text-gold-primary shrink-0" />
             <span className="truncate font-medium">
-              {imovel.bairro}, {imovel.cidade} - {imovel.uf}
+              {imovel.cidade}, {imovel.uf}
             </span>
           </div>
 

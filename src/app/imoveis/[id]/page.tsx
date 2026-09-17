@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${imovel.titulo} | RA Imóveis`,
-    description: imovel.descricao || `Imóvel exclusivo em ${imovel.bairro}, ${imovel.cidade}.`,
+    description: imovel.descricao || `Imóvel exclusivo em ${imovel.cidade}, ${imovel.uf}.`,
     openGraph: {
       title: `${imovel.titulo} | RA Imóveis`,
       description: imovel.descricao || undefined,
@@ -171,7 +171,7 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
             <div className="flex items-center gap-2 text-sm text-ink-soft">
               <MapPin className="h-4 w-4 text-gold-primary shrink-0" />
               <span>
-                {imovel.bairro}, {imovel.cidade} - {imovel.uf}
+                {imovel.cidade}, {imovel.uf}
               </span>
             </div>
           </Reveal>
@@ -325,7 +325,6 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
               <MapaImovel
                 latitude={imovel.latitude}
                 longitude={imovel.longitude}
-                bairro={imovel.bairro}
                 cidade={imovel.cidade}
                 uf={imovel.uf}
               />
@@ -344,7 +343,7 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
                 </h3>
                 <p className="text-xs text-gold-primary mt-0.5 flex items-center gap-1.5">
                   <ShieldCheck className="h-3.5 w-3.5" />
-                  <span>CRECI 00000-J • RA Imóveis</span>
+                  <span>Consultoria Imobiliária</span>
                 </p>
               </Reveal>
 
@@ -359,7 +358,7 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
                 <div className="rounded-xl bg-surface p-3 border border-line-faint space-y-1 font-mono text-[11px]">
                   <div className="flex justify-between">
                     <span className="text-ink-muted">Cidade:</span>
-                    <span className="text-ink">{imovel.cidade} / {imovel.uf}</span>
+                    <span className="text-ink">{imovel.cidade}, {imovel.uf}</span>
                   </div>
                 </div>
               </Reveal>

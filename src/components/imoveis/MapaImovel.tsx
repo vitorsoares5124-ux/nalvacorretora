@@ -3,7 +3,6 @@ import { MapPin } from "lucide-react";
 interface MapaImovelProps {
   latitude?: number | null;
   longitude?: number | null;
-  bairro: string;
   cidade: string;
   uf: string;
 }
@@ -11,7 +10,6 @@ interface MapaImovelProps {
 export function MapaImovel({
   latitude,
   longitude,
-  bairro,
   cidade,
   uf,
 }: MapaImovelProps) {
@@ -37,7 +35,7 @@ export function MapaImovel({
           </h3>
         </div>
         <span className="text-xs text-ink-soft">
-          {bairro}, {cidade} - {uf}
+          {cidade}, {uf}
         </span>
       </div>
 
@@ -48,7 +46,7 @@ export function MapaImovel({
       {/* Iframe estático do OpenStreetMap com zero bibliotecas JS adicionais */}
       <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden rounded-xl border border-line bg-surface">
         <iframe
-          title={`Mapa de localização em ${bairro}, ${cidade}`}
+          title={`Mapa de localização em ${cidade}, ${uf}`}
           src={iframeSrc}
           className="h-[calc(100%+3.5rem)] w-full border-0 opacity-90"
           style={{ filter: "var(--map-filter)" }}

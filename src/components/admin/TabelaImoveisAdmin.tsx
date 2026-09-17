@@ -194,7 +194,7 @@ export function TabelaImoveisAdmin({ imoveisIniciais }: TabelaImoveisAdminProps)
                             {imovel.titulo}
                           </div>
                           <div className="text-[11px] text-ink-muted">
-                            {imovel.bairro}, {imovel.cidade} - {imovel.uf} • {imovel.tipo}
+                            {imovel.cidade}, {imovel.uf} • {imovel.tipo}
                           </div>
                         </div>
                       </td>

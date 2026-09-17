@@ -123,9 +123,6 @@ export function ImovelForm({ imovelInicial }: ImovelFormProps) {
   const [areaTotal, setAreaTotal] = useState(imovelInicial?.area_total?.toString() || "");
 
   // Endereço
-  const [cep, setCep] = useState(imovelInicial?.cep || "");
-  const [rua, setRua] = useState(imovelInicial?.rua || "");
-  const [numero, setNumero] = useState(imovelInicial?.numero || "");
   const [bairro, setBairro] = useState(imovelInicial?.bairro || "");
   const [cidade, setCidade] = useState(imovelInicial?.cidade || "São Paulo");
   const [uf, setUf] = useState(imovelInicial?.uf || "SP");
@@ -173,9 +170,6 @@ export function ImovelForm({ imovelInicial }: ImovelFormProps) {
   };
 
   const aplicarEndereco = (s: SugestaoEndereco) => {
-    setCep(s.cep);
-    setRua(s.rua);
-    setNumero(s.numero);
     setBairro(s.bairro);
     setCidade(s.cidade);
     setUf(s.uf);
@@ -259,9 +253,6 @@ export function ImovelForm({ imovelInicial }: ImovelFormProps) {
       vagas: Math.max(0, Number(vagas) || 0),
       area_util: Math.max(0, Number(areaUtil) || 0),
       area_total: Math.max(0, Number(areaTotal) || Number(areaUtil) || 0),
-      cep: cep.trim() || undefined,
-      rua: rua.trim() || undefined,
-      numero: numero.trim() || undefined,
       bairro: bairro.trim(),
       cidade: cidade.trim(),
       uf: uf.trim().toUpperCase(),
@@ -831,45 +822,6 @@ export function ImovelForm({ imovelInicial }: ImovelFormProps) {
                 ))}
               </ul>
             )}
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <div className="space-y-1.5">
-              <label className="text-xs text-ink-soft font-medium">CEP</label>
-              <input
-                type="text"
-                placeholder="01401-000"
-                value={cep}
-                onChange={(e) => setCep(e.target.value)}
-                className="w-full rounded-xl border border-line bg-card px-3.5 py-2.5 text-xs text-ink focus:border-gold-primary focus:outline-none"
-              />
-            </div>
-
-            <div className="col-span-2 space-y-1.5">
-              <label className="text-xs text-ink-soft font-medium">
-                Rua (Oculta na Vitrine)
-              </label>
-              <input
-                type="text"
-                placeholder="Alameda Lorena"
-                value={rua}
-                onChange={(e) => setRua(e.target.value)}
-                className="w-full rounded-xl border border-line bg-card px-3.5 py-2.5 text-xs text-ink focus:border-gold-primary focus:outline-none"
-              />
-            </div>
-
-            <div className="space-y-1.5">
-              <label className="text-xs text-ink-soft font-medium">
-                Número
-              </label>
-              <input
-                type="text"
-                placeholder="1500"
-                value={numero}
-                onChange={(e) => setNumero(e.target.value)}
-                className="w-full rounded-xl border border-line bg-card px-3.5 py-2.5 text-xs text-ink focus:border-gold-primary focus:outline-none"
-              />
-            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

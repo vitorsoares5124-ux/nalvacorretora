@@ -26,7 +26,7 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-2 text-xs font-medium text-gold-primary pt-2">
               <ShieldCheck className="h-4 w-4" />
-              <span>CRECI 00000-J • Consultoria Imobiliária</span>
+              <span>Consultoria Imobiliária</span>
             </div>
           </Reveal>
 
