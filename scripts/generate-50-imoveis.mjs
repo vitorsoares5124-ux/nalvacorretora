@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-// 30 Verified high quality luxury real estate unsplash photo IDs
+// 30 fotos de referência (IDs do Unsplash ou URLs completas, ex.: Pexels)
 const PHOTOS = [
   "photo-1600596542815-ffad4c1539a9",
   "photo-1600585154340-be6161a56a0c",
@@ -14,12 +14,12 @@ const PHOTOS = [
   "photo-1513694203232-719a280e022f",
   "photo-1600573472591-ee6b68d14c68",
   "photo-1600566752355-35792bedcfea",
-  "photo-1600607687644-c7171b42498b",
+  "https://images.pexels.com/photos/4913326/pexels-photo-4913326.jpeg",
   "photo-1600585152220-90363fe7e115",
   "photo-1600210492486-724fe5c67fb0",
   "photo-1600566753190-17f0baa2a6c3",
   "photo-1600585154363-67eb9e2e2099",
-  "photo-1600607687979-247fb4591ff1",
+  "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg",
   "photo-1542314831-068cd1dbfeeb",
   "photo-1571896349842-33c89424de2d",
   "photo-1564013799919-ab600027ffc6",
@@ -29,14 +29,17 @@ const PHOTOS = [
   "photo-1502672260266-1c1ef2d93688",
   "photo-1560448204-e02f11c3d0e2",
   "photo-1522708323590-d24dbb6b0267",
-  "photo-1502005229762-ee152f90e5f2",
+  "https://images.pexels.com/photos/534228/pexels-photo-534228.jpeg",
   "photo-1486406146926-c627a92ad1ab",
   "photo-1545324418-cc1a3fa10c00"
 ];
 
 function getPhotoUrl(index, width = 1600) {
-  const id = PHOTOS[index % PHOTOS.length];
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`;
+  const item = PHOTOS[index % PHOTOS.length];
+  if (item.startsWith('http')) {
+    return `${item}?auto=compress&cs=tinysrgb&w=${width}`;
+  }
+  return `https://images.unsplash.com/${item}?auto=format&fit=crop&w=${width}&q=80`;
 }
 
 // Data-base fixa para timestamps determinísticos (evita diffs a cada execução).

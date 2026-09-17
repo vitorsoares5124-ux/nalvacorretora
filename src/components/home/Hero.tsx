@@ -16,7 +16,7 @@ export async function Hero() {
           alt="Propriedade de Luxo RA Imóveis"
           fill
           priority
-          className="object-cover object-[center_30%] brightness-[1] contrast-[1.05] sm:hidden"
+          className="object-cover object-[center_30%] brightness-[1] contrast-[1.05] opacity-0 sm:hidden"
           style={{ objectPosition: "center 30%" }}
           sizes="100vw"
         />
@@ -27,8 +27,8 @@ export async function Hero() {
           priority
           className={
             temaClaro
-              ? "hidden sm:block object-cover object-center brightness-[1] contrast-[1.02]"
-              : "hidden sm:block object-cover object-center brightness-[0.59] contrast-[1.05]"
+              ? "hidden sm:block object-cover object-center brightness-[1] contrast-[1.02] opacity-10"
+              : "hidden sm:block object-cover object-center brightness-[0.59] contrast-[1.05] opacity-10"
           }
           sizes="100vw"
         />

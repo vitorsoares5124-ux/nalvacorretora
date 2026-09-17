@@ -154,7 +154,7 @@ BEGIN
     -- Fotos do Imóvel 5
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
     VALUES
-        ('00000000-0000-0000-0000-000000000005', 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=1600&q=80', 1, true),
+        ('00000000-0000-0000-0000-000000000005', 'https://images.pexels.com/photos/4913326/pexels-photo-4913326.jpeg?auto=compress&cs=tinysrgb&w=1600', 1, true),
         ('00000000-0000-0000-0000-000000000005', 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1600&q=80', 2, false),
         ('00000000-0000-0000-0000-000000000005', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
@@ -187,7 +187,7 @@ BEGIN
     VALUES
         ('00000000-0000-0000-0000-000000000006', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80', 1, true),
         ('00000000-0000-0000-0000-000000000006', 'https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1600&q=80', 2, false),
-        ('00000000-0000-0000-0000-000000000006', 'https://images.unsplash.com/photo-1600607687979-247fb4591ff1?auto=format&fit=crop&w=1600&q=80', 3, false)
+        ('00000000-0000-0000-0000-000000000006', 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1600', 3, false)
     ON CONFLICT DO NOTHING;
 
     -- Imóvel 7: Apartamento Garden Suspenso no Jardim Europa
@@ -309,7 +309,7 @@ BEGIN
     -- Fotos do Imóvel 10
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
     VALUES
-        ('00000000-0000-0000-0000-000000000010', 'https://images.unsplash.com/photo-1502005229762-ee152f90e5f2?auto=format&fit=crop&w=1600&q=80', 1, true),
+        ('00000000-0000-0000-0000-000000000010', 'https://images.pexels.com/photos/534228/pexels-photo-534228.jpeg?auto=compress&cs=tinysrgb&w=1600', 1, true),
         ('00000000-0000-0000-0000-000000000010', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80', 2, false),
         ('00000000-0000-0000-0000-000000000010', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
@@ -464,7 +464,7 @@ BEGIN
     -- Fotos do Imóvel 15
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
     VALUES
-        ('00000000-0000-0000-0000-000000000015', 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=1600&q=80', 1, true),
+        ('00000000-0000-0000-0000-000000000015', 'https://images.pexels.com/photos/4913326/pexels-photo-4913326.jpeg?auto=compress&cs=tinysrgb&w=1600', 1, true),
         ('00000000-0000-0000-0000-000000000015', 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1600&q=80', 2, false),
         ('00000000-0000-0000-0000-000000000015', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
@@ -497,7 +497,7 @@ BEGIN
     VALUES
         ('00000000-0000-0000-0000-000000000016', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80', 1, true),
         ('00000000-0000-0000-0000-000000000016', 'https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1600&q=80', 2, false),
-        ('00000000-0000-0000-0000-000000000016', 'https://images.unsplash.com/photo-1600607687979-247fb4591ff1?auto=format&fit=crop&w=1600&q=80', 3, false)
+        ('00000000-0000-0000-0000-000000000016', 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1600', 3, false)
     ON CONFLICT DO NOTHING;
 
     -- Imóvel 17: Apartamento Frente Mar em Balneário Camboriú
@@ -619,7 +619,7 @@ BEGIN
     -- Fotos do Imóvel 20
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
     VALUES
-        ('00000000-0000-0000-0000-000000000020', 'https://images.unsplash.com/photo-1502005229762-ee152f90e5f2?auto=format&fit=crop&w=1600&q=80', 1, true),
+        ('00000000-0000-0000-0000-000000000020', 'https://images.pexels.com/photos/534228/pexels-photo-534228.jpeg?auto=compress&cs=tinysrgb&w=1600', 1, true),
         ('00000000-0000-0000-0000-000000000020', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80', 2, false),
         ('00000000-0000-0000-0000-000000000020', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
@@ -774,7 +774,7 @@ BEGIN
     -- Fotos do Imóvel 25
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
     VALUES
-        ('00000000-0000-0000-0000-000000000025', 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=1600&q=80', 1, true),
+        ('00000000-0000-0000-0000-000000000025', 'https://images.pexels.com/photos/4913326/pexels-photo-4913326.jpeg?auto=compress&cs=tinysrgb&w=1600', 1, true),
         ('00000000-0000-0000-0000-000000000025', 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1600&q=80', 2, false),
         ('00000000-0000-0000-0000-000000000025', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
@@ -807,7 +807,7 @@ BEGIN
     VALUES
         ('00000000-0000-0000-0000-000000000026', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80', 1, true),
         ('00000000-0000-0000-0000-000000000026', 'https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1600&q=80', 2, false),
-        ('00000000-0000-0000-0000-000000000026', 'https://images.unsplash.com/photo-1600607687979-247fb4591ff1?auto=format&fit=crop&w=1600&q=80', 3, false)
+        ('00000000-0000-0000-0000-000000000026', 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1600', 3, false)
     ON CONFLICT DO NOTHING;
 
     -- Imóvel 27: Residência Moderna no Ecoville
@@ -929,7 +929,7 @@ BEGIN
     -- Fotos do Imóvel 30
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
     VALUES
-        ('00000000-0000-0000-0000-000000000030', 'https://images.unsplash.com/photo-1502005229762-ee152f90e5f2?auto=format&fit=crop&w=1600&q=80', 1, true),
+        ('00000000-0000-0000-0000-000000000030', 'https://images.pexels.com/photos/534228/pexels-photo-534228.jpeg?auto=compress&cs=tinysrgb&w=1600', 1, true),
         ('00000000-0000-0000-0000-000000000030', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80', 2, false),
         ('00000000-0000-0000-0000-000000000030', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
@@ -1084,7 +1084,7 @@ BEGIN
     -- Fotos do Imóvel 35
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
     VALUES
-        ('00000000-0000-0000-0000-000000000035', 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=1600&q=80', 1, true),
+        ('00000000-0000-0000-0000-000000000035', 'https://images.pexels.com/photos/4913326/pexels-photo-4913326.jpeg?auto=compress&cs=tinysrgb&w=1600', 1, true),
         ('00000000-0000-0000-0000-000000000035', 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1600&q=80', 2, false),
         ('00000000-0000-0000-0000-000000000035', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
@@ -1117,7 +1117,7 @@ BEGIN
     VALUES
         ('00000000-0000-0000-0000-000000000036', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80', 1, true),
         ('00000000-0000-0000-0000-000000000036', 'https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1600&q=80', 2, false),
-        ('00000000-0000-0000-0000-000000000036', 'https://images.unsplash.com/photo-1600607687979-247fb4591ff1?auto=format&fit=crop&w=1600&q=80', 3, false)
+        ('00000000-0000-0000-0000-000000000036', 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1600', 3, false)
     ON CONFLICT DO NOTHING;
 
     -- Imóvel 37: Apartamento no Jardim Canadá
@@ -1239,7 +1239,7 @@ BEGIN
     -- Fotos do Imóvel 40
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
     VALUES
-        ('00000000-0000-0000-0000-000000000040', 'https://images.unsplash.com/photo-1502005229762-ee152f90e5f2?auto=format&fit=crop&w=1600&q=80', 1, true),
+        ('00000000-0000-0000-0000-000000000040', 'https://images.pexels.com/photos/534228/pexels-photo-534228.jpeg?auto=compress&cs=tinysrgb&w=1600', 1, true),
         ('00000000-0000-0000-0000-000000000040', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80', 2, false),
         ('00000000-0000-0000-0000-000000000040', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
@@ -1394,7 +1394,7 @@ BEGIN
     -- Fotos do Imóvel 45
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
     VALUES
-        ('00000000-0000-0000-0000-000000000045', 'https://images.unsplash.com/photo-1600607687644-c7171b42498b?auto=format&fit=crop&w=1600&q=80', 1, true),
+        ('00000000-0000-0000-0000-000000000045', 'https://images.pexels.com/photos/4913326/pexels-photo-4913326.jpeg?auto=compress&cs=tinysrgb&w=1600', 1, true),
         ('00000000-0000-0000-0000-000000000045', 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1600&q=80', 2, false),
         ('00000000-0000-0000-0000-000000000045', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;
@@ -1427,7 +1427,7 @@ BEGIN
     VALUES
         ('00000000-0000-0000-0000-000000000046', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80', 1, true),
         ('00000000-0000-0000-0000-000000000046', 'https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1600&q=80', 2, false),
-        ('00000000-0000-0000-0000-000000000046', 'https://images.unsplash.com/photo-1600607687979-247fb4591ff1?auto=format&fit=crop&w=1600&q=80', 3, false)
+        ('00000000-0000-0000-0000-000000000046', 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1600', 3, false)
     ON CONFLICT DO NOTHING;
 
     -- Imóvel 47: Casa em Condomínio em Alphaville Campinas
@@ -1549,7 +1549,7 @@ BEGIN
     -- Fotos do Imóvel 50
     INSERT INTO public.imoveis_imagens (imovel_id, url, ordem, capa)
     VALUES
-        ('00000000-0000-0000-0000-000000000050', 'https://images.unsplash.com/photo-1502005229762-ee152f90e5f2?auto=format&fit=crop&w=1600&q=80', 1, true),
+        ('00000000-0000-0000-0000-000000000050', 'https://images.pexels.com/photos/534228/pexels-photo-534228.jpeg?auto=compress&cs=tinysrgb&w=1600', 1, true),
         ('00000000-0000-0000-0000-000000000050', 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80', 2, false),
         ('00000000-0000-0000-0000-000000000050', 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80', 3, false)
     ON CONFLICT DO NOTHING;

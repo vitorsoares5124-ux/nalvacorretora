@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { headers } from "next/headers";
 import { Sparkles, Home, ChevronRight, SearchX, RotateCcw } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { DEMO_IMOVEIS } from "@/lib/demo-data";
@@ -38,10 +39,19 @@ interface SearchParamsProps {
   }>;
 }
 
-const ITENS_POR_PAGINA = 24;
+const ITENS_POR_PAGINA_DESKTOP = 12;
+const ITENS_POR_PAGINA_MOBILE = 7;
 
 export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
   const params = await searchParams;
+
+  // O servidor não conhece a largura da tela: usa o user-agent para
+  // escolher quantos cartões exibir por página (12 no PC, 7 no mobile).
+  const userAgent = (await headers()).get("user-agent") ?? "";
+  const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(userAgent);
+  const ITENS_POR_PAGINA = isMobile
+    ? ITENS_POR_PAGINA_MOBILE
+    : ITENS_POR_PAGINA_DESKTOP;
 
   const paginaAtual = Math.max(1, Number(params.page) || 1);
   const offset = (paginaAtual - 1) * ITENS_POR_PAGINA;
@@ -92,7 +102,7 @@ export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
       // 1. Montagem da Query Supabase direta no banco (sem filtro em memória)
       let query = supabase
         .from("imoveis")
-        .select("*, imoveis_imagens (*)", { count: "exact" })
+        .select("*, imoveis_imagens!inner (*)", { count: "exact" })
         .eq("status", "disponivel");
 
       const finalidadesValidas: ImovelFinalidade[] = ["venda", "aluguel", "temporada"];

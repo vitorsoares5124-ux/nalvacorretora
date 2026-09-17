@@ -6,9 +6,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 interface PaginacaoProps {
   paginaAtual: number;
   totalPaginas: number;
+  ancora?: string;
 }
 
-export function Paginacao({ paginaAtual, totalPaginas }: PaginacaoProps) {
+export function Paginacao({ paginaAtual, totalPaginas, ancora }: PaginacaoProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -22,7 +23,8 @@ export function Paginacao({ paginaAtual, totalPaginas }: PaginacaoProps) {
     } else {
       params.set("page", novaPagina.toString());
     }
-    router.push(`${pathname}?${params.toString()}`);
+    const query = params.toString();
+    router.push(`${pathname}${query ? `?${query}` : ""}${ancora ? `#${ancora}` : ""}`);
   };
 
   // Gerar array de páginas visíveis

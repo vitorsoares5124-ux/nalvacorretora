@@ -1,13 +1,21 @@
 import { ImovelCard } from "@/components/imoveis/ImovelCard";
+import { Paginacao } from "@/components/imoveis/Paginacao";
 import type { Imovel } from "@/lib/supabase/types";
 import { Info } from "lucide-react";
 
 interface ImoveisDestaqueProps {
   imoveis: Imovel[];
   isDemo?: boolean;
+  paginaAtual?: number;
+  totalPaginas?: number;
 }
 
-export function ImoveisDestaque({ imoveis, isDemo }: ImoveisDestaqueProps) {
+export function ImoveisDestaque({
+  imoveis,
+  isDemo,
+  paginaAtual = 1,
+  totalPaginas = 1,
+}: ImoveisDestaqueProps) {
   return (
     <section id="destaques" className="py-20 sm:py-28 bg-canvas-alt relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -44,11 +52,18 @@ export function ImoveisDestaque({ imoveis, isDemo }: ImoveisDestaqueProps) {
 
         {/* Grid de Imóveis (Mobile-first: 1 col mobile, 2 col tablet, 3 col desktop) */}
         {imoveis.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-            {imoveis.map((imovel) => (
-              <ImovelCard key={imovel.id} imovel={imovel} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+              {imoveis.map((imovel) => (
+                <ImovelCard key={imovel.id} imovel={imovel} />
+              ))}
+            </div>
+            <Paginacao
+              paginaAtual={paginaAtual}
+              totalPaginas={totalPaginas}
+              ancora="destaques"
+            />
+          </>
         ) : (
           <div className="rounded-2xl border border-line bg-surface p-12 text-center">
             <p className="text-sm text-ink-soft">Nenhum imóvel em destaque no momento.</p>

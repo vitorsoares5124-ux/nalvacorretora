@@ -57,6 +57,9 @@ CREATE TABLE IF NOT EXISTS public.imoveis (
 -- Garantir coluna 'is_demo' para bancos já existentes
 ALTER TABLE public.imoveis ADD COLUMN IF NOT EXISTS is_demo BOOLEAN DEFAULT false;
 
+-- Bancos antigos ainda possuem a coluna 'codigo' (removida do app): alinhar com o schema atual
+ALTER TABLE public.imoveis DROP COLUMN IF EXISTS codigo;
+
 -- 4. Trigger para atualizar 'updated_at' automaticamente
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
