@@ -15,7 +15,7 @@ export async function Sobre() {
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-line bg-surface">
               <Image
                 src={temaClaro ? "/images/perfil-light.png" : "/images/essafoto.png"}
-                alt="Roberto Andrade - Consultoria Imobiliária"
+                alt="Roberto Andrade - Consultor Imobiliário"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40vw"
@@ -30,7 +30,7 @@ export async function Sobre() {
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-ink">Roberto Andrade</h4>
-                    <p className="text-xs text-gold-primary">Corretor & Avaliador Imobiliário</p>
+                    <p className="text-xs text-gold-primary">Consultor Imobiliário • CRECI 322479</p>
                   </div>
                 </div>
               </div>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { SearchBar } from "@/components/imoveis/SearchBar";
+import { FiltrosRapidos } from "@/components/imoveis/FiltrosRapidos";
 import { Reveal } from "@/components/animations/Reveal";
 import { getTema } from "@/lib/tema";
 
@@ -54,8 +55,13 @@ export async function Hero() {
           </p>
         </Reveal>
 
+        {/* Filtros Rápidos */}
+        <Reveal variant="up" delay={200} className="mt-8 sm:mt-10">
+          <FiltrosRapidos />
+        </Reveal>
+
         {/* Barra de Pesquisa */}
-        <Reveal variant="up" delay={240} className="mt-8 sm:mt-10">
+        <Reveal variant="up" delay={240} className="mt-4 sm:mt-5">
           <SearchBar large />
         </Reveal>
 

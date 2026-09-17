@@ -325,14 +325,14 @@ export default async function ImovelDetalhePage({ params }: PageProps) {
             <div className="sticky top-28 rounded-2xl border border-line bg-card p-6 space-y-6 shadow-xl">
               <Reveal variant="up" className="border-b border-line pb-5">
                 <span className="text-xs uppercase tracking-wider text-ink-soft">
-                  Consultoria Exclusiva
+                  Consultor Imobiliário
                 </span>
                 <h3 className="text-xl font-bold text-ink mt-1">
                   Roberto Andrade
                 </h3>
                 <p className="text-xs text-gold-primary mt-0.5 flex items-center gap-1.5">
                   <ShieldCheck className="h-3.5 w-3.5" />
-                  <span>Consultoria Imobiliária</span>
+                  <span>Consultor Imobiliário • CRECI 322479</span>
                 </p>
               </Reveal>
 

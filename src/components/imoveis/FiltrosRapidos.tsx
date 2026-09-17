@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const OPCOES = [
   { valor: "venda", rotulo: "Venda" },
@@ -10,7 +10,6 @@ const OPCOES = [
 
 export function FiltrosRapidos() {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const finalidadeAtual = searchParams.get("finalidade") || "";
@@ -23,7 +22,7 @@ export function FiltrosRapidos() {
     } else {
       params.set("finalidade", valor);
     }
-    router.push(`${pathname}?${params.toString()}`);
+    router.push(`/imoveis?${params.toString()}`);
   };
 
   return (
