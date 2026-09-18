@@ -75,8 +75,8 @@ export default async function HomePage({ searchParams }: HomeProps) {
     }
   }
 
-  // Fallback para DEMO quando não há Supabase configurado ou nenhum destaque.
-  if (totalCount === 0) {
+  // Fallback para DEMO apenas quando o Supabase não está configurado.
+  if (totalCount === 0 && !hasSupabaseConfig) {
     totalCount = DEMO_IMOVEIS.length;
     imoveis = DEMO_IMOVEIS.slice(offset, offset + itensPorPagina);
     isDemo = true;

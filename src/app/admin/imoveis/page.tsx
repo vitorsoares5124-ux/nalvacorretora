@@ -32,8 +32,8 @@ export default async function AdminImoveisPage() {
     }
   }
 
-  // Fallback nos dados de demonstração se base vazia ou não configurada
-  if (imoveis.length === 0) {
+  // Fallback nos dados de demonstração somente se o Supabase não estiver configurado
+  if (!hasSupabaseConfig) {
     imoveis = DEMO_IMOVEIS;
   }
 

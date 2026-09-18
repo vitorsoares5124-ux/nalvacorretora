@@ -268,8 +268,8 @@ export default async function ImoveisPage({ searchParams }: SearchParamsProps) {
     }
   }
 
-  // Fallback para DEMO se base não estiver configurada ou estiver vazia
-  if (imoveis.length === 0 && (!hasSupabaseConfig || totalCount === 0)) {
+  // Fallback para DEMO apenas se o Supabase não estiver configurado
+  if (imoveis.length === 0 && !hasSupabaseConfig) {
     let filtrados = DEMO_IMOVEIS.filter((i) => i.status === "disponivel");
 
     if (params.finalidade) {

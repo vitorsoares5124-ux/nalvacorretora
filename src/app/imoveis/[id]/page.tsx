@@ -79,13 +79,15 @@ async function getImovelPorId(idParam: string): Promise<Imovel | null> {
     }
   }
 
-  // Fallback nos dados DEMO para testes locais
-  const demoItem = DEMO_IMOVEIS.find(
-    (i) => i.id === idLimpo && i.status === "disponivel"
-  );
+  // Fallback nos dados DEMO apenas para testes locais (sem Supabase configurado)
+  if (!hasSupabaseConfig) {
+    const demoItem = DEMO_IMOVEIS.find(
+      (i) => i.id === idLimpo && i.status === "disponivel"
+    );
 
-  if (demoItem) {
-    return demoItem;
+    if (demoItem) {
+      return demoItem;
+    }
   }
 
   return null;

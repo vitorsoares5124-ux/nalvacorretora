@@ -41,8 +41,8 @@ export default async function EditarImovelPage({ params }: PageProps) {
     }
   }
 
-  // Fallback nos dados DEMO para testes locais
-  if (!imovel) {
+  // Fallback nos dados DEMO apenas para testes locais (sem Supabase configurado)
+  if (!imovel && !hasSupabaseConfig) {
     imovel = DEMO_IMOVEIS.find((i) => i.id === id) || null;
   }
 
