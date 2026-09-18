@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+Lovfy.zip
+/rotate/
 
 # debug
 npm-debug.log*
